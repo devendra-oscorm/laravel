@@ -1,0 +1,167 @@
+<?php $page="guide-booking-confirmation";?>
+@extends('layout.mainlayout')
+@section('content')
+
+    <!-- ========================
+        Start Page Content
+    ========================= -->
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar breadcrumb-bg-09 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Guide Booking</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('guide-grid')}}">Our Guide</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('guide-details')}}">Guide Details</a></li>
+                            <li class="breadcrumb-item">Guide Booking</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Booking Confirmation -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card booking-confirmation mb-0">
+                        <div class="card-body">
+                            <div class="bg-light-200 border border-light p-3 rounded-2 mb-4">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between ">
+                                    <div class="d-flex flex-wrap align-items-center booking-hotels">
+                                        <a href="{{url('guide-details')}}" class="avatar avatar-lg me-2">
+                                            <img src="{{URL::asset('build/img/guide/guide-01.jpg')}}" alt="image"
+                                                class="img-fluid rounded">
+                                        </a>
+                                        <div class="booking-details">
+                                            <h6 class="mb-1"><a href="{{url('guide-details')}}">Mr.Aaron Williams</a></h6>
+                                            <div class="d-flex flex-wrap align-items-center booking-items">
+                                                <p
+                                                    class="fs-14 text-gray-6 pe-2 border-end border-light d-flex align-items-center me-2 ">
+                                                    Professional Travel Guide
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="badge badge-purple status rounded-pill p-2 fs-10 d-flex align-items-center">Upcoming</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pb-4 border-bottom mb-4">
+                                <div class="fs-18 text-dark fw-semibold mb-3">Booking Info</div>
+                                <div class="row g-3">
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Booked On</h6>
+                                        <p class="text-gray-6 fs-16 ">28/10/2026</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Timeslot</h6>
+                                        <p class="text-gray-6 fs-16 ">12:00 PM - 4:00 PM</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">No of Members </h6>
+                                        <p class="text-gray-6 fs-16 ">2 Adults, 2 Children</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Duration</h6>
+                                        <p class="text-gray-6 fs-16 ">7 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pb-4 border-bottom mb-4">
+                                <h6 class="mb-2">Activities</h6>
+                                <div class="d-flex flex-wrap align-items-center service-info gap-3">
+                                    <span class="badge badge-light rounded-pill">Sightseeing</span>
+                                    <span class="badge badge-light rounded-pill">Boat Tours</span>
+                                </div>
+                            </div>
+                            <div class="pb-4 border-bottom mb-4">
+                                <div class="fs-18 text-dark fw-semibold mb-3">Billing Info</div>
+                                <div class="row g-3">
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Name</h6>
+                                        <p class="text-gray-6 fs-16 ">Chris Foxy</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Email</h6>
+                                        <p class="text-gray-6 fs-16 ">chrfo2356@example.com</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Phone</h6>
+                                        <p class="text-gray-6 fs-16 ">+1 12656 26654</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Address</h6>
+                                        <p class="text-gray-6 fs-16 ">15/C Prince Dareen Road, New York</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="fs-18 text-dark fw-semibold mb-3">Order Info</div>
+                                <div class="row g-3">
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Order Id</h6>
+                                        <p class="text-primary fs-16 ">#45669</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Payment Method</h6>
+                                        <p class="text-gray-6 fs-16 ">Credit Card (Visa)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Payment Status</h6>
+                                        <p class="text-success fs-16 ">Paid</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Date of Payment</h6>
+                                        <p class="text-gray-6 fs-16 ">20 May 2024, 10:50 AM</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Tax</h6>
+                                        <p class="text-gray-6 fs-16 ">15% ($60)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Discount</h6>
+                                        <p class="text-gray-6 fs-16 ">20% ($15)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Booking Fees</h6>
+                                        <p class="text-gray-6 fs-16 ">$25</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h6 class="fs-14">Total Paid</h6>
+                                        <p class="text-gray-6 fs-16 ">$6569</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="{{url('guide-grid')}}" class="btn btn-primary">Cancel Booking</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / Booking Confirmation -->
+
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    <!-- ========================
+        End Page Content
+    ========================= -->
+
+@endsection
+
+
+

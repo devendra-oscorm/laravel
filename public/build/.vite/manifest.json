@@ -1,0 +1,265 @@
+{
+  "resources/css/style.css": {
+    "file": "css/style.min.css",
+    "src": "resources/css/style.css",
+    "isEntry": true,
+    "name": "style",
+    "names": [
+      "style.css"
+    ]
+  },
+  "resources/img/banner/banner-01.jpg": {
+    "file": "icons/banner-01.jpg",
+    "src": "resources/img/banner/banner-01.jpg"
+  },
+  "resources/img/banner/banner-05.jpg": {
+    "file": "icons/banner-05.jpg",
+    "src": "resources/img/banner/banner-05.jpg"
+  },
+  "resources/img/banner/banner-06.jpg": {
+    "file": "icons/banner-06.jpg",
+    "src": "resources/img/banner/banner-06.jpg"
+  },
+  "resources/img/banner/banner-07.jpg": {
+    "file": "icons/banner-07.jpg",
+    "src": "resources/img/banner/banner-07.jpg"
+  },
+  "resources/img/banner/banner-bg-05.png": {
+    "file": "icons/banner-bg-05.png",
+    "src": "resources/img/banner/banner-bg-05.png"
+  },
+  "resources/img/banner/banner-bg-07.png": {
+    "file": "icons/banner-bg-07.png",
+    "src": "resources/img/banner/banner-bg-07.png"
+  },
+  "resources/img/banner/banner-bg-dark-07.png": {
+    "file": "icons/banner-bg-dark-07.png",
+    "src": "resources/img/banner/banner-bg-dark-07.png"
+  },
+  "resources/img/banner/car-banner.jpg": {
+    "file": "icons/car-banner.jpg",
+    "src": "resources/img/banner/car-banner.jpg"
+  },
+  "resources/img/banner/cruise-banner.jpg": {
+    "file": "icons/cruise-banner.jpg",
+    "src": "resources/img/banner/cruise-banner.jpg"
+  },
+  "resources/img/banner/flight-banner.jpg": {
+    "file": "icons/flight-banner.jpg",
+    "src": "resources/img/banner/flight-banner.jpg"
+  },
+  "resources/img/bg/authentication-footer-bg.png": {
+    "file": "icons/authentication-footer-bg.png",
+    "src": "resources/img/bg/authentication-footer-bg.png"
+  },
+  "resources/img/bg/authetication-bg.png": {
+    "file": "icons/authetication-bg.png",
+    "src": "resources/img/bg/authetication-bg.png"
+  },
+  "resources/img/bg/banner-10-bg.png": {
+    "file": "icons/banner-10-bg.png",
+    "src": "resources/img/bg/banner-10-bg.png"
+  },
+  "resources/img/bg/banner-bg-12.jpg": {
+    "file": "icons/banner-bg-12.jpg",
+    "src": "resources/img/bg/banner-bg-12.jpg"
+  },
+  "resources/img/bg/benefit-bg.png": {
+    "file": "icons/benefit-bg.png",
+    "src": "resources/img/bg/benefit-bg.png"
+  },
+  "resources/img/bg/breadcrumb-02.jpg": {
+    "file": "icons/breadcrumb-02.jpg",
+    "src": "resources/img/bg/breadcrumb-02.jpg"
+  },
+  "resources/img/bg/breadcrumb-03.jpg": {
+    "file": "icons/breadcrumb-03.jpg",
+    "src": "resources/img/bg/breadcrumb-03.jpg"
+  },
+  "resources/img/bg/breadcrumb-04.jpg": {
+    "file": "icons/breadcrumb-04.jpg",
+    "src": "resources/img/bg/breadcrumb-04.jpg"
+  },
+  "resources/img/bg/breadcrumb-05.jpg": {
+    "file": "icons/breadcrumb-05.jpg",
+    "src": "resources/img/bg/breadcrumb-05.jpg"
+  },
+  "resources/img/bg/breadcrumb-06.jpg": {
+    "file": "icons/breadcrumb-06.jpg",
+    "src": "resources/img/bg/breadcrumb-06.jpg"
+  },
+  "resources/img/bg/breadcrumb-07.jpg": {
+    "file": "icons/breadcrumb-07.jpg",
+    "src": "resources/img/bg/breadcrumb-07.jpg"
+  },
+  "resources/img/bg/breadcrumb-07.png": {
+    "file": "icons/breadcrumb-07.png",
+    "src": "resources/img/bg/breadcrumb-07.png"
+  },
+  "resources/img/bg/breadcrumb-09.jpg": {
+    "file": "icons/breadcrumb-09.jpg",
+    "src": "resources/img/bg/breadcrumb-09.jpg"
+  },
+  "resources/img/bg/breadcrumb.jpg": {
+    "file": "icons/breadcrumb.jpg",
+    "src": "resources/img/bg/breadcrumb.jpg"
+  },
+  "resources/img/bg/coming-soon-bg.svg": {
+    "file": "icons/coming-soon-bg.svg",
+    "src": "resources/img/bg/coming-soon-bg.svg"
+  },
+  "resources/img/bg/exp-bg-02.png": {
+    "file": "icons/exp-bg-02.png",
+    "src": "resources/img/bg/exp-bg-02.png"
+  },
+  "resources/img/bg/exp-bg-03.png": {
+    "file": "icons/exp-bg-03.png",
+    "src": "resources/img/bg/exp-bg-03.png"
+  },
+  "resources/img/bg/faq-bg-03.png": {
+    "file": "icons/faq-bg-03.png",
+    "src": "resources/img/bg/faq-bg-03.png"
+  },
+  "resources/img/bg/faq-bg.png": {
+    "file": "icons/faq-bg.png",
+    "src": "resources/img/bg/faq-bg.png"
+  },
+  "resources/img/bg/footer-bg-01.png": {
+    "file": "icons/footer-bg-01.png",
+    "src": "resources/img/bg/footer-bg-01.png"
+  },
+  "resources/img/bg/footer-bg-02.png": {
+    "file": "icons/footer-bg-02.png",
+    "src": "resources/img/bg/footer-bg-02.png"
+  },
+  "resources/img/bg/footer-bg.png": {
+    "file": "icons/footer-bg.png",
+    "src": "resources/img/bg/footer-bg.png"
+  },
+  "resources/img/bg/hotel-bg-07.png": {
+    "file": "icons/hotel-bg-07.png",
+    "src": "resources/img/bg/hotel-bg-07.png"
+  },
+  "resources/img/bg/menu-bg.png": {
+    "file": "icons/menu-bg.png",
+    "src": "resources/img/bg/menu-bg.png"
+  },
+  "resources/img/bg/recommended-bg.png": {
+    "file": "icons/recommended-bg.png",
+    "src": "resources/img/bg/recommended-bg.png"
+  },
+  "resources/img/bg/section-top-bg.png": {
+    "file": "icons/section-top-bg.png",
+    "src": "resources/img/bg/section-top-bg.png"
+  },
+  "resources/img/bg/support-bg.png": {
+    "file": "icons/support-bg.png",
+    "src": "resources/img/bg/support-bg.png"
+  },
+  "resources/img/bg/tourism-shape.png": {
+    "file": "icons/tourism-shape.png",
+    "src": "resources/img/bg/tourism-shape.png"
+  },
+  "resources/img/bg/trending-list-bg.png": {
+    "file": "icons/trending-list-bg.png",
+    "src": "resources/img/bg/trending-list-bg.png"
+  },
+  "resources/img/bg/trip-bg.jpg": {
+    "file": "icons/trip-bg.jpg",
+    "src": "resources/img/bg/trip-bg.jpg"
+  },
+  "resources/img/bg/wh-we-are-bg.png": {
+    "file": "icons/wh-we-are-bg.png",
+    "src": "resources/img/bg/wh-we-are-bg.png"
+  },
+  "resources/img/bg/why-choose-bg.jpg": {
+    "file": "icons/why-choose-bg.jpg",
+    "src": "resources/img/bg/why-choose-bg.jpg"
+  },
+  "resources/img/bus/why-bg.png": {
+    "file": "icons/why-bg.png",
+    "src": "resources/img/bus/why-bg.png"
+  },
+  "resources/img/bus/why-bg1.png": {
+    "file": "icons/why-bg1.png",
+    "src": "resources/img/bus/why-bg1.png"
+  },
+  "resources/img/icons/arrow-right.svg": {
+    "file": "icons/arrow-right.svg",
+    "src": "resources/img/icons/arrow-right.svg"
+  },
+  "resources/img/icons/car.svg": {
+    "file": "icons/car.svg",
+    "src": "resources/img/icons/car.svg"
+  },
+  "resources/img/icons/couter-shape.svg": {
+    "file": "icons/couter-shape.svg",
+    "src": "resources/img/icons/couter-shape.svg"
+  },
+  "resources/img/icons/line-icon.svg": {
+    "file": "icons/line-icon.svg",
+    "src": "resources/img/icons/line-icon.svg"
+  },
+  "resources/img/icons/line-img.svg": {
+    "file": "icons/line-img.svg",
+    "src": "resources/img/icons/line-img.svg"
+  },
+  "resources/img/icons/plane.svg": {
+    "file": "icons/plane.svg",
+    "src": "resources/img/icons/plane.svg"
+  },
+  "resources/img/icons/seat-icon-1.svg": {
+    "file": "icons/seat-icon-1.svg",
+    "src": "resources/img/icons/seat-icon-1.svg"
+  },
+  "resources/img/icons/seat-icon-2.svg": {
+    "file": "icons/seat-icon-2.svg",
+    "src": "resources/img/icons/seat-icon-2.svg"
+  },
+  "resources/img/icons/seat-icon.svg": {
+    "file": "icons/seat-icon.svg",
+    "src": "resources/img/icons/seat-icon.svg"
+  },
+  "resources/img/icons/star-icon-2.svg": {
+    "file": "icons/star-white.svg",
+    "src": "resources/img/icons/star-icon-2.svg"
+  },
+  "resources/img/icons/star-icon.svg": {
+    "file": "icons/star-icon.svg",
+    "src": "resources/img/icons/star-icon.svg"
+  },
+  "resources/img/icons/star-white.svg": {
+    "file": "icons/star-white.svg",
+    "src": "resources/img/icons/star-icon-2.svg"
+  },
+  "resources/img/icons/tourism-bg.svg": {
+    "file": "icons/tourism-bg.svg",
+    "src": "resources/img/icons/tourism-bg.svg"
+  },
+  "resources/img/icons/world-map-bg.svg": {
+    "file": "icons/world-map-bg.svg",
+    "src": "resources/img/icons/world-map-bg.svg"
+  },
+  "resources/img/icons/world-map-dark-bg.svg": {
+    "file": "icons/world-map-dark-bg.svg",
+    "src": "resources/img/icons/world-map-dark-bg.svg"
+  },
+  "resources/img/tours/home-banner-6.jpg": {
+    "file": "icons/home-banner-6.jpg",
+    "src": "resources/img/tours/home-banner-6.jpg"
+  },
+  "resources/img/tours/tours-35.jpg": {
+    "file": "icons/tours-35.jpg",
+    "src": "resources/img/tours/tours-35.jpg"
+  },
+  "resources/img/video.jpg": {
+    "file": "icons/video.jpg",
+    "src": "resources/img/video.jpg"
+  },
+  "resources/js/script.js": {
+    "file": "js/script.js",
+    "name": "script",
+    "src": "resources/js/script.js",
+    "isEntry": true
+  }
+}
