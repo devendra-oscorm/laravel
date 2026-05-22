@@ -3,20 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
-
-
-
-
+use App\Http\Controllers\FlightController;
 Route::get('/', function () { return view('index-2'); })->name('index-2');
-
-
-
 Route::get('/index-2', function () {
     return view('index-2');
 });
-
-
-
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
@@ -655,3 +646,18 @@ Route::get('/visa-tracking', function () {
 
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+// Airport autocomplete API
+Route::get('/get-airports', [FlightController::class, 'getAirports'])
+    ->name('airports.search');
+
+Route::get('/api/airports', [FlightController::class, 'getAirports'])
+    ->name('api.airports');
+
+// Flight search route
+Route::get('/search-flights', [FlightController::class, 'search'])
+    ->name('flight.search');
+
+    Route::get('/test-airports', function() {
+    $airports = App\Models\Airport::where('city', 'like', '%New%')->limit(5)->get();
+    return response()->json($airports);
+});
