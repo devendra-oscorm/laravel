@@ -14,7 +14,7 @@
                     <h2 class="breadcrumb-title mb-2">Select Your Seats</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item">Bus</li>
                             <li class="breadcrumb-item active" aria-current="page">Select Your Seats</li>
                         </ol>

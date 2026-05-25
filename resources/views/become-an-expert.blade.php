@@ -14,7 +14,7 @@
                     <h2 class="breadcrumb-title mb-2">Become an Expert</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Become an Expert</li>
                         </ol>
                     </nav>

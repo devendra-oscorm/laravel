@@ -14,7 +14,7 @@
                     <h2 class="breadcrumb-title mb-2">Car Bookings</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-grid-55"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-grid-55"></i></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Car Bookings</li>
                         </ol>
                     </nav>
@@ -150,7 +150,7 @@
                                     </a>
                                 </li>
                                 <li class="logout-link">
-                                    <a href="{{url('index')}}" class="d-flex align-items-center pb-0">
+                                    <a href="{{url('/')}}" class="d-flex align-items-center pb-0">
                                         <i class="isax isax-logout-15"></i> Logout
                                     </a>
                                 </li>

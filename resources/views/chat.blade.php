@@ -14,7 +14,7 @@
                     <h2 class="breadcrumb-title mb-2">Message</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Message</li>
                         </ol>
                     </nav>
@@ -307,7 +307,7 @@
                                             <i class="ti ti-dots-vertical"></i>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end p-3">
-                                            <li><a href="{{url('index')}}" class="dropdown-item"><i
+                                            <li><a href="{{url('/')}}" class="dropdown-item"><i
                                                         class="isax isax-close-circle me-2"></i>Close Chat</a></li>
                                             <li><a href="#" class="dropdown-item"><i
                                                         class="fa-solid fa-volume-xmark me-2"></i>Mute Notification</a>

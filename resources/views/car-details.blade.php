@@ -14,7 +14,7 @@
                     <h2 class="breadcrumb-title mb-2">Car Details</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item">Cars</li>
                             <li class="breadcrumb-item active" aria-current="page">Car Details</li>
                         </ol>

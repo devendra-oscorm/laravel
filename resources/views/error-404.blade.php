@@ -23,7 +23,7 @@
 
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a href="{{url('index')}}" class="btn btn-primary d-flex align-items-center justify-content-center"><i class="isax isax-arrow-left-2 me-2"></i>Back to Home</a>
+                        <a href="{{url('/')}}" class="btn btn-primary d-flex align-items-center justify-content-center"><i class="isax isax-arrow-left-2 me-2"></i>Back to Home</a>
                     </div>
                 </div>
             </div>
