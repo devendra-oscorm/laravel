@@ -7,7 +7,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -84,7 +84,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -268,7 +268,7 @@
     <!-- /Forgot Password -->
 @endif
 
-@if (Route::is(['index-5']))
+@if (Route::is(['/-5']))
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal">
         <div class="modal-dialog modal-dialog-centered">
@@ -277,7 +277,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -354,7 +354,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -538,7 +538,7 @@
     <!-- /Forgot Password -->
 @endif
 
-@if (Route::is(['index-6']))
+@if (Route::is(['/-6']))
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal">
         <div class="modal-dialog modal-dialog-centered">
@@ -547,7 +547,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -624,7 +624,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -808,7 +808,7 @@
     <!-- /Forgot Password -->
 @endif
 
-@if (Route::is(['index-7']))
+@if (Route::is(['/-7']))
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal">
         <div class="modal-dialog modal-dialog-centered">
@@ -817,7 +817,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -894,7 +894,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -1087,7 +1087,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -1164,7 +1164,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -1348,7 +1348,7 @@
     <!-- /Forgot Password -->
 @endif
 
-@if (Route::is(['index-rtl']))
+@if (Route::is(['/-rtl']))
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal">
         <div class="modal-dialog modal-dialog-centered">
@@ -1357,7 +1357,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -1434,7 +1434,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -1694,7 +1694,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -1771,7 +1771,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -1964,7 +1964,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -2041,7 +2041,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -20532,7 +20532,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -20609,7 +20609,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -20802,7 +20802,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -20879,7 +20879,7 @@
                     <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{url('index')}}">
+                    <form action="{{url('/')}}">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>

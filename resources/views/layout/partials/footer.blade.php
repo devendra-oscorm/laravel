@@ -74,10 +74,10 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-xl-3 col-xxl-3">
                             <div class="mb-3 text-center text-xl-start">
-                                <a href="{{url('index')}}" class="d-block footer-logo-light">
+                                <a href="{{url('/')}}" class="d-block footer-logo-light">
                                     <img src="{{URL::asset('build/img/logo-dark.svg')}}" alt="logo">
                                 </a>
-                                <a href="{{url('index')}}" class="footer-logo-dark">
+                                <a href="{{url('/')}}" class="footer-logo-dark">
                                     <img src="{{URL::asset('build/img/logo.svg')}}" alt="logo">
                                 </a>
                             </div>
@@ -157,7 +157,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="footer-about-text">
-                                        <a href="{{url('index')}}" class="d-inline-block mb-1">
+                                        <a href="{{url('/')}}" class="d-inline-block mb-1">
                                             <img src="{{URL::asset('build/img/logo.svg')}}" alt="logo">
                                         </a>
                                         <p class="text-white">Our mission is to offer you a seamless and enjoyable car rental experience. Whether you’re planning a road trip</p>
