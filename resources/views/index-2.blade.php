@@ -1,175 +1,2939 @@
-﻿<?php $page = "index-2"; ?>
+<?php $page = "index-2"; ?>
 @extends('layout.mainlayout')
 @section('content')
+
+<!-- ========================
+        Start Page Content
+    ========================= -->
 
 <!-- Hero Section -->
 <section class="hero-sec-nine">
     <div class="container">
         <div class="hero-content wow fadeInUp">
             <h1 class="banner-title">Discover <span>World</span> Your Way</h1>
-            <span class="banner-title-text">Flights, Hotels, Cars, Tours, Cruises & Visa Services – All in One Platform</span>
+            <span class="banner-title-text">Flights, Hotels, Cars, Tours, Cruises & Visa Services – All in One
+                Platform</span>
             <div class="row align-items-center">
                 <div class="col-md-12 mx-auto">
                     <div class="banner-form card mb-0 wow fadeInUp" data-wow-delay="1.5">
+                        <div class="card-header border-0 pb-0">
+                            <ul class="nav nav-tabs justify-content-center" role="tablist   ">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active rounded-pill px-4 py-2" data-bs-toggle="tab" data-bs-target="#flight">
+                                        <i class="isax isax-airplane5 me-2"></i>Flights
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Hotels">
+                                        <i class="isax isax-buildings5 me-2"></i>Hotels
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Cars">
+                                        <i class="isax isax-car5 me-2"></i>Cars
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#Cruise">
+                                        <i class="isax isax-ship5 me-2"></i>Cruise
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Tour">
+                                        <i class="isax isax-camera5 me-2"></i>Tour
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Bus">
+                                        <i class="isax isax-bus5 me-2"></i>Bus
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Activity">
+                                        <i class="isax isax-calendar5 me-2"></i>Activity
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Visa">
+                                        <i class="isax isax-document5 me-2"></i>Visa
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link" data-bs-toggle="tab" data-bs-target="#Guide">
+                                        <i class="isax isax-user-octagon me-2"></i>Guide
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
                         <div class="card-body">
-                            <form action="{{ route('flight.routes') }}" method="GET">
-                                <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                    <div class="d-flex align-items-center flex-wrap">
-                                        <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="oneway" value="oneway" checked>
-                                            <label class="form-check-label fs-14 ms-2" for="oneway">Oneway</label>
-                                        </div>
-                                        <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="roundtrip" value="roundtrip">
-                                            <label class="form-check-label fs-14 ms-2" for="roundtrip">Round Trip</label>
-                                        </div>
-                                        <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="multiway" value="multiway">
-                                            <label class="form-check-label fs-14 ms-2" for="multiway">Multi Trip</label>
+                            <div>
+                                <div class="tab-content">
+                                   <div class="tab-pane fade active show" id="flight">
+    <form action="{{route('flight.search')}}" method="GET">
+        <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+            <div class="d-flex align-items-center">
+                <div class="form-check d-flex align-items-center me-3 mb-2">
+                    <input class="form-check-input mt-0" type="radio" name="trip_type" id="oneway" value="oneway" checked>
+                    <label class="form-check-label fs-14 ms-2" for="oneway">
+                        Oneway
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center me-3 mb-2">
+                    <input class="form-check-input mt-0" type="radio" name="trip_type" id="roundtrip" value="roundtrip">
+                    <label class="form-check-label fs-14 ms-2" for="roundtrip">
+                        Round Trip
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center me-3 mb-2">
+                    <input class="form-check-input mt-0" type="radio" name="trip_type" id="multiway" value="multiway">
+                    <label class="form-check-label fs-14 ms-2" for="multiway">
+                        Multi Trip
+                    </label>
+                </div>
+            </div>
+            <span class="fw-medium fs-16 mb-2 text-white">Millions of cheap flights. One simple search</span>
+        </div>
+        
+        <!-- Normal Trip (Oneway & Roundtrip) -->
+        <div class="normal-trip">
+            <div class="d-lg-flex">
+                <div class="d-flex form-info">
+                    <!-- From Field -->
+                    <div class="form-item change-drop booking-dropdown dropdown">
+                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                            <label class="form-label fs-14 text-default mb-1">From</label>
+                            <input type="text" class="form-control value-input" id="from-city-display" name="from_city" placeholder="Departure City" autocomplete="off">
+                            <input type="hidden" name="from" id="from-iata">
+                            <p class="fs-12 mb-0" id="from-airport-display">Select Airport</p>
+                        </div>
+                        <div class="dropdown-menu dropdown-md p-0">
+                            <div class="input-search p-3 border-bottom">
+                                <div class="input-group">
+                                    <input type="text" class="form-control airport-search" data-target="from" placeholder="Search Location">
+                                    <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                </div>
+                            </div>
+                            <ul class="airport-list" data-target="from"></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- To Field -->
+                    <div class="form-item change-drop booking-dropdown dropdown ps-2 ps-sm-3">
+                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                            <label class="form-label fs-14 text-default mb-1">To</label>
+                            <input type="text" id="to-city-display" name="to_city" class="form-control value-input" placeholder="Destination City" autocomplete="off">
+                            <input type="hidden" name="to" id="to-iata">
+                            <p class="fs-12 mb-0" id="to-airport-display">Select Airport</p>
+                            <span class="way-icon badge badge-primary rounded-pill translate-middle">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-menu dropdown-md p-0">
+                            <div class="input-search p-3 border-bottom">
+                                <div class="input-group">
+                                    <input type="text"  class="form-control airport-search" data-target="to" placeholder="Search Location">
+                                    <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                </div>
+                            </div>
+                            <ul class="airport-list" data-target="to"></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Departure Date -->
+                    j
+                    
+                    <!-- Return Date (Round Trip) -->
+                    <div class="form-item round-drip">
+                        <label class="form-label fs-14 text-default mb-1">Return</label>
+                        <input type="text" id="return-date" class="form-control datetimepicker" name="return_date" >
+                        <p class="fs-12 mb-0" id="return-day"></p>
+                    </div>
+                    
+                    <!-- Travellers -->
+                    <div class="form-item dropdown">
+                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                            <label class="form-label fs-14 text-default mb-1">Travellers and cabin class</label>
+                            <div class="home-eight-title text-dark member-count">1 <span class="fw-normal fs-14">Person</span></div>
+                            <p class="fs-12 mb-0"><span class="adult-count">1</span> Adult, <span class="cabin-class">Economy</span></p>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                            <div class="mb-3 home-eight-title text-dark">Select Travelers & Class</div>
+                            <div class="mb-3 border br-10 info-item pb-1">
+                                <div class="fs-16 fw-medium mb-2 text-dark">Travellers</div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label text-gray-9 mb-2">Adults <span class="text-default fw-normal">(12+ Yrs)</span></label>
+                                            <div class="custom-increment">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn float-start">
+                                                        <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field="">
+                                                            <span><i class="isax isax-minus"></i></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="adults" class="input-number" value="1" data-type="adult">
+                                                    <span class="input-group-btn float-end">
+                                                        <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                            <span><i class="isax isax-add"></i></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <span class="fw-medium fs-16 mb-2 text-white d-none d-md-block">Millions of cheap flights. One simple search</span>
-                                </div>
-
-                                <div class="d-lg-flex">
-                                    <div class="d-flex form-info flex-wrap">
-
-                                        {{-- From --}}
-                                        <div class="form-item">
-                                            <label class="form-label fs-14 text-default mb-1">From</label>
-                                            <input type="text" name="from_city" id="hero-from-city"
-                                                class="form-control" placeholder="Departure City" autocomplete="off">
-                                            <p class="fs-12 mb-0 text-muted">Enter city name</p>
-                                        </div>
-
-                                        {{-- Swap --}}
-                                        <div class="d-flex align-items-center px-2 pt-3">
-                                            <button type="button" id="hero-swap-btn"
-                                                class="btn btn-sm btn-light rounded-circle p-1" title="Swap cities">
-                                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                            </button>
-                                        </div>
-
-                                        {{-- To --}}
-                                        <div class="form-item">
-                                            <label class="form-label fs-14 text-default mb-1">To</label>
-                                            <input type="text" name="to_city" id="hero-to-city"
-                                                class="form-control" placeholder="Destination City" autocomplete="off">
-                                            <p class="fs-12 mb-0 text-muted">Enter city name</p>
-                                        </div>
-
-                                        {{-- Departure Date --}}
-                                        <div class="form-item">
-                                            <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                            <input type="text" class="form-control datetimepicker"
-                                                name="departure_date" value="{{ date('d-m-Y') }}" autocomplete="off">
-                                            <p class="fs-12 mb-0 text-muted">{{ date('l') }}</p>
-                                        </div>
-
-                                        {{-- Return Date (round trip only) --}}
-                                        <div class="form-item round-drip" style="display:none;">
-                                            <label class="form-label fs-14 text-default mb-1">Return</label>
-                                            <input type="text" class="form-control datetimepicker"
-                                                name="return_date" value="{{ date('d-m-Y', strtotime('+7 days')) }}" autocomplete="off">
-                                            <p class="fs-12 mb-0 text-muted">{{ date('l', strtotime('+7 days')) }}</p>
-                                        </div>
-
-                                        {{-- Travellers & Cabin --}}
-                                        <div class="form-item dropdown">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
-                                                <label class="form-label fs-14 text-default mb-1">Travellers & Class</label>
-                                                <div class="home-eight-title text-dark member-count">1 <span class="fw-normal fs-14">Person</span></div>
-                                                <p class="fs-12 mb-0"><span class="adult-count">1</span> Adult, <span class="cabin-class">Economy</span></p>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label text-gray-9 mb-2">Children <span class="text-default fw-normal">(2-12 Yrs)</span></label>
+                                            <div class="custom-increment">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn float-start">
+                                                        <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field="">
+                                                            <span><i class="isax isax-minus"></i></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="children" class="input-number" value="0" data-type="children">
+                                                    <span class="input-group-btn float-end">
+                                                        <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                            <span><i class="isax isax-add"></i></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-xl">
-                                                <div class="mb-3 home-eight-title text-dark">Select Travelers & Class</div>
-                                                <div class="mb-3 border br-10 info-item pb-1">
-                                                    <div class="fs-16 fw-medium mb-2 text-dark">Travellers</div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label text-gray-9 mb-2">Adults <span class="text-default fw-normal">(12+ Yrs)</span></label>
-                                                                <div class="custom-increment">
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn float-start">
-                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field=""><span><i class="isax isax-minus"></i></span></button>
-                                                                        </span>
-                                                                        <input type="text" name="adults" class="input-number" value="1" data-type="adult">
-                                                                        <span class="input-group-btn float-end">
-                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field=""><span><i class="isax isax-add"></i></span></button>
-                                                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label text-gray-9 mb-2">Infants <span class="text-default fw-normal">(0-2 Yrs)</span></label>
+                                            <div class="custom-increment">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn float-start">
+                                                        <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field="">
+                                                            <span><i class="isax isax-minus"></i></span>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="infants" class="input-number" value="0" data-type="infant">
+                                                    <span class="input-group-btn float-end">
+                                                        <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                            <span><i class="isax isax-add"></i></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 border br-10 info-item pb-1">
+                                <span class="fs-16 fw-medium mb-2 text-dark">Cabin Class</span>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="form-check me-3 mb-3">
+                                        <input class="form-check-input" type="radio" value="Economy" name="cabin_class" id="economy" checked>
+                                        <label class="form-check-label" for="economy">Economy</label>
+                                    </div>
+                                    <div class="form-check me-3 mb-3">
+                                        <input class="form-check-input" type="radio" value="Premium Economy" name="cabin_class" id="premium-economy">
+                                        <label class="form-check-label" for="premium-economy">Premium Economy</label>
+                                    </div>
+                                    <div class="form-check me-3 mb-3">
+                                        <input class="form-check-input" type="radio" value="Business" name="cabin_class" id="business2">
+                                        <label class="form-check-label" for="business2">Business</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" value="First Class" name="cabin_class" id="first-class">
+                                        <label class="form-check-label" for="first-class">First Class</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="#" class="btn btn-light btn-sm me-2 cancel-btn">Cancel</a>
+                                <button type="button" class="btn btn-primary btn-sm apply-btn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary search-btn rounded">Search</button>
+            </div>
+        </div>
+        
+        <!-- Multi Trip (Hidden by default) -->
+        <div class="multi-trip" style="display: none;">
+            <div class="d-lg-flex">
+                <div class="d-flex form-info">
+                    <div class="form-item change-drop booking-dropdown dropdown">
+                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                            <label class="form-label fs-14 text-default mb-1">From</label>
+                            <input type="text" class="form-control value-input" id="multi-from-display" placeholder="Departure City">
+                            <p class="fs-12 mb-0" id="multi-from-airport">Select Airport</p>
+                        </div>
+                        <div class="dropdown-menu dropdown-md p-0">
+                            <div class="input-search p-3 border-bottom">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Location">
+                                    <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                </div>
+                            </div>
+                            <ul class="multi-airport-list"></ul>
+                        </div>
+                    </div>
+                    <div class="form-item change-drop booking-dropdown dropdown ps-2 ps-sm-3">
+                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                            <label class="form-label fs-14 text-default mb-1">To</label>
+                            <input type="text" class="form-control value-input" id="multi-to-display" placeholder="Destination City">
+                            <p class="fs-12 mb-0" id="multi-to-airport">Select Airport</p>
+                            <span class="way-icon badge badge-primary rounded-pill translate-middle">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown-menu dropdown-md p-0">
+                            <div class="input-search p-3 border-bottom">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Location">
+                                    <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                </div>
+                            </div>
+                            <ul class="multi-airport-list-to"></ul>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label class="form-label fs-14 text-default mb-1">Departure</label>
+                        <input type="text" name="multi_departure_date" class="form-control datetimepicker" >
+                        <p class="fs-12 mb-0">Monday</p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary search-btn rounded">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+                                    <div class="tab-pane fade" id="Hotels">
+                                        <form action="{{url('hotel-grid')}}">
+                                            <div class="fw-medium fs-16 mb-2 text-dark">Book Hotel - Villas,
+                                                Apartments & more.</div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label class="form-label fs-14 text-default mb-1">City,
+                                                                Property name or Location</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0 subname-result">USA</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-custom dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for City, Property name or Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA
+                                                                        </div>
+                                                                        <p class="dropdown-sub-name">2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan
+                                                                        </div>
+                                                                        <p class="dropdown-sub-name">3000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p class="dropdown-sub-name">8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p class="dropdown-sub-name">8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p class="dropdown-sub-name">2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Check
+                                                            In</label>
+                                                        <input type="text" class="form-control check-in"
+                                                            >
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Check
+                                                            Out</label>
+                                                        <input type="text" class="form-control check-out"
+                                                            >
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Guests</label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                            <p class="fs-12 mb-0"><span class="adult">4</span> Adult, <span class="room">2</span> Rooms</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers & Class</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Rooms</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="room">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adults</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Children
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    2-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    0-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label text-gray-9 mb-2">Children <span class="text-default fw-normal">(2-12 Yrs)</span></label>
-                                                                <div class="custom-increment">
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn float-start">
-                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field=""><span><i class="isax isax-minus"></i></span></button>
-                                                                        </span>
-                                                                        <input type="text" name="children" class="input-number" value="0" data-type="children">
-                                                                        <span class="input-group-btn float-end">
-                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field=""><span><i class="isax isax-add"></i></span></button>
-                                                                        </span>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                    Travellers</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room01" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="room01">
+                                                                            Single
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room02">
+                                                                        <label class="form-check-label"
+                                                                            for="room02">
+                                                                            Double
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room03">
+                                                                        <label class="form-check-label"
+                                                                            for="room03">
+                                                                            Delux
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room04">
+                                                                        <label class="form-check-label"
+                                                                            for="room04">
+                                                                            Suite
+                                                                        </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label text-gray-9 mb-2">Infants <span class="text-default fw-normal">(0-2 Yrs)</span></label>
-                                                                <div class="custom-increment">
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn float-start">
-                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number" data-type="minus" data-field=""><span><i class="isax isax-minus"></i></span></button>
-                                                                        </span>
-                                                                        <input type="text" name="infants" class="input-number" value="0" data-type="infant">
-                                                                        <span class="input-group-btn float-end">
-                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field=""><span><i class="isax isax-add"></i></span></button>
-                                                                        </span>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">Property
+                                                                    Type</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property01" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="property01">
+                                                                            Villa
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property02">
+                                                                        <label class="form-check-label"
+                                                                            for="property02">
+                                                                            Condo
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property03">
+                                                                        <label class="form-check-label"
+                                                                            for="property03">
+                                                                            Cabin
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property04">
+                                                                        <label class="form-check-label"
+                                                                            for="property04">
+                                                                            Apartments
+                                                                        </label>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label class="form-label fs-14 text-default mb-1">Price
+                                                                per Night</label>
+                                                            <input type="text" class="form-control value-input"
+                                                                value="$1000 - $15000">
+                                                            <p class="fs-12 mb-0">20 Offers Available</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">$500 - $2000</div>
+                                                                        <p>Upto 65% offers</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Upto 65% offers</div>
+                                                                        <p>Upto 40% offers</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">$5000 - $8000</div>
+                                                                        <p>Upto 35% offers</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">$9000 - $11000</div>
+                                                                        <p>Upto 20% offers</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">$11000 - $15000</div>
+                                                                        <p>Upto 10% offers</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Cars">
+                                        <form action="{{url('car-grid')}}">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="drop" id="same-drop" value="same-drop" checked>
+                                                        <label class="form-check-label fs-14 ms-2" for="same-drop">
+                                                            Same drop-off
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="drop" id="different-drop" value="different-drop">
+                                                        <label class="form-check-label fs-14 ms-2"
+                                                            for="different-drop">
+                                                            Different Drop off
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="drop" id="airport" value="airport">
+                                                        <label class="form-check-label fs-14 ms-2" for="airport">
+                                                            Airport
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="drop" id="hourly-drop" value="hourly-drop">
+                                                        <label class="form-check-label fs-14 ms-2"
+                                                            for="hourly-drop">
+                                                            Hourly Package
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fw-medium fs-16 mb-2 text-white">Book Car for rental
+                                                </div>
+                                            </div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item change-drop booking-dropdown dropdown from-location">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">From</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">USA</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for Cars">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA
+                                                                        </div>
+                                                                        <p>2000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan
+                                                                        </div>
+                                                                        <p>3000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p>8000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p>8000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p>6000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item change-drop dropdown pickup-airport">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">From</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">Ken International Airport</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control value-input"
+                                                                        placeholder="Search for Airport">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark">Hartsfield-Jackson Atlanta International
+                                                                        </div>
+                                                                        <p>USA</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark">Dallas/Fort Worth International</div>
+                                                                        <p>USA</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark">London Heathrow</div>
+                                                                        <p>UK</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark">SeoulIncheon</div>
+                                                                        <p>South Korea</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark">Singapore Changi International</div>
+                                                                        <p>Singapore</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item change-drop booking-dropdown dropdown to-location ps-2 ps-sm-3">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">To</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">USA</p>
+                                                            <span
+                                                                class="way-icon badge badge-primary rounded-pill translate-middle">
+                                                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for Cars">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA</div>
+                                                                        <p>2000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan</div>
+                                                                        <p>3000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p>8000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p>8000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p>6000 Cars</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label
+                                                            class="form-label fs-14 text-default mb-1">Departure</label>
+                                                        <input type="text" class="form-control datetimepicker"
+                                                            >
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item return-drop">
+                                                        <label
+                                                            class="form-label fs-14 text-default mb-1">Return</label>
+                                                        <input type="text" class="form-control datetimepicker"
+                                                            >
+                                                        <p class="fs-12 mb-0">Wednesday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Pickup
+                                                            Time</label>
+                                                        <input type="text" class="form-control timepicker"
+                                                            value="11:45 PM">
+                                                    </div>
+                                                    <div class="form-item dropoff-time">
+                                                        <label class="form-label fs-14 text-default mb-1">Dropoff
+                                                            Time</label>
+                                                        <input type="text" class="form-control timepicker"
+                                                            value="11:45 PM">
+                                                    </div>
+                                                    <div class="form-item hourly-time">
+                                                        <label
+                                                            class="form-label fs-14 text-default mb-1">Hours</label>
+                                                        <div class="home-eight-title text-dark">02 Hrs 10 Kms</div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Cruise">
+                                        <form action="{{url('cruise-grid')}}">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                                <div class="fw-medium fs-16 mb-2 text-dark">Search For Cruise</div>
+                                            </div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Destination</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">USA</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Newyork</div>
+                                                                        <p>Ken International Airport</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Boston</div>
+                                                                        <p>Boston Logan International Airport</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Northern Virginia</div>
+                                                                        <p>Dulles International Airport</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Los Angeles</div>
+                                                                        <p>Los Angeles International Airport</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Orlando</div>
+                                                                        <p>Orlando International Airport</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Start
+                                                            Date</label>
+                                                        <input type="text" class="form-control check-in">
+                                                            
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">End
+                                                            Date</label>
+                                                        <input type="text" class="form-control check-out">
+                                                         
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <!-- Add a hidden input or just use one of the inputs to trigger the daterangepicker -->
+                                                    <input type="text" class="date-range d-none">
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Travellers
+                                                                & Cabin </label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                            <p class="fs-12 mb-0"><span class="adult">4</span> Adult</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers & Class</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                    Travellers</div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adults
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    12+ Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Childrens
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    2-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    0-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">Select
+                                                                    Cabin</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="cabin" id="cabin1" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="cabin1">
+                                                                            Solo cabins
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="cabin" id="cabin2">
+                                                                        <label class="form-check-label"
+                                                                            for="cabin2">
+                                                                            Balcony
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            value="Business" name="cabin"
+                                                                            id="cabin3">
+                                                                        <label class="form-check-label"
+                                                                            for="cabin3">
+                                                                            Oceanview
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="cabin" id="cabin4">
+                                                                        <label class="form-check-label"
+                                                                            for="cabin4">
+                                                                            Balcony rooms
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3 border br-10 info-item pb-1">
-                                                    <span class="fs-16 fw-medium mb-2 text-dark">Cabin Class</span>
-                                                    <div class="d-flex align-items-center flex-wrap mt-2">
-                                                        <div class="form-check me-3 mb-3">
-                                                            <input class="form-check-input cabin-radio" type="radio" value="Economy" name="cabin_class" id="cabin-economy" checked>
-                                                            <label class="form-check-label" for="cabin-economy">Economy</label>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Tour">
+                                        <form action="{{url('tour-grid')}}">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                                <div class="fw-medium fs-16 mb-2 text-dark">Search holiday packages
+                                                    & trips</div>
+                                            </div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label class="form-label fs-14 text-default mb-1">Where
+                                                                would like to go?</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">USA</p>
                                                         </div>
-                                                        <div class="form-check me-3 mb-3">
-                                                            <input class="form-check-input cabin-radio" type="radio" value="Premium Economy" name="cabin_class" id="cabin-premium">
-                                                            <label class="form-check-label" for="cabin-premium">Premium Economy</label>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for City, Property name or Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA</div>
+                                                                        <p>200 Places</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan</div>
+                                                                        <p>300 Places</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p>80 Places</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p>500 Places</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p>150 Places</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
-                                                        <div class="form-check me-3 mb-3">
-                                                            <input class="form-check-input cabin-radio" type="radio" value="Business" name="cabin_class" id="cabin-business">
-                                                            <label class="form-check-label" for="cabin-business">Business</label>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label
+                                                            class="form-label fs-14 text-default mb-1">Dates</label>
+                                                        <input type="text" class="form-control check-in"
+                                                            >
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Check
+                                                            Out</label>
+                                                        <input type="text" class="form-control check-out"
+                                                            >
+                                                        <p class="fs-12 mb-0">Wednesday</p>
+                                                    </div>
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Travellers</label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                            <p class="fs-12 mb-0 adult">2 Adult</p>
                                                         </div>
-                                                        <div class="form-check mb-3">
-                                                            <input class="form-check-input cabin-radio" type="radio" value="First Class" name="cabin_class" id="cabin-first">
-                                                            <label class="form-check-label" for="cabin-first">First Class</label>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adult</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Childrens
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    12+ Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    12+ Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <a href="#" class="btn btn-light btn-sm me-2 cancel-btn">Cancel</a>
-                                                    <button type="button" class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Bus">
+                                        <form action="#">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="tripType" id="oneways" value="oneway" checked>
+                                                        <label class="form-check-label fs-14 ms-2"
+                                                            for="oneways">Oneway</label>
+                                                    </div>
+
+                                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                                        <input class="form-check-input mt-0" type="radio"
+                                                            name="tripType" id="roundedtrip" value="roundtrip">
+                                                        <label class="form-check-label fs-14 ms-2"
+                                                            for="roundedtrip">Round Trip</label>
+                                                    </div>
+                                                </div>
+                                                <div class="fw-medium fs-16 mb-2 text-dark">Low cost Buses in One
+                                                    simple search</div>
+                                            </div>
+                                            <div class="normal-trip">
+                                                <div class="d-lg-flex">
+                                                    <div class="d-flex  form-info">
+                                                        <div class="form-item change-drop booking-dropdown dropdown">
+                                                            <div data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                                role="menu">
+                                                                <label
+                                                                    class="form-label fs-14 text-default mb-1">From</label>
+                                                                <input type="text" class="form-control value-input"
+                                                                    value="Newyork">
+                                                                <p class="fs-12 mb-0">USA</p>
+                                                            </div>
+                                                            <div class="dropdown-menu dropdown-md p-0">
+                                                                <div class="input-search p-3 border-bottom">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Search Location">
+                                                                        <span
+                                                                            class="input-group-text px-2 border-start-0"><i
+                                                                                class="isax isax-search-normal"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <ul>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Newyork</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Boston</div>
+                                                                            <p>Spain</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Northern Virginia</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Los Angeles</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Orlando</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-item change-drop booking-dropdown dropdown ps-2 ps-sm-3">
+                                                            <div data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                                role="menu">
+                                                                <label
+                                                                    class="form-label fs-14 text-default mb-1">To</label>
+                                                                <input type="text" class="form-control value-input"
+                                                                    value="Las Vegas">
+                                                                <p class="fs-12 mb-0">USA</p>
+                                                                <span
+                                                                    class="way-icon badge badge-primary rounded-pill translate-middle">
+                                                                    <i
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="dropdown-menu dropdown-md p-0">
+                                                                <div class="input-search p-3 border-bottom">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Search Location">
+                                                                        <span
+                                                                            class="input-group-text px-2 border-start-0"><i
+                                                                                class="isax isax-search-normal"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <ul>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Newyork</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Boston</div>
+                                                                            <p>Spain</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Northern Virginia</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Los Angeles</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Orlando</div>
+                                                                            <p>USA</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-item">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Departure</label>
+                                                            <input type="text" class="form-control datetimepicker">
+                                                               
+                                                            <p class="fs-12 mb-0">Monday</p>
+                                                        </div>
+                                                        <div class="form-item round-drip">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Return</label>
+                                                            <input type="text" class="form-control datetimepicker"
+                                                                >
+                                                            <p class="fs-12 mb-0">Wednesday</p>
+                                                        </div>
+                                                        <div class="form-item dropdown">
+                                                            <div data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                                role="menu">
+                                                                <label
+                                                                    class="form-label fs-14 text-default mb-1">Travellers</label>
+                                                                <div class="home-eight-title text-dark member-count">4 <span
+                                                                        class="fw-normal fs-14">Persons</span></div>
+                                                                <p class="fs-12 mb-0"><span class="adult">2</span> Adult, <span class="children">2</span> children</p>
+                                                            </div>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                                <div class="mb-3 home-eight-title text-dark">Select
+                                                                    Travelers & Class</div>
+                                                                <div class="mb-3 border br-10 info-item pb-1">
+                                                                    <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                        Travellers</div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="mb-3">
+                                                                                <label
+                                                                                    class="form-label text-gray-9 mb-2">Adults
+                                                                                    <span
+                                                                                        class="text-default fw-normal">(
+                                                                                        12+ Yrs )</span></label>
+                                                                                <div class="custom-increment">
+                                                                                    <div class="input-group">
+                                                                                        <span
+                                                                                            class="input-group-btn float-start">
+                                                                                            <button type="button"
+                                                                                                class="quantity-left-minus btn btn-light btn-number"
+                                                                                                data-type="minus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-minus"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                        <input type="text"
+                                                                                            name="quantity"
+                                                                                            class=" input-number"
+                                                                                            value="1" data-type="adult">
+                                                                                        <span
+                                                                                            class="input-group-btn float-end">
+                                                                                            <button type="button"
+                                                                                                class="quantity-right-plus btn btn-light btn-number"
+                                                                                                data-type="plus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-add"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="mb-3">
+                                                                                <label
+                                                                                    class="form-label text-gray-9 mb-2">Childrens
+                                                                                    <span
+                                                                                        class="text-default fw-normal">(
+                                                                                        2-12 Yrs )</span></label>
+                                                                                <div class="custom-increment">
+                                                                                    <div class="input-group">
+                                                                                        <span
+                                                                                            class="input-group-btn float-start">
+                                                                                            <button type="button"
+                                                                                                class="quantity-left-minus btn btn-light btn-number"
+                                                                                                data-type="minus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-minus"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                        <input type="text"
+                                                                                            name="quantity"
+                                                                                            class=" input-number"
+                                                                                            value="1" data-type="children">
+                                                                                        <span
+                                                                                            class="input-group-btn float-end">
+                                                                                            <button type="button"
+                                                                                                class="quantity-right-plus btn btn-light btn-number"
+                                                                                                data-type="plus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-add"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="mb-3">
+                                                                                <label
+                                                                                    class="form-label text-gray-9 mb-2">Infants<span
+                                                                                        class="text-default fw-normal">(
+                                                                                        0-12 Yrs )</span></label>
+                                                                                <div class="custom-increment">
+                                                                                    <div class="input-group">
+                                                                                        <span
+                                                                                            class="input-group-btn float-start">
+                                                                                            <button type="button"
+                                                                                                class="quantity-left-minus btn btn-light btn-number"
+                                                                                                data-type="minus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-minus"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                        <input type="text"
+                                                                                            name="quantity"
+                                                                                            class=" input-number"
+                                                                                            value="1" data-type="infant">
+                                                                                        <span
+                                                                                            class="input-group-btn float-end">
+                                                                                            <button type="button"
+                                                                                                class="quantity-right-plus btn btn-light btn-number"
+                                                                                                data-type="plus"
+                                                                                                data-field="">
+                                                                                                <span><i
+                                                                                                        class="isax isax-add"></i></span>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3 border br-10 info-item pb-1">
+                                                                    <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                        Travellers</div>
+                                                                    <div
+                                                                        class="d-flex align-items-center flex-wrap">
+                                                                        <div class="form-check me-3 mb-3">
+                                                                            <input class="form-check-input"
+                                                                                type="radio" value="Economy"
+                                                                                name="cabin-class" id="economys"
+                                                                                checked>
+                                                                            <label class="form-check-label"
+                                                                                for="economys">
+                                                                                Seater
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="form-check me-3 mb-3">
+                                                                            <input class="form-check-input"
+                                                                                type="radio" value="Economy"
+                                                                                name="cabin-class"
+                                                                                id="premium-economys">
+                                                                            <label class="form-check-label"
+                                                                                for="premium-economys">
+                                                                                Sleeper
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="form-check me-3 mb-3">
+                                                                            <input class="form-check-input"
+                                                                                type="radio" value="Business"
+                                                                                name="cabin-class" id="business">
+                                                                            <label class="form-check-label"
+                                                                                for="business">
+                                                                                AC Sleeper
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <a href="#"
+                                                                        class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                    <button type="button"
+                                                                        class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-primary search-btn rounded">Search</button>
                                                 </div>
                                             </div>
-                                        </div>
-
+                                            <div class="multi-trip">
+                                                <div class="d-lg-flex">
+                                                    <div class="d-flex  form-info">
+                                                        <div class="form-item change-drop booking-dropdown dropdown">
+                                                            <div data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                                role="menu">
+                                                                <label
+                                                                    class="form-label fs-14 text-default mb-1">From</label>
+                                                                <input type="text" class="form-control value-input"
+                                                                    value="Newyork">
+                                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                                            </div>
+                                                            <div class="dropdown-menu dropdown-md p-0">
+                                                                <div class="input-search p-3 border-bottom">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Search Location">
+                                                                        <span
+                                                                            class="input-group-text px-2 border-start-0"><i
+                                                                                class="isax isax-search-normal"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <ul>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Newyork</div>
+                                                                            <p>Ken International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Boston</div>
+                                                                            <p>Boston Logan International Airport
+                                                                            </p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Northern Virginia</div>
+                                                                            <p>Dulles International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Los Angeles</div>
+                                                                            <p>Los Angeles International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Orlando</div>
+                                                                            <p>Orlando International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-item change-drop booking-dropdown dropdown ps-2 ps-sm-3">
+                                                            <div data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                                role="menu">
+                                                                <label
+                                                                    class="form-label fs-14 text-default mb-1">To</label>
+                                                                <div class="home-eight-title text-dark value-input">Las Vegas
+                                                                </div>
+                                                                <p class="fs-12 mb-0">Martini International Airport
+                                                                </p>
+                                                                <span
+                                                                    class="way-icon badge badge-primary rounded-pill translate-middle">
+                                                                    <i
+                                                                        class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="dropdown-menu dropdown-md p-0">
+                                                                <div class="input-search p-3 border-bottom">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Search Location">
+                                                                        <span
+                                                                            class="input-group-text px-2 border-start-0"><i
+                                                                                class="isax isax-search-normal"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <ul>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Newyork</div>
+                                                                            <p>Ken International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Boston</div>
+                                                                            <p>Boston Logan International Airport
+                                                                            </p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Northern Virginia</div>
+                                                                            <p>Dulles International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="border-bottom">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Los Angeles</div>
+                                                                            <p>Los Angeles International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <div class="fs-16 fw-medium text-dark dropdown-name">Orlando</div>
+                                                                            <p>Orlando International Airport</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-item">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Departure</label>
+                                                            <input type="text" class="form-control datetimepicker">
+                                                              
+                                                            <p class="fs-12 mb-0">Monday</p>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-primary search-btn rounded">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <button type="submit" class="btn btn-primary search-btn rounded">
-                                        <i class="isax isax-search-normal me-1"></i>Search
-                                    </button>
+                                    <div class="tab-pane fade" id="Activity">
+                                        <form action="#">
+                                            <div class="fw-medium fs-16 mb-2 text-center text-dark">Book Adventure
+                                                Activity.</div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Location</label>
+                                                            <input type="text" class="form-control value-input" value="Dubai">
+                                                            <p class="fs-12 mb-0">United Arab Emirates</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for City, Property name or Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA</div>
+                                                                        <p>2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan</div>
+                                                                        <p>3000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p>8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p>8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p>2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label class="form-label fs-14 text-default mb-1">Select
+                                                                Activity</label>
+                                                            <input type="text" class="form-control value-input"
+                                                                value="Ballon Ride">
+                                                            <p class="fs-12 mb-0">20 Offers Available</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search Activity">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">ScubaDiving</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">HotAir Ballon</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Family Park Adventure</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Mountain Climbing</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">SkyDive</div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Check
+                                                            In</label>
+                                                        <input type="text" class="form-control check-in"
+                                                            
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Check
+                                                            Out</label>
+                                                        <input type="text" class="form-control check-out"
+                                                            
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Guests</label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                            <p class="fs-12 mb-0"><span class="adult">4</span> Adult, <span class="room">2</span> Rooms</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers & Class</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Rooms</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="0" data-type="room">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adults</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Children
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    2-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    0-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                    Travellers</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room5" checked>
+                                                                        <label class="form-check-label" for="room5">
+                                                                            Single
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room6">
+                                                                        <label class="form-check-label" for="room6">
+                                                                            Double
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room7">
+                                                                        <label class="form-check-label" for="room7">
+                                                                            Delux
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room8">
+                                                                        <label class="form-check-label" for="room8">
+                                                                            Suite
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">Property
+                                                                    Type</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property5" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="property5">
+                                                                            Villa
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property6">
+                                                                        <label class="form-check-label"
+                                                                            for="property6">
+                                                                            Condo
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property7">
+                                                                        <label class="form-check-label"
+                                                                            for="property7">
+                                                                            Cabin
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property8">
+                                                                        <label class="form-check-label"
+                                                                            for="property8">
+                                                                            Apartments
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Visa">
+                                        <form action="#">
+                                            <div class="fw-medium fs-16 mb-2 text-center text-dark">Check
+                                                Eligibility</div>
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Country</label>
+                                                            <input type="text" class="form-control value-input" value="Select">
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for City, Property name or Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label class="form-label fs-14 text-default mb-1">Visa
+                                                                Type</label>
+                                                            <input type="text" class="form-control value-input" value="Select">
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search Visa Type">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Tourist Visa </div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Business Visa</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Student Visa</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Transit Visa</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">GroupTravel Visa</div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Citizenship</label>
+                                                            <input type="text" class="form-control value-input" value="Select">
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">USA</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Japan</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Singapore</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Russia</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark  dropdown-name">Germany</div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Travelers</label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers & Class</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Rooms</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="room">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adults</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Children
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    2-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    0-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                    Travellers</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room9" checked>
+                                                                        <label class="form-check-label" for="room9">
+                                                                            Single
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room10">
+                                                                        <label class="form-check-label"
+                                                                            for="room10">
+                                                                            Double
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room11">
+                                                                        <label class="form-check-label"
+                                                                            for="room11">
+                                                                            Delux
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room12">
+                                                                        <label class="form-check-label"
+                                                                            for="room12">
+                                                                            Suite
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">Property
+                                                                    Type</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property9" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="property9">
+                                                                            Villa
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property10">
+                                                                        <label class="form-check-label"
+                                                                            for="property10">
+                                                                            Condo
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property11">
+                                                                        <label class="form-check-label"
+                                                                            for="property11">
+                                                                            Cabin
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property12">
+                                                                        <label class="form-check-label"
+                                                                            for="property12">
+                                                                            Apartments
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="Guide">
+                                        <form action="#">
+                                            <div class="d-lg-flex">
+                                                <div class="d-flex  form-info">
+                                                    <div class="form-item booking-dropdown dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Destination</label>
+                                                            <input type="text" class="form-control value-input" value="Newyork">
+                                                            <p class="fs-12 mb-0">USA</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-md p-0">
+                                                            <div class="input-search p-3 border-bottom">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Search for City, Property name or Location">
+                                                                    <span
+                                                                        class="input-group-text px-2 border-start-0"><i
+                                                                            class="isax isax-search-normal"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">USA</div>
+                                                                        <p>2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Japan</div>
+                                                                        <p>3000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Singapore</div>
+                                                                        <p>8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="border-bottom">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Russia</div>
+                                                                        <p>8000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <div class="fs-16 fw-medium text-dark dropdown-name">Germany</div>
+                                                                        <p>2000 Properties</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">Start
+                                                            Date</label>
+                                                        <input type="text" class="form-control check-in">
+                                                            
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label class="form-label fs-14 text-default mb-1">End
+                                                            Date</label>
+                                                        <input type="text" class="form-control check-out">
+                                                            
+                                                        <p class="fs-12 mb-0">Monday</p>
+                                                    </div>
+                                                    <div class="form-item dropdown">
+                                                        <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-expanded="false" role="menu">
+                                                            <label
+                                                                class="form-label fs-14 text-default mb-1">Guests</label>
+                                                            <div class="home-eight-title text-dark member-count">4 <span
+                                                                    class="fw-normal fs-14">Persons</span></div>
+                                                            <p class="fs-12 mb-0"><span class="adult">3</span> Adult</p>
+                                                        </div>
+                                                        <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                            <div class="mb-3 home-eight-title text-dark">Select
+                                                                Travelers & Class</div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Rooms</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Adults</label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="adult">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Children
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    2-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="children">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="mb-3 d-flex align-items-center justify-content-between">
+                                                                            <label
+                                                                                class="form-label text-gray-9 mb-2">Infants
+                                                                                <span
+                                                                                    class="text-default fw-normal">(
+                                                                                    0-12 Yrs )</span></label>
+                                                                            <div class="custom-increment">
+                                                                                <div class="input-group">
+                                                                                    <span
+                                                                                        class="input-group-btn float-start">
+                                                                                        <button type="button"
+                                                                                            class="quantity-left-minus btn btn-light btn-number"
+                                                                                            data-type="minus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-minus"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text"
+                                                                                        name="quantity"
+                                                                                        class=" input-number"
+                                                                                        value="1" data-type="infant">
+                                                                                    <span
+                                                                                        class="input-group-btn float-end">
+                                                                                        <button type="button"
+                                                                                            class="quantity-right-plus btn btn-light btn-number"
+                                                                                            data-type="plus"
+                                                                                            data-field="">
+                                                                                            <span><i
+                                                                                                    class="isax isax-add"></i></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">
+                                                                    Travellers</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room1" checked>
+                                                                        <label class="form-check-label" for="room1">
+                                                                            Single
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room2">
+                                                                        <label class="form-check-label" for="room2">
+                                                                            Double
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room3">
+                                                                        <label class="form-check-label" for="room3">
+                                                                            Delux
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="room" id="room4">
+                                                                        <label class="form-check-label" for="room4">
+                                                                            Suite
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 border br-10 info-item pb-1">
+                                                                <div class="fs-16 fw-medium mb-2 text-dark">Property
+                                                                    Type</div>
+                                                                <div class="d-flex align-items-center flex-wrap">
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property1" checked>
+                                                                        <label class="form-check-label"
+                                                                            for="property1">
+                                                                            Villa
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property2">
+                                                                        <label class="form-check-label"
+                                                                            for="property2">
+                                                                            Condo
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check me-3 mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property3">
+                                                                        <label class="form-check-label"
+                                                                            for="property3">
+                                                                            Cabin
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="property" id="property4">
+                                                                        <label class="form-check-label"
+                                                                            for="property4">
+                                                                            Apartments
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a href="#"
+                                                                    class="btn btn-light btn-sm me-2">Cancel</a>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm apply-btn">Apply</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary search-btn rounded">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,57 +2943,7 @@
 </section>
 <!-- /Hero Section -->
 
-<!-- Flight Search Results (AJAX) -->
-<div class="content pt-4 pb-2" id="heroResultsArea" style="display:none;">
-    <div class="container">
-
-        <div id="heroResultsHeading" class="mb-3">
-            <h5 class="fw-semibold">
-                Routes from <span id="heroHeadFrom" class="text-primary"></span>
-                to <span id="heroHeadTo" class="text-primary"></span>
-            </h5>
-        </div>
-
-        {{-- Direct --}}
-        <div id="heroDirectSection" class="d-none mb-4">
-            <h6 class="fw-medium text-success mb-2">
-                <i class="isax isax-airplane me-1"></i>Direct Flights
-                <span id="heroDirectCount" class="badge bg-success ms-1"></span>
-                <span id="heroDirectSpinner" class="spinner-border spinner-border-sm text-success ms-2" role="status"></span>
-            </h6>
-            <div id="heroDirectCards"></div>
-        </div>
-
-        {{-- 1-stop --}}
-        <div id="heroOneStopSection" class="d-none mb-4">
-            <h6 class="fw-medium text-primary mb-2">
-                <i class="isax isax-airplane me-1"></i>1-Stop Connections
-                <span id="heroOneStopCount" class="badge bg-primary ms-1"></span>
-                <span id="heroOneStopSpinner" class="spinner-border spinner-border-sm text-primary ms-2" role="status"></span>
-            </h6>
-            <div id="heroOneStopCards"></div>
-        </div>
-
-        {{-- 2-stop --}}
-        <div id="heroTwoStopSection" class="d-none mb-4">
-            <h6 class="fw-medium text-warning mb-2">
-                <i class="isax isax-airplane me-1"></i>2-Stop Connections
-                <span id="heroTwoStopCount" class="badge bg-warning ms-1"></span>
-                <span id="heroTwoStopSpinner" class="spinner-border spinner-border-sm text-warning ms-2" role="status"></span>
-            </h6>
-            <div id="heroTwoStopCards"></div>
-        </div>
-
-        {{-- No results --}}
-        <div id="heroNoResults" class="d-none alert alert-warning">
-            <i class="isax isax-warning-2 me-2"></i>
-            <strong>No Routes Found.</strong> Check city names or try nearby cities.
-        </div>
-
-        <p id="heroQueryTime" class="text-muted fs-12 text-end d-none"></p>
-    </div>
-</div>
-<!-- /Flight Search Results -->
+<!-- destinations sec -->
     <!-- destinations sec -->
     <section class="section destinations-sec-nine" style="padding-bottom: 0 !important;">
         <div class="section-head-nine px-2 text-center wow fadeInUp">
@@ -614,7 +3328,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$500 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -662,7 +3376,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$600 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -711,7 +3425,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$500 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -764,7 +3478,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$550 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-12.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1088,7 +3802,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1153,7 +3867,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1218,7 +3932,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1283,7 +3997,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-11.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1657,7 +4371,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $400 <span
                                                 class="text-gray-3 text-line">$480</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1707,7 +4421,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $150 <span
                                                 class="text-gray-3 text-line">$200</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0me-1">
+                                            <span class="avatar avatar-md shrink-0me-1">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1757,7 +4471,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $350 <span
                                                 class="text-gray-3 text-line">$400</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1806,7 +4520,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $300 <span
                                                 class="text-gray-3 text-line">$350</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-11.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -2203,7 +4917,7 @@
                     <p>"The most incredible travel experience of my life! Every detail was perfectly planned and the destinations were breathtaking."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-lg-33.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2230,7 +4944,7 @@
                     <p>"A truly seamless experience from booking to return. The cultural tour was enriching and beautifully organized."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-35.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2257,7 +4971,7 @@
                     <p>Very gentle and reassuring during my wisdom tooth extraction. The procedure was quick, recovery was easy, and her staff was amazing.</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2284,7 +4998,7 @@
                     <p>"The most incredible travel experience of my life! Every detail was perfectly planned and the destinations were breathtaking."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-38.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2370,6 +5084,10 @@
 
 
 <script>
+// ============================================
+// AIRPORT SEARCH FUNCTIONS
+// ============================================
+
 // Debounce function to prevent too many API calls
 function debounce(func, wait) {
     let timeout;
@@ -2385,7 +5103,6 @@ function debounce(func, wait) {
 
 // Load airports function with error handling
 function loadAirports(search = '', target = 'from') {
-    // Get the list element
     const listElement = document.querySelector(`.airport-list[data-target="${target}"]`);
     
     if (!listElement) {
@@ -2393,10 +5110,8 @@ function loadAirports(search = '', target = 'from') {
         return;
     }
     
-    // Show loading state
     listElement.innerHTML = '<li class="p-2 text-center text-muted">Loading airports...</li>';
     
-    // Fetch airports from server
     fetch(`/get-airports?search=${encodeURIComponent(search)}`)
         .then(response => {
             if (!response.ok) {
@@ -2441,7 +5156,6 @@ function loadAirports(search = '', target = 'from') {
         });
 }
 
-// Escape HTML to prevent XSS attacks
 function escapeHtml(text) {
     if (!text) return '';
     const div = document.createElement('div');
@@ -2449,17 +5163,46 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Debounced version of loadAirports
+function openAirportDropdown(target) {
+    const formItem = document.querySelector(`.airport-list[data-target="${target}"]`)?.closest('.form-item');
+    const toggle = formItem?.querySelector('[data-bs-toggle="dropdown"]');
+    const searchInput = formItem?.querySelector('.airport-search');
+
+    if (searchInput && !searchInput.value) {
+        searchInput.value = '';
+    }
+
+    if (toggle) {
+        const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
+        bsDropdown.show();
+        toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    loadAirports(searchInput?.value || '', target);
+}
+
+function syncVisibleAirportInput(target, value) {
+    const searchInput = document.querySelector(`.airport-search[data-target="${target}"]`);
+    const visibleInput = document.getElementById(target === 'from' ? 'from-city-display' : 'to-city-display');
+
+    if (searchInput) {
+        searchInput.value = value;
+    }
+
+    if (visibleInput) {
+        visibleInput.value = value;
+    }
+
+    openAirportDropdown(target);
+}
+
 const debouncedLoadAirports = debounce((search, target) => {
     loadAirports(search, target);
 }, 300);
 
-// Initialize airport search inputs
 document.querySelectorAll('.airport-search').forEach(input => {
-    // Remove existing event listener to prevent duplicates
     input.removeEventListener('keyup', input._listener);
     
-    // Add new event listener with debounce
     const handler = function(e) {
         let search = this.value;
         let target = this.dataset.target;
@@ -2470,7 +5213,22 @@ document.querySelectorAll('.airport-search').forEach(input => {
     input._listener = handler;
 });
 
-// Handle airport selection
+['from', 'to'].forEach(target => {
+    const visibleInput = document.getElementById(target === 'from' ? 'from-city-display' : 'to-city-display');
+
+    if (!visibleInput) {
+        return;
+    }
+
+    visibleInput.addEventListener('focus', function() {
+        syncVisibleAirportInput(target, this.value);
+    });
+
+    visibleInput.addEventListener('input', function() {
+        syncVisibleAirportInput(target, this.value);
+    });
+});
+
 document.addEventListener('click', function(e) {
     const airportItem = e.target.closest('.airport-item');
     
@@ -2482,9 +5240,6 @@ document.addEventListener('click', function(e) {
         let city = airportItem.dataset.city;
         let airport = airportItem.dataset.airport;
         
-        console.log(`Selected: ${city} (${iata}) for ${target}`);
-        
-        // Set values in form fields
         const iataField = document.getElementById(target + '-iata');
         const cityDisplayField = document.getElementById(target + '-city-display');
         const airportDisplayField = document.getElementById(target + '-airport-display');
@@ -2493,19 +5248,16 @@ document.addEventListener('click', function(e) {
         if (cityDisplayField) cityDisplayField.value = city;
         if (airportDisplayField) airportDisplayField.innerHTML = airport;
         
-        // Close the dropdown
         const dropdown = airportItem.closest('.dropdown-menu');
         if (dropdown) {
             const dropdownToggle = dropdown.previousElementSibling;
             if (dropdownToggle && dropdownToggle.getAttribute('data-bs-toggle') === 'dropdown') {
-                const bsDropdown = bootstrap.Dropdown.getInstance(dropdownToggle);
-                if (bsDropdown) {
-                    bsDropdown.hide();
-                }
+                const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(dropdownToggle);
+                bsDropdown.hide();
+                dropdownToggle.setAttribute('aria-expanded', 'false');
             }
         }
         
-        // Optional: Trigger change event
         if (cityDisplayField) {
             const event = new Event('change', { bubbles: true });
             cityDisplayField.dispatchEvent(event);
@@ -2513,7 +5265,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Handle dropdown toggle - load airports when dropdown opens
 document.querySelectorAll('.booking-dropdown .dropdown-toggle, .change-drop .dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('shown.bs.dropdown', function() {
         const target = this.querySelector('.airport-search')?.dataset.target;
@@ -2523,17 +5274,14 @@ document.querySelectorAll('.booking-dropdown .dropdown-toggle, .change-drop .dro
     });
 });
 
-// Initial load
 loadAirports('', 'from');
 loadAirports('', 'to');
 
-// For multi trip fields (if exists)
 if (document.querySelector('.multi-airport-list')) {
     loadAirports('', 'multi-from');
     loadAirports('', 'multi-to');
 }
 
-// Optional: Add swap functionality for From/To fields
 function swapAirports() {
     const fromCity = document.getElementById('from-city-display');
     const toCity = document.getElementById('to-city-display');
@@ -2543,7 +5291,6 @@ function swapAirports() {
     const toAirport = document.getElementById('to-airport-display');
     
     if (fromCity && toCity) {
-        // Swap values
         const tempCity = fromCity.value;
         const tempIata = fromIata.value;
         const tempAirport = fromAirport.innerHTML;
@@ -2558,7 +5305,6 @@ function swapAirports() {
     }
 }
 
-// Add swap button functionality (if exists)
 const swapBtn = document.querySelector('.way-icon');
 if (swapBtn) {
     swapBtn.addEventListener('click', function(e) {
@@ -2567,28 +5313,211 @@ if (swapBtn) {
     });
 }
 
-// Form validation before submit — only for flight-grid form (IATA based)
-const flightGridForm = document.querySelector('form[action*="search-flights"]');
-if (flightGridForm) {
-    flightGridForm.addEventListener('submit', function(e) {
-        const fromIata = document.getElementById('from-iata');
-        const toIata   = document.getElementById('to-iata');
+document.querySelector('form')?.addEventListener('submit', function(e) {
+    const fromIata = document.getElementById('from-iata');
+    const toIata = document.getElementById('to-iata');
+    const fromCity = document.getElementById('from-city-display');
+    const toCity = document.getElementById('to-city-display');
+    
+    if (!fromIata?.value || !toIata?.value) {
+        e.preventDefault();
+        alert('Please select both departure and destination airports from the list');
+        return false;
+    }
+    
+    if (fromIata.value === toIata.value) {
+        e.preventDefault();
+        alert('Departure and destination cannot be the same');
+        return false;
+    }
+    
+    console.log('Form submitted with:', {
+        from: fromIata.value,
+        to: toIata.value,
+        from_city: fromCity?.value,
+        to_city: toCity?.value
+    });
+});
 
-        if (!fromIata?.value || !toIata?.value) {
-            e.preventDefault();
-            alert('Please select both departure and destination airports from the list');
-            return false;
+// ============================================
+// DATE PICKER INITIALIZATION - COMPLETE FIX
+// ============================================
+$(document).ready(function () {
+    var today = moment().startOf('day');
+    var todayFormatted = today.format('DD-MM-YYYY');
+    var datePickerSelectors = '.datetimepicker, .check-in, .check-out, #departure-date, #return-date, input[name="departure_date"], input[name="return_date"], input[name="multi_departure_date"]';
+
+    function destroyDatePickers() {
+        if (typeof $.fn.datetimepicker === 'undefined') {
+            return;
         }
 
-        if (fromIata.value === toIata.value) {
-            e.preventDefault();
-            alert('Departure and destination cannot be the same');
-            return false;
+        $(datePickerSelectors).each(function() {
+            var picker = $(this).data('DateTimePicker');
+            if (picker) {
+                picker.destroy();
+            }
+        });
+    }
+
+    function initializeDatePickers() {
+        $(datePickerSelectors).each(function() {
+            if (!$(this).data('DateTimePicker')) {
+                $(this).datetimepicker(datePickerConfig);
+            }
+        });
+    }
+
+    // Common configuration for all date pickers
+    var datePickerConfig = {
+        format: 'DD-MM-YYYY',
+        minDate: today,
+        maxDate: moment().add(2, 'years'),
+        useCurrent: false,
+        keepInvalid: false,
+        ignoreReadonly: true,
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'bottom'
+        },
+        icons: {
+            up: "fas fa-angle-up",
+            down: "fas fa-angle-down",
+            next: 'fas fa-angle-right',
+            previous: 'fas fa-angle-left'
+        }
+    };
+
+    destroyDatePickers();
+    initializeDatePickers();
+
+    // ============================================
+    // LINK DEPARTURE AND RETURN DATES (Flight)
+    // ============================================
+    $("#departure-date, input[name='departure_date']").on("dp.change", function(e) {
+        var departureDate = e.date;
+        var $returnDate = $('#return-date, input[name="return_date"]');
+        
+        if ($returnDate.length && $returnDate.data('DateTimePicker') && departureDate) {
+            $returnDate.data('DateTimePicker').minDate(departureDate);
+            
+            var returnDate = $returnDate.data('DateTimePicker').date();
+            if (returnDate && returnDate.isBefore(departureDate)) {
+                $returnDate.data('DateTimePicker').date(departureDate.clone().add(1, 'day'));
+            }
         }
     });
-}
+    
+    // ============================================
+    // LINK CHECK-IN AND CHECK-OUT DATES (Hotel/Cruise/Tour/Activity)
+    // ============================================
+    $('.check-in').on("dp.change", function(e) {
+        var checkInDate = e.date;
+        var $checkOut = $(this).closest('form').find('.check-out');
+        
+        if ($checkOut.length && $checkOut.data('DateTimePicker') && checkInDate) {
+            $checkOut.data('DateTimePicker').minDate(checkInDate);
+            
+            var currentCheckOut = $checkOut.data('DateTimePicker').date();
+            if (currentCheckOut && currentCheckOut.isBefore(checkInDate)) {
+                $checkOut.data('DateTimePicker').date(checkInDate.clone().add(1, 'day'));
+            }
+        }
+    });
+    
+    // ============================================
+    // PREVENT MANUAL ENTRY OF PAST DATES
+    // ============================================
+    $('.datetimepicker, .check-in, .check-out, #departure-date, #return-date').on('blur', function() {
+        var value = $(this).val();
+        if (value) {
+            var date = moment(value, 'DD-MM-YYYY');
+            if (date.isValid() && date.isBefore(today)) {
+                $(this).val('');
+                if ($(this).data('DateTimePicker')) {
+                    $(this).data('DateTimePicker').date(null);
+                }
+                alert('Past dates are not allowed. Please select today or a future date.');
+            }
+        }
+    });
+    
+    // ============================================
+    // DISABLE PAST DATES IN CALENDAR VIEW
+    // ============================================
+    $('.datetimepicker, .check-in, .check-out, #departure-date, #return-date').on('dp.show', function() {
+        setTimeout(function() {
+            $('.bootstrap-datetimepicker-widget table td.day').each(function() {
+                var $this = $(this);
+                var dateValue = $this.data('day');
+                if (dateValue) {
+                    var cellDate = moment(dateValue, ['MM/DD/YYYY', 'DD-MM-YYYY', 'YYYY-MM-DD']);
+                    if (cellDate.isValid() && cellDate.isBefore(today)) {
+                        $this.addClass('disabled');
+                        $this.css({
+                            'background-color': '#f5f5f5 !important',
+                            'color': '#ccc !important',
+                            'cursor': 'not-allowed !important',
+                            'pointer-events': 'none !important',
+                            'opacity': '0.6'
+                        });
+                    }
+                }
+            });
+        }, 100);
+    });
+    
+    // ============================================
+    // TRIP TYPE HANDLING FOR FLIGHTS
+    // ============================================
+    $('input[name="trip_type"]').on('change', function() {
+        var tripType = $(this).val();
+        if (tripType === 'oneway') {
+            $('.round-drip').hide();
+            $('input[name="return_date"], #return-date').prop('disabled', true);
+        } else if (tripType === 'roundtrip') {
+            $('.round-drip').show();
+            $('input[name="return_date"], #return-date').prop('disabled', false);
+            var departurePicker = $('#departure-date, input[name="departure_date"]').first().data('DateTimePicker');
+            if (departurePicker && departurePicker.date()) {
+                $('#return-date, input[name="return_date"]').data('DateTimePicker').minDate(departurePicker.date());
+            }
+        }
+    });
+    
+    // Trigger on page load
+    $('input[name="trip_type"]:checked').trigger('change');
+    
+    // Clear any existing values that are past dates
+    $('.datetimepicker, .check-in, .check-out, #departure-date, #return-date').each(function() {
+        var currentVal = $(this).val();
+        if (currentVal) {
+            var date = moment(currentVal, 'DD-MM-YYYY');
+            if (date.isValid() && date.isBefore(today)) {
+                $(this).val('');
+                console.log('Cleared past date: ' + currentVal);
+            }
+        }
+    });
+    
+    console.log('All date pickers initialized - Today is: ' + todayFormatted);
+    console.log('Past dates are blocked for all forms!');
+});
 </script>
 
+<!-- Add this CSS to disable past dates visually -->
+<style>
+.bootstrap-datetimepicker-widget table td.day.disabled,
+.bootstrap-datetimepicker-widget table td.day.old,
+.bootstrap-datetimepicker-widget table td.day.disabled:hover {
+    background-color: #f5f5f5 !important;
+    color: #ccc !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+</style>
    
 <!-- blog -->
 
@@ -2597,219 +5526,5 @@ if (flightGridForm) {
     ========================= -->
 
 @endsection
-
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-// ── Hero page: City autocomplete for From/To inputs ──────────────────────────
-const heroAjaxRoutes = {
-    direct:  '{{ route("flight.ajax.direct") }}',
-    oneStop: '{{ route("flight.ajax.onestop") }}',
-    twoStop: '{{ route("flight.ajax.twostop") }}'
-};
-
-// Simple city autocomplete using the airports API
-function heroAutocomplete(inputId) {
-    const input = document.getElementById(inputId);
-    if (!input) return;
-
-    // Create dropdown
-    const dropdown = document.createElement('div');
-    dropdown.style.cssText = [
-        'position:absolute','top:calc(100% + 2px)','left:0','right:0',
-        'z-index:99999','background:#fff','border:1px solid #dee2e6',
-        'border-radius:6px','max-height:220px','overflow-y:auto',
-        'box-shadow:0 6px 20px rgba(0,0,0,.15)','display:none'
-    ].join(';');
-    input.closest('.form-item').style.position = 'relative';
-    input.closest('.form-item').appendChild(dropdown);
-
-    let timer;
-
-    input.addEventListener('input', function () {
-        clearTimeout(timer);
-        const val = this.value.trim();
-        dropdown.innerHTML = '';
-
-        if (val.length < 1) { dropdown.style.display = 'none'; return; }
-
-        // Show loading
-        dropdown.innerHTML = '<div style="padding:10px 14px;color:#999;font-size:13px;">Searching...</div>';
-        dropdown.style.display = 'block';
-
-        timer = setTimeout(() => {
-            fetch(`/get-airports?search=${encodeURIComponent(val)}`)
-                .then(r => r.json())
-                .then(data => {
-                    dropdown.innerHTML = '';
-                    if (!data.length) {
-                        dropdown.innerHTML = '<div style="padding:10px 14px;color:#999;font-size:13px;">No cities found</div>';
-                        return;
-                    }
-                    data.slice(0, 10).forEach(airport => {
-                        const item = document.createElement('div');
-                        item.style.cssText = 'padding:10px 14px;cursor:pointer;border-bottom:1px solid #f5f5f5;font-size:14px;transition:background .15s;';
-                        item.innerHTML = `
-                            <div style="font-weight:600;color:#222;">${airport.city}</div>
-                            <div style="font-size:12px;color:#888;">${airport.name} &bull; <span style="color:#007bff;">${airport.iata}</span></div>
-                        `;
-                        item.addEventListener('mouseenter', () => item.style.background = '#f0f4ff');
-                        item.addEventListener('mouseleave', () => item.style.background = '#fff');
-                        item.addEventListener('mousedown', (e) => {
-                            e.preventDefault(); // prevent blur before click
-                            input.value = airport.city;
-                            dropdown.style.display = 'none';
-                        });
-                        dropdown.appendChild(item);
-                    });
-                    dropdown.style.display = 'block';
-                })
-                .catch(() => {
-                    dropdown.innerHTML = '<div style="padding:10px 14px;color:#dc3545;font-size:13px;">Error loading suggestions</div>';
-                });
-        }, 200);
-    });
-
-    input.addEventListener('blur', () => {
-        setTimeout(() => { dropdown.style.display = 'none'; }, 150);
-    });
-
-    input.addEventListener('focus', function () {
-        if (this.value.trim().length >= 1 && dropdown.children.length > 0) {
-            dropdown.style.display = 'block';
-        }
-    });
-
-    // Keyboard navigation
-    input.addEventListener('keydown', function (e) {
-        const items = dropdown.querySelectorAll('div[style*="cursor:pointer"]');
-        let active  = dropdown.querySelector('.hero-ac-active');
-        let idx     = Array.from(items).indexOf(active);
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            if (active) active.classList.remove('hero-ac-active'), active.style.background = '#fff';
-            idx = (idx + 1) % items.length;
-            items[idx].classList.add('hero-ac-active');
-            items[idx].style.background = '#f0f4ff';
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            if (active) active.classList.remove('hero-ac-active'), active.style.background = '#fff';
-            idx = (idx - 1 + items.length) % items.length;
-            items[idx].classList.add('hero-ac-active');
-            items[idx].style.background = '#f0f4ff';
-        } else if (e.key === 'Enter') {
-            if (active) {
-                e.preventDefault();
-                const cityEl = active.querySelector('div');
-                if (cityEl) { input.value = cityEl.textContent.trim(); dropdown.style.display = 'none'; }
-            }
-        } else if (e.key === 'Escape') {
-            dropdown.style.display = 'none';
-        }
-    });
-}
-
-heroAutocomplete('hero-from-city');
-heroAutocomplete('hero-to-city');
-
-// ── Swap button ───────────────────────────────────────────────────────────────
-const swapBtn = document.getElementById('hero-swap-btn');
-if (swapBtn) {
-    swapBtn.addEventListener('click', function () {
-        const from = document.getElementById('hero-from-city');
-        const to   = document.getElementById('hero-to-city');
-        const tmp  = from.value;
-        from.value = to.value;
-        to.value   = tmp;
-    });
-}
-
-// ── Round trip toggle ─────────────────────────────────────────────────────────
-document.querySelectorAll('input[name="trip_type"]').forEach(radio => {
-    radio.addEventListener('change', function () {
-        const returnFields = document.querySelectorAll('.round-drip');
-        returnFields.forEach(el => {
-            el.style.display = this.value === 'roundtrip' ? '' : 'none';
-        });
-    });
-});
-
-// ── Card builders ─────────────────────────────────────────────────────────────
-function heroDirectCard(r, i) {
-    return `<div class="card mb-3 border-start border-success" style="border-left-width:3px!important">
-        <div class="card-body py-3">
-            <span class="badge bg-success bg-opacity-10 text-success mb-1">✓ Route ${i+1} — Direct</span>
-            <div class="d-flex align-items-center gap-2 fs-16 fw-semibold text-dark mt-1 flex-wrap">
-                <span>${r.source_airport}</span><small class="text-muted fw-normal">(${r.source_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span>${r.destination_airport}</span><small class="text-muted fw-normal">(${r.dest_city})</small>
-            </div>
-            <p class="mb-0 mt-1 fs-12 text-muted">✈ ${r.airline_name ?? 'Unknown'} (${r.airline_code}) &bull; 0 Stops</p>
-        </div>
-    </div>`;
-}
-
-function heroOneStopCard(r, i) {
-    return `<div class="card mb-3 border-start border-primary" style="border-left-width:3px!important">
-        <div class="card-body py-3">
-            <span class="badge bg-primary bg-opacity-10 text-primary mb-1">✓ Route ${i+1} — 1 Stop</span>
-            <div class="d-flex align-items-center gap-2 fs-16 fw-semibold text-dark mt-1 flex-wrap">
-                <span>${r.source_airport}</span><small class="text-muted fw-normal">(${r.source_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span class="text-warning">${r.mid}</span><small class="text-muted fw-normal">(${r.mid_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span>${r.destination_airport}</span><small class="text-muted fw-normal">(${r.dest_city})</small>
-            </div>
-            <p class="mb-0 mt-1 fs-12 text-muted">✈ ${r.airline_name1 ?? 'Unknown'} (${r.airline_code1}) &rarr; ${r.airline_name2 ?? 'Unknown'} (${r.airline_code2}) &bull; 1 Stop</p>
-        </div>
-    </div>`;
-}
-
-function heroTwoStopCard(r, i) {
-    return `<div class="card mb-3 border-start border-warning" style="border-left-width:3px!important">
-        <div class="card-body py-3">
-            <span class="badge bg-warning bg-opacity-10 text-warning mb-1">✓ Route ${i+1} — 2 Stops</span>
-            <div class="d-flex align-items-center gap-2 fs-16 fw-semibold text-dark mt-1 flex-wrap">
-                <span>${r.source_airport}</span><small class="text-muted fw-normal">(${r.source_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span class="text-warning">${r.mid1}</span><small class="text-muted fw-normal">(${r.mid1_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span class="text-warning">${r.mid2}</span><small class="text-muted fw-normal">(${r.mid2_city})</small>
-                <i class="isax isax-arrow-right text-primary"></i>
-                <span>${r.destination_airport}</span><small class="text-muted fw-normal">(${r.dest_city})</small>
-            </div>
-            <p class="mb-0 mt-1 fs-12 text-muted">✈ ${r.airline_name1 ?? '?'} &rarr; ${r.airline_name2 ?? '?'} &rarr; ${r.airline_name3 ?? '?'} &bull; 2 Stops</p>
-        </div>
-    </div>`;
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function hShow(id) { const el = document.getElementById(id); if(el) el.classList.remove('d-none'); }
-// ── Form submit — redirect to flight-routes page ─────────────────────────────
-const heroForm = document.querySelector('.hero-sec-nine form');
-if (heroForm) {
-    heroForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const fromCity = document.getElementById('hero-from-city').value.trim();
-        const toCity   = document.getElementById('hero-to-city').value.trim();
-
-        if (!fromCity || !toCity) {
-            alert('Please enter both departure and destination cities.');
-            return;
-        }
-
-        const url = new URL('{{ route("flight.routes") }}');
-        url.searchParams.set('from_city', fromCity);
-        url.searchParams.set('to_city', toCity);
-        window.location.href = url.toString();
-    });
-}
-
-}); // DOMContentLoaded
-</script>
-@endpush
 
 

@@ -108,7 +108,7 @@
                     <nav id="mobile-menu">
                         <ul class="main-nav">
                             <li class="{{ Request::is('/') ? 'active' : '' }}">
-                                <a href="{{url('index-2')}}">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
                             
                             {{-- Commented out Hotel submenu --}}
@@ -450,7 +450,7 @@
                     </div>
                     <nav id="mobile-menu">
                         <ul class="main-nav">
-                            <li class="{{ Route::is('index-2') ? 'active' : '' }}">
+                            <li class="{{ Route::is('/') ? 'active' : '' }}">
                                 <a href="{{ url('/') }}">Home</a>
                             </li>
                             
