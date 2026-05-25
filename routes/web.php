@@ -653,9 +653,18 @@ Route::get('/get-airports', [FlightController::class, 'getAirports'])
 Route::get('/api/airports', [FlightController::class, 'getAirports'])
     ->name('api.airports');
 
-// Flight search route
+// Flight search route (IATA-based, used by flight-grid)
 Route::get('/search-flights', [FlightController::class, 'search'])
     ->name('flight.search');
+
+// Flight Route Finder (city-name based, direct / 1-stop / 2-stop)
+Route::get('/flight-routes', [FlightController::class, 'findRoutes'])
+    ->name('flight.routes');
+
+// AJAX endpoints — called by flight-routes page after load
+Route::get('/api/flight-routes/direct',   [FlightController::class, 'ajaxDirect'])  ->name('flight.ajax.direct');
+Route::get('/api/flight-routes/one-stop', [FlightController::class, 'ajaxOneStop']) ->name('flight.ajax.onestop');
+Route::get('/api/flight-routes/two-stop', [FlightController::class, 'ajaxTwoStop']) ->name('flight.ajax.twostop');
 
     Route::get('/test-airports', function() {
     $airports = App\Models\Airport::where('city', 'like', '%New%')->limit(5)->get();

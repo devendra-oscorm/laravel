@@ -120,3 +120,6 @@
     <!-- Script JS -->
     <script src="{{URL::asset('build/js/script-rtl.js')}}"></script>
 @endif
+
+{{-- Page-specific scripts injected via @push('scripts') --}}
+@stack('scripts')
