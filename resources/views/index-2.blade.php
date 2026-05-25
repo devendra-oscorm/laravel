@@ -141,8 +141,7 @@
                     </div>
                     
                     <!-- Departure Date -->
-                    j
-                    
+             
                     <!-- Return Date (Round Trip) -->
                     <div class="form-item round-drip">
                         <label class="form-label fs-14 text-default mb-1">Return</label>
