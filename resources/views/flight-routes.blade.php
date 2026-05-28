@@ -357,11 +357,73 @@ const ROUTES = {
     oneStop: '{{ route("flight.ajax.onestop") }}',
     twoStop: '{{ route("flight.ajax.twostop") }}'
 };
+const FLIGHT_DETAILS_ROUTE = '{{ route("flight.details") }}';
 
 function show(id)   { document.getElementById(id).classList.remove('d-none'); }
 function hide(id)   { document.getElementById(id).classList.add('d-none'); }
 function text(id,t) { document.getElementById(id).textContent = t; }
 function html(id,h) { document.getElementById(id).innerHTML  = h; }
+
+function buildPrice(stops) {
+    if (stops === 0) return 500;
+    if (stops === 1) return 650;
+    return 780;
+}
+
+function buildDuration(stops) {
+    if (stops === 0) return '3h 45m';
+    if (stops === 1) return '7h 10m';
+    return '11h 25m';
+}
+
+function buildDeparture(stops) {
+    if (stops === 0) return '08:30';
+    if (stops === 1) return '09:50';
+    return '11:15';
+}
+
+function buildArrival(stops) {
+    if (stops === 0) return '12:15';
+    if (stops === 1) return '17:00';
+    return '22:40';
+}
+
+function createFlightPayload(opts) {
+    return {
+        route_type: opts.route_type,
+        stops: opts.stops,
+        airline_name: opts.airlineName,
+        airline_code: opts.airlineCode,
+        from_code: opts.fromCode,
+        from_city: opts.fromCity,
+        to_code: opts.toCode,
+        to_city: opts.toCity,
+        stop_city: opts.stopCity,
+        stop_label: opts.stopLabel,
+        price: opts.price ?? buildPrice(opts.stops),
+        duration: opts.duration ?? buildDuration(opts.stops),
+        departure: opts.departure ?? buildDeparture(opts.stops),
+        arrival: opts.arrival ?? buildArrival(opts.stops)
+    };
+}
+
+function redirectToFlightDetails(payload) {
+    const url = `${FLIGHT_DETAILS_ROUTE}?flight=${encodeURIComponent(JSON.stringify(payload))}`;
+    window.location.href = url;
+}
+
+function attachSelectionHandlers() {
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.mmt-btn');
+        if (!button) {
+            return;
+        }
+
+        event.preventDefault();
+        const payload = JSON.parse(decodeURIComponent(button.dataset.flight));
+        redirectToFlightDetails(payload);
+    });
+}
 
 // ── MakeMyTrip style card builders ───────────────────────────────────────────
 function airlineLogo(code) {
@@ -379,6 +441,9 @@ function stopBadge(stops) {
 
 function flightCard(opts) {
     const { airlineCode, airlineName, fromCode, fromCity, toCode, toCity, stops, viaHtml } = opts;
+    const payload = createFlightPayload(opts);
+    const encodedPayload = encodeURIComponent(JSON.stringify(payload));
+
     return `
     <div class="mmt-card">
         <div class="mmt-card-inner">
@@ -413,7 +478,7 @@ function flightCard(opts) {
             </div>
             <div class="mmt-action">
                 <div class="mmt-price">View Prices</div>
-                <button class="mmt-btn">SELECT</button>
+                <button class="mmt-btn" data-flight="${encodedPayload}">SELECT</button>
             </div>
         </div>
     </div>`;
@@ -421,12 +486,15 @@ function flightCard(opts) {
 
 function directCard(r, i) {
     return flightCard({
+        route_type: 'Direct',
         airlineCode:  r.airline_code,
         airlineName:  r.airline_name,
         fromCode:     r.source_airport,
         fromCity:     r.source_city,
         toCode:       r.destination_airport,
         toCity:       r.dest_city,
+        stopCity:     null,
+        stopLabel:    'Non stop',
         stops:        0,
         viaHtml:      null
     });
@@ -434,12 +502,15 @@ function directCard(r, i) {
 
 function oneStopCard(r, i) {
     return flightCard({
+        route_type: '1 Stop',
         airlineCode:  r.airline_code1,
         airlineName:  r.airline_name1,
         fromCode:     r.source_airport,
         fromCity:     r.source_city,
         toCode:       r.destination_airport,
         toCity:       r.dest_city,
+        stopCity:     r.mid_city,
+        stopLabel:    `1 stop via ${r.mid} (${r.mid_city})`,
         stops:        1,
         viaHtml:      `via ${r.mid} (${r.mid_city})`
     });
@@ -447,12 +518,15 @@ function oneStopCard(r, i) {
 
 function twoStopCard(r, i) {
     return flightCard({
+        route_type: '2 Stops',
         airlineCode:  r.airline_code1,
         airlineName:  r.airline_name1,
         fromCode:     r.source_airport,
         fromCity:     r.source_city,
         toCode:       r.destination_airport,
         toCity:       r.dest_city,
+        stopCity:     `${r.mid1} / ${r.mid2}`,
+        stopLabel:    `2 stops via ${r.mid1} (${r.mid1_city}) · ${r.mid2} (${r.mid2_city})`,
         stops:        2,
         viaHtml:      `via ${r.mid1} (${r.mid1_city}) · ${r.mid2} (${r.mid2_city})`
     });
@@ -527,6 +601,8 @@ document.getElementById('routeSearchForm').addEventListener('submit', async func
     url.searchParams.set('to_city', toCity);
     window.history.pushState({}, '', url);
 });
+
+attachSelectionHandlers();
 
 // Auto-trigger search if URL has params (e.g. shared link or back button)
 // Use setTimeout to ensure all JS is ready after layout scripts load

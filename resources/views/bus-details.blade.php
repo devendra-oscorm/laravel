@@ -48,10 +48,10 @@
                                         </span>
                                     </h4>
                                     <div class="d-flex align-items-center flex-wrap">
-                                        <p class="fs-14 mb-0 me-3 pe-3 border-end d-flex align-items-center mb-2">
+                                        <p class="fs-14  me-3 pe-3 border-end d-flex align-items-center mb-2">
                                             <img src="{{URL::asset('build/img/bus/bus-logo-01.svg')}}" class="me-2" alt="Img"> Tata
                                         </p>
-                                        <p class="fs-14 mb-0 me-3 pe-3 border-end mb-2">
+                                        <p class="fs-14  me-3 pe-3 border-end mb-2">
                                             <span class="badge badge-md bg-orange rounded-pill ms-2">
                                                 Seater
                                             </span>
@@ -531,7 +531,7 @@
                                                     <div
                                                         class="d-flex align-items-center justify-content-between flex-wrap">
                                                         <div class="d-flex align-items-center mb-2">
-                                                            <span class="avatar avatar-lg me-2 flex-shrink-0">
+                                                            <span class="avatar avatar-lg me-2 shrink-0">
                                                                 <img src="{{URL::asset('build/img/users/user-05.jpg')}}"
                                                                     class="rounded-circle" alt="img">
                                                             </span>
@@ -591,7 +591,7 @@
                                                     <div
                                                         class="d-flex align-items-center justify-content-between flex-wrap">
                                                         <div class="d-flex align-items-center mb-2">
-                                                            <span class="avatar avatar-lg me-2 flex-shrink-0">
+                                                            <span class="avatar avatar-lg me-2 shrink-0">
                                                                 <img src="{{URL::asset('build/img/users/user-21.jpg')}}"
                                                                     class="rounded-circle" alt="img">
                                                             </span>
@@ -635,7 +635,7 @@
                                                     <div
                                                         class="d-flex align-items-center justify-content-between flex-wrap">
                                                         <div class="d-flex align-items-center mb-2">
-                                                            <span class="avatar avatar-lg me-2 flex-shrink-0">
+                                                            <span class="avatar avatar-lg me-2 shrink-0">
                                                                 <img src="{{URL::asset('build/img/users/user-26.jpg')}}"
                                                                     class="rounded-circle" alt="img">
                                                             </span>
@@ -674,7 +674,7 @@
                                                     <div
                                                         class="d-flex align-items-center justify-content-between flex-wrap">
                                                         <div class="d-flex align-items-center mb-2">
-                                                            <span class="avatar avatar-lg me-2 flex-shrink-0">
+                                                            <span class="avatar avatar-lg me-2 shrink-0">
                                                                 <img src="{{URL::asset('build/img/users/user-25.jpg')}}"
                                                                     class="rounded-circle" alt="img">
                                                             </span>
@@ -1037,7 +1037,7 @@
                             <h5 class="fs-18 mb-3">Provider Details</h5>
                             <div class="py-1">
                                 <div class="bg-light-500 br-10 mb-3 d-flex align-items-center p-3">
-                                    <a href="#" class="avatar avatar-lg flex-shrink-0">
+                                    <a href="#" class="avatar avatar-lg shrink-0">
                                         <img src="{{URL::asset('build/img/users/user-05.jpg')}}" alt="img" class="rounded-circle">
                                     </a>
                                     <div class="ms-2 overflow-hidden">
@@ -1047,17 +1047,17 @@
                                 </div>
                                 <div class="border br-10 mb-3 p-3">
                                     <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                        <span class="avatar avatar-sm me-2 rounded-circle flex-shrink-0 bg-primary"><i
+                                        <span class="avatar avatar-sm me-2 rounded-circle shrink-0 bg-primary"><i
                                                 class="isax isax-call-outgoing5"></i></span>
                                         <p>+1 12545 45548</p>
                                     </div>
                                     <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                        <span class="avatar avatar-sm me-2 rounded-circle flex-shrink-0 bg-primary"><i
+                                        <span class="avatar avatar-sm me-2 rounded-circle shrink-0 bg-primary"><i
                                                 class="isax isax-message-search5"></i></span>
                                         <p>Info@example.com</p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <span class="avatar avatar-sm me-2 rounded-circle flex-shrink-0 bg-primary"><i
+                                        <span class="avatar avatar-sm me-2 rounded-circle shrink-0 bg-primary"><i
                                                 class="isax isax-location-tick5"></i></span>
                                         <p>4635 Pheasant Ridge Road, USA</p>
                                     </div>

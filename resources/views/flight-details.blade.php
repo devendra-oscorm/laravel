@@ -2,6 +2,26 @@
 @extends('layout.mainlayout')
 @section('content')
 
+    @php
+        $selectedFlight = $selectedFlight ?? [
+            'route_type' => 'Direct',
+            'stops' => 0,
+            'airline_name' => 'AstraFlight',
+            'airline_code' => 'AF',
+            'from_code' => 'NYC',
+            'from_city' => 'New York',
+            'to_code' => 'SYD',
+            'to_city' => 'Sydney',
+            'stop_city' => null,
+            'stop_label' => 'Non stop',
+            'price' => 500,
+            'duration' => '14h 20m',
+            'departure' => '08:30',
+            'arrival' => '22:50',
+        ];
+        $flightToken = urlencode(json_encode($selectedFlight));
+    @endphp
+
     <!-- ========================
         Start Page Content
     ========================= -->
@@ -37,22 +57,22 @@
                         <div class="service-wrap slider-wrap-five mb-4">
                             <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                                 <div class="mb-2">
-                                    <h4 class="mb-1 d-flex align-items-center flex-wrap">Antonov An-32
+                                    <h4 class="mb-1 d-flex align-items-center flex-wrap">{{ $selectedFlight['airline_name'] }}
                                         <span class="badge badge-xs bg-success rounded-pill ms-2">
                                             <i class="isax isax-ticket-star5 me-1"></i>
                                             Verified
                                         </span>
                                         <span class="badge badge-xs bg-indigo rounded-pill ms-2">
-                                            Cheapest
+                                            {{ $selectedFlight['route_type'] }}
                                         </span>
                                     </h4>
                                     <div class="d-flex align-items-center flex-wrap">
                                         <p class="fs-14 mb-2 me-3 pe-3 border-end d-flex align-items-center">
-                                            <img src="{{URL::asset('build/img/icons/airindia.svg')}}" class="me-2" alt="Img"> Air India
-                                            <span class="bg-primary divide-point mx-2"></span> 1-stop at Dubai
+                                            <img src="{{URL::asset('build/img/icons/airindia.svg')}}" class="me-2" alt="Img"> {{ $selectedFlight['airline_name'] }}
+                                            <span class="bg-primary divide-point mx-2"></span> {{ $selectedFlight['stop_label'] }}
                                         </p>
                                         <p class="fs-14 mb-2 me-3 pe-3 border-end"><i
-                                                class="isax isax-location5 me-2"></i>Ciutat Vella, Barcelona
+                                                class="isax isax-location5 me-2"></i>{{ $selectedFlight['from_city'] }} to {{ $selectedFlight['to_city'] }}
                                             <a href="#location"
                                                 class="link-primary text-decoration-underline fw-medium ms-2">View
                                                 Location</a>
@@ -378,8 +398,8 @@
                                                                 aria-expanded="false" role="menu">
                                                                 <label
                                                                     class="form-label fs-14 text-default mb-1">From</label>
-                                                                <input type="text" class="form-control" value="Newyork">
-                                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                                                <input type="text" class="form-control" value="{{ $selectedFlight['from_city'] }}">
+                                                                <p class="fs-12 mb-0">{{ $selectedFlight['from_code'] }} Airport</p>
                                                             </div>
                                                             <div class="dropdown-menu dropdown-md p-0">
                                                                 <div class="input-search p-3 border-bottom">
@@ -394,8 +414,8 @@
                                                                 <ul>
                                                                     <li class="border-bottom">
                                                                         <a class="dropdown-item" href="#">
-                                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                                            <p>Ken International Airport</p>
+                                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['from_city'] }}</h6>
+                                                                            <p>{{ $selectedFlight['from_code'] }} Airport</p>
                                                                         </a>
                                                                     </li>
                                                                     <li class="border-bottom">
@@ -431,8 +451,8 @@
                                                                 aria-expanded="false" role="menu">
                                                                 <label
                                                                     class="form-label fs-14 text-default mb-1">To</label>
-                                                                <h5>Las Vegas</h5>
-                                                                <p class="fs-12 mb-0">Martini International Airport</p>
+                                                                <h5>{{ $selectedFlight['to_city'] }}</h5>
+                                                                <p class="fs-12 mb-0">{{ $selectedFlight['to_code'] }} Airport</p>
                                                                 <span
                                                                     class="way-icon badge badge-primary rounded-pill translate-middle">
                                                                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
@@ -451,8 +471,8 @@
                                                                 <ul>
                                                                     <li class="border-bottom">
                                                                         <a class="dropdown-item" href="#">
-                                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                                            <p>Ken International Airport</p>
+                                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['to_city'] }}</h6>
+                                                                            <p>{{ $selectedFlight['to_code'] }} Airport</p>
                                                                         </a>
                                                                     </li>
                                                                     <li class="border-bottom">
@@ -685,8 +705,8 @@
                                                                 aria-expanded="false" role="menu">
                                                                 <label
                                                                     class="form-label fs-14 text-default mb-1">From</label>
-                                                                <input type="text" class="form-control" value="Newyork">
-                                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                                                <input type="text" class="form-control" value="{{ $selectedFlight['from_city'] }}">
+                                                                <p class="fs-12 mb-0">{{ $selectedFlight['from_code'] }} Airport</p>
                                                             </div>
                                                             <div class="dropdown-menu dropdown-md p-0">
                                                                 <div class="input-search p-3 border-bottom">
@@ -701,8 +721,8 @@
                                                                 <ul>
                                                                     <li class="border-bottom">
                                                                         <a class="dropdown-item" href="#">
-                                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                                            <p>Ken International Airport</p>
+                                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['from_city'] }}</h6>
+                                                                            <p>{{ $selectedFlight['from_code'] }} Airport</p>
                                                                         </a>
                                                                     </li>
                                                                     <li class="border-bottom">
@@ -738,8 +758,8 @@
                                                                 aria-expanded="false" role="menu">
                                                                 <label
                                                                     class="form-label fs-14 text-default mb-1">To</label>
-                                                                <h5>Las Vegas</h5>
-                                                                <p class="fs-12 mb-0">Martini International Airport</p>
+                                                                <h5>{{ $selectedFlight['to_city'] }}</h5>
+                                                                <p class="fs-12 mb-0">{{ $selectedFlight['to_code'] }} Airport</p>
                                                             </div>
                                                             <div class="dropdown-menu dropdown-md p-0">
                                                                 <div class="input-search p-3 border-bottom">
@@ -754,8 +774,8 @@
                                                                 <ul>
                                                                     <li class="border-bottom">
                                                                         <a class="dropdown-item" href="#">
-                                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                                            <p>Ken International Airport</p>
+                                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['to_city'] }}</h6>
+                                                                            <p>{{ $selectedFlight['to_code'] }} Airport</p>
                                                                         </a>
                                                                     </li>
                                                                     <li class="border-bottom">
@@ -1477,29 +1497,29 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4">
                                 <span class="btn btn-outline-light flex-fill"><span class="icon-rotate-up me-2"><i
-                                            class="isax isax-airplane"></i></span>Newyork</span>
+                                            class="isax isax-airplane"></i></span>{{ $selectedFlight['from_city'] }}</span>
                                 <a href="#" class="way-icon badge badge-primary rounded-pill mx-2">
                                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
                                 </a>
                                 <span class="btn btn-outline-light flex-fill"><span class="icon-rotate-down me-2"><i
-                                            class="isax isax-airplane"></i></span>Sydney</span>
+                                            class="isax isax-airplane"></i></span>{{ $selectedFlight['to_city'] }}</span>
                             </div>
                             <div
                                 class="d-flex align-items-center justify-content-between bg-light-200 rounded p-3 mb-3">
                                 <p class="fs-13 fw-medium mb-0">Starts From</p>
-                                <h5 class="text-primary">$500 <span class="fs-14 text-default fw-normal">/ Person</span>
+                                <h5 class="text-primary">${{ $selectedFlight['price'] }} <span class="fs-14 text-default fw-normal">/ Person</span>
                                 </h5>
                             </div>
                             <h5 class="fs-18 mb-3">Check Availability</h5>
                             <div class="banner-form">
-                                <form action="{{url('flight-booking')}}" class="form-info border-0">
+                                <form action="{{ route('flight.booking', ['flight' => $flightToken]) }}" class="form-info border-0">
                                     <div class="form-info border-0">
                                         <div class="form-item dropdown border rounded p-3 mb-3 w-100">
                                             <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                                 aria-expanded="false" role="menu">
                                                 <label class="form-label fs-14 text-default mb-1">From</label>
-                                                <input type="text" class="form-control" value="Newyork">
-                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                                <input type="text" class="form-control" value="{{ $selectedFlight['from_city'] }}">
+                                                <p class="fs-12 mb-0">{{ $selectedFlight['from_code'] }} Airport</p>
                                             </div>
                                             <div class="dropdown-menu dropdown-md p-0">
                                                 <div class="input-search p-3 border-bottom">
@@ -1513,8 +1533,8 @@
                                                 <ul>
                                                     <li class="border-bottom">
                                                         <a class="dropdown-item" href="#">
-                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                            <p>Ken International Airport</p>
+                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['from_city'] }}</h6>
+                                                            <p>{{ $selectedFlight['from_code'] }} Airport</p>
                                                         </a>
                                                     </li>
                                                     <li class="border-bottom">
@@ -1548,8 +1568,8 @@
                                             <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                                 aria-expanded="false" role="menu">
                                                 <label class="form-label fs-14 text-default mb-1">To</label>
-                                                <h5>Las Vegas</h5>
-                                                <p class="fs-12 mb-0">Martini International Airport</p>
+                                                <h5>{{ $selectedFlight['to_city'] }}</h5>
+                                                <p class="fs-12 mb-0">{{ $selectedFlight['to_code'] }} Airport</p>
                                             </div>
                                             <div class="dropdown-menu dropdown-md p-0">
                                                 <div class="input-search p-3 border-bottom">
@@ -1563,8 +1583,8 @@
                                                 <ul>
                                                     <li class="border-bottom">
                                                         <a class="dropdown-item" href="#">
-                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
-                                                            <p>Ken International Airport</p>
+                                                            <h6 class="fs-16 fw-medium">{{ $selectedFlight['to_city'] }}</h6>
+                                                            <p>{{ $selectedFlight['to_code'] }} Airport</p>
                                                         </a>
                                                     </li>
                                                     <li class="border-bottom">

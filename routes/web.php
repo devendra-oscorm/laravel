@@ -288,21 +288,21 @@ Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
 
-Route::get('/flight-booking', function () {
-    return view('flight-booking');
-})->name('flight-booking');
+Route::get('/flight-routes', [FlightController::class, 'findRoutes'])->name('flight-routes');
+
+Route::get('/flight-booking', [FlightController::class, 'showBooking'])->name('flight.booking');
 
 Route::get('/flight-booking-confirmation', function () {
     return view('flight-booking-confirmation');
 })->name('flight-booking-confirmation');
 
-Route::get('/flight-details', function () {
-    return view('flight-details');
-})->name('flight-details');
+Route::get('/flight-details', [FlightController::class, 'showDetails'])->name('flight.details');
 
-Route::get('/flight-grid', function () {
-    return view('flight-grid');
-})->name('flight-grid');
+Route::get('/flight/ajax/direct', [FlightController::class, 'ajaxDirect'])->name('flight.ajax.direct');
+Route::get('/flight/ajax/onestop', [FlightController::class, 'ajaxOneStop'])->name('flight.ajax.onestop');
+Route::get('/flight/ajax/twostop', [FlightController::class, 'ajaxTwoStop'])->name('flight.ajax.twostop');
+
+Route::get('/flight-grid', [FlightController::class, 'grid'])->name('flight-grid');
 
 Route::get('/flight-list', function () {
     return view('flight-list');

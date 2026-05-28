@@ -2,6 +2,33 @@
 @extends('layout.mainlayout')
 @section('content')
 
+    @php
+        $selectedFlight = $selectedFlight ?? [
+            'route_type' => 'Direct',
+            'stops' => 0,
+            'airline_name' => 'AstraFlight',
+            'airline_code' => 'AF',
+            'from_code' => 'NYC',
+            'from_city' => 'New York',
+            'to_code' => 'SYD',
+            'to_city' => 'Sydney',
+            'stop_city' => null,
+            'stop_label' => 'Non stop',
+            'price' => 500,
+            'duration' => '14h 20m',
+            'departure' => '08:30',
+            'arrival' => '22:50',
+        ];
+        $flightToken = urlencode(json_encode($selectedFlight));
+        $subtotal = (int) $selectedFlight['price'];
+        $tax = round($subtotal * 0.1);
+        $bookingFee = 89;
+        $discount = 20;
+        $total = $subtotal + $tax + $bookingFee - $discount;
+        $routeCode = $selectedFlight['from_code'] . ' → ' . $selectedFlight['to_code'];
+        $preferredClass = $selectedFlight['preferred_class'] ?? 'Economy';
+    @endphp
+
     <!-- ========================
         Start Page Content
     ========================= -->
@@ -35,6 +62,30 @@
                             <h5>Secure Checkout</h5>
                         </div>
                         <div class="card-body">
+                            <div class="border rounded p-3 mb-4 bg-light-200">
+                                <div class="d-flex align-items-start justify-content-between gap-3">
+                                    <div>
+                                        <p class="text-uppercase fs-12 fw-medium text-gray-6 mb-1">Selected Flight</p>
+                                        <h6 class="mb-1">{{ $selectedFlight['airline_name'] }} - {{ $selectedFlight['route_type'] }}</h6>
+                                        <p class="mb-0 fs-14 text-gray-6">{{ $routeCode }}</p>
+                                    </div>
+                                    <span class="badge bg-primary-subtle text-primary">{{ $selectedFlight['airline_code'] }}</span>
+                                </div>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-4">
+                                        <p class="fs-13 text-gray-6 mb-1">Departure</p>
+                                        <h6 class="mb-0">{{ $selectedFlight['departure'] }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="fs-13 text-gray-6 mb-1">Arrival</p>
+                                        <h6 class="mb-0">{{ $selectedFlight['arrival'] }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="fs-13 text-gray-6 mb-1">Flight Time</p>
+                                        <h6 class="mb-0">{{ $selectedFlight['duration'] }}</h6>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
                                 <div class="checkout-title">
                                     <h6 class="mb-2">Contact Info</h6>
@@ -362,7 +413,7 @@
 
                             <div class="d-flex align-items-center justify-content-end flex-wrap gap-2">
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#booking-success">Confirm & Pay $9569 </a>
+                                    data-bs-target="#booking-success">Confirm & Pay ${{ $total }} </a>
                             </div>
                         </div>
                     </div>
@@ -374,7 +425,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between header-content">
                                 <h5>Review Order Details</h5>
-                                <a href="{{url('flight-details')}}"
+                                <a href="{{ route('flight.details', ['flight' => $flightToken]) }}"
                                     class="rounded-circle p-2 btn btn-light d-flex align-items-center justify-content-center"><span
                                         class="fs-16 d-flex align-items-center justify-content-center"><i
                                             class="isax isax-edit-2"></i></span></a>
@@ -387,68 +438,65 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h6 class="mb-2">Antonov An-32- Economy Class</h6>
+                                        <h6 class="mb-2">{{ $selectedFlight['airline_name'] }} - {{ $selectedFlight['route_type'] }}</h6>
+                                        <p class="fs-14 mb-1 text-gray-6">{{ $selectedFlight['airline_code'] }} • {{ $routeCode }}</p>
                                         <p class="fs-14 "><span
                                                 class="badge badge-warning text-gray-9 fs-13 fw-medium me-2">5.0</span>(400
                                             Reviews)</p>
                                     </div>
-                                    <h6 class="fs-14 fw-normal text-gray-9">$200</h6>
+                                    <h6 class="fs-14 fw-normal text-gray-9">${{ $selectedFlight['price'] }}</h6>
                                 </div>
                             </div>
                             <div class="mt-3 pb-3 border-bottom">
                                 <h6 class="text-primary mb-3">Order Info</h6>
                                 <div class="d-flex align-items-center details-info">
+                                    <h6 class="fs-16">Route</h6>
+                                    <p class="fs-16">{{ $selectedFlight['from_city'] }} to {{ $selectedFlight['to_city'] }}</p>
+                                </div>
+                                <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Departure</h6>
-                                    <p class="fs-16">15 Sep 2025 at 10:10 AM</p>
+                                    <p class="fs-16">{{ $selectedFlight['departure'] }}</p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Arrival</h6>
-                                    <p class="fs-16">16 Sep 2025 at 09:15 AM</p>
-                                </div>
-                                <div class="d-flex align-items-center  details-info">
-                                    <h6 class="fs-16">Travel Time</h6>
-                                    <p class="fs-16">2hrs 30min</p>
-                                </div>
-                                <div class="d-flex align-items-center  details-info">
-                                    <h6 class="fs-16">Adults</h6>
-                                    <p class="fs-16">2</p>
-                                </div>
-                                <div class="d-flex align-items-center  details-info">
-                                    <h6 class="fs-16">Children</h6>
-                                    <p class="fs-16">2</p>
+                                    <p class="fs-16">{{ $selectedFlight['arrival'] }}</p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
-                                    <h6 class="fs-16">No of Seats</h6>
-                                    <p class="fs-16">4</p>
+                                    <h6 class="fs-16">Travel Time</h6>
+                                    <p class="fs-16">{{ $selectedFlight['duration'] }}</p>
+                                </div>
+                                <div class="d-flex align-items-center details-info">
+                                    <h6 class="fs-16">Connection</h6>
+                                    <p class="fs-16">{{ $selectedFlight['stop_label'] }}</p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Preferred Class</h6>
-                                    <p class="fs-16">Economy</p>
+                                    <p class="fs-16">{{ $preferredClass }}</p>
                                 </div>
                             </div>
                             <div class="mt-3 border-bottom">
                                 <h6 class="text-primary mb-3">Payment Info</h6>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Sub Total</h6>
-                                    <p class="fs-16">$8565</p>
+                                    <p class="fs-16">${{ $subtotal }}</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Tax <span class="text-gray-6"> (10%)</span></h6>
-                                    <p class="fs-16">$85</p>
+                                    <p class="fs-16">${{ $tax }}</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Booking Fees</h6>
-                                    <p class="fs-16">$89</p>
+                                    <p class="fs-16">${{ $bookingFee }}</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Discount <span class="text-gray-6"> (10%)</span></h6>
-                                    <p class="fs-16">-$20</p>
+                                    <p class="fs-16">-${{ $discount }}</p>
                                 </div>
                             </div>
                             <div class="mt-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h6>Amount to Pay</h6>
-                                    <h6 class="text-primary">$9569</h6>
+                                    <h6 class="text-primary">${{ $total }}</h6>
                                 </div>
                             </div>
                         </div>

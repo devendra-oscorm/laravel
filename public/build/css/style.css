@@ -11040,7 +11040,7 @@ header .main-menu-wrapper .main-nav:last-child {
 }
 @media (max-width: 1399.98px) {
   header .main-menu-wrapper .main-nav > li {
-    margin-right: 10px !important;
+    margin-right: 16px !important;
   }
   header .main-menu-wrapper .main-nav > li:last-child {
     margin-right: 0;
@@ -11048,7 +11048,7 @@ header .main-menu-wrapper .main-nav:last-child {
 }
 @media (max-width: 1199.98px) {
   header .main-menu-wrapper .main-nav > li {
-    margin-right: 10px !important;
+    margin-right: 16px !important;
   }
   header .main-menu-wrapper .main-nav > li:last-child {
     margin-right: 0;
@@ -11104,7 +11104,7 @@ header .main-menu-wrapper .main-nav > li:last-child {
   header .main-menu-wrapper .main-nav > li {
     display: block;
     position: relative;
-    margin-right: 30px;
+    margin-right: 16px;
   }
   header .main-menu-wrapper .main-nav > li:last-child {
     margin-right: 0;
@@ -11112,7 +11112,7 @@ header .main-menu-wrapper .main-nav > li:last-child {
 }
 @media (max-width: 1199.98px) {
   header .main-menu-wrapper .main-nav > li {
-    margin-right: 20px;
+    margin-right: 16px;
   }
 }
 @media (min-width: 992px) {
@@ -12566,7 +12566,7 @@ header.header-three .header-logo.logo-white {
   border-color: #CF3425 !important;
 }
 .main-header-nine .header-nine .header-nav .main-menu-wrapper .main-nav > li {
-  margin-right: 1px !important;
+  margin-right: 16px !important;
   border: none !important;
 }
 .main-header-nine .header-nine .header-nav .main-menu-wrapper .main-nav > li.active a {

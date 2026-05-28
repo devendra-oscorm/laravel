@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="about-img">
-                            <img src="{{URL::asset('build/img/about.png')}}" alt="about">
+                            <img src="{{URL::asset('build/img/about.svg')}}" alt="about">
                         </div>
                         <div class="about-progress d-inline-flex align-items-center">
                             <img src="{{URL::asset('build/img/icons/progress-icon.svg')}}" alt="icon">
@@ -63,14 +63,14 @@
                             a luxury cruise, we are here to turn your travel dreams
                             into reality.​</p>
                         <div class="d-flex align-items-center mb-4">
-                            <span class="avatar avatar-xl bg-primary rounded-circle flex-shrink-0 me-3">
+                            <span class="avatar avatar-xl bg-primary rounded-circle shrink-0 me-3">
                                 <i class="isax isax-map5 fs-24"></i>
                             </span>
                             <p>Clients navigate their journeys, whether for travel or educational purposes, primarily in
                                 Canada, the U.S., and the U.K</p>
                         </div>
                         <div class="d-flex align-items-center">
-                            <span class="avatar avatar-xl bg-secondary rounded-circle flex-shrink-0 me-3">
+                            <span class="avatar avatar-xl bg-secondary rounded-circle shrink-0 me-3">
                                 <i class="isax isax-trade5 fs-24 text-gray-9"></i>
                             </span>
                             <p>Provides a range of services from immigration advice to study-abroad support and vacation
@@ -320,7 +320,7 @@
                             the Ark. The customer service was wonderful & the staff was very helpful.</p>
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <a href="#" class="avatar avatar-md  flex-shrink-0">
+                                <a href="#" class="avatar avatar-md  shrink-0">
                                     <img src="{{URL::asset('build/img/users/user-01.jpg')}}" class="rounded-circle" alt="img">
                                 </a>
                                 <div class="ms-2">
@@ -342,7 +342,7 @@
                             The experience was terrific, thanks to the friendly tour guides.</p>
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <a href="#" class="avatar avatar-md  flex-shrink-0">
+                                <a href="#" class="avatar avatar-md  shrink-0">
                                     <img src="{{URL::asset('build/img/users/user-02.jpg')}}" class="rounded-circle" alt="img">
                                 </a>
                                 <div class="ms-2">
@@ -364,7 +364,7 @@
                             polite, timely, and helpful. The team ensured making it a stress-free trip.</p>
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <a href="#" class="avatar avatar-md  flex-shrink-0">
+                                <a href="#" class="avatar avatar-md  shrink-0">
                                     <img src="{{URL::asset('build/img/users/user-03.jpg')}}" class="rounded-circle" alt="img">
                                 </a>
                                 <div class="ms-2">
@@ -386,7 +386,7 @@
                             the Ark. The customer service was wonderful & the staff was very helpful.</p>
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <span class="avatar avatar-md  flex-shrink-0">
+                                <span class="avatar avatar-md  shrink-0">
                                     <img src="{{URL::asset('build/img/users/user-01.jpg')}}" class="rounded-circle" alt="img">
                                 </span>
                                 <div class="ms-2">

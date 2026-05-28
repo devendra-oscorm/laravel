@@ -111,7 +111,7 @@
                                 <a href="{{url('index-2')}}">Home</a>
                             </li>
                             
-                            {{-- Commented out Hotel submenu --}}
+                           
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('flight-grid', 'edit-flight', 'flight-list', 'flight-details', 'flight-booking', 'flight-booking-confirmation', 'add-flight') ? 'active subdrop' : ''; }}">
                                 <a href="#">Flight<i class="fa-solid fa-angle-down"></i></a>
@@ -214,15 +214,17 @@
                             </li>
                             --}}
 
+                                                        {{-- Keep Blog menu - Add new Blog menu item --}}
+                            <li class="{{ Request::is('blog-grid', 'blog-list', 'blog-details') ? 'active' : '' }}">
+                                <a href="{{url('blog-grid')}}">Blog</a>
+                            </li>
+
                             {{-- Keep About menu - Add new About menu item --}}
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
                             </li>
 
-                            {{-- Keep Blog menu - Add new Blog menu item --}}
-                            <li class="{{ Request::is('blog-grid', 'blog-list', 'blog-details') ? 'active' : '' }}">
-                                <a href="{{url('blog-grid')}}">Blog</a>
-                            </li>
+
 
                             {{-- Commented out Pages mega menu --}}
                             {{-- 

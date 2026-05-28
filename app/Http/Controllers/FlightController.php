@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Route;
 use App\Models\Airport;
-use App\Models\Airline;
 
 class FlightController extends Controller
 {
@@ -24,23 +23,40 @@ class FlightController extends Controller
             ->search($from, $to)
             ->get();
 
-        return view('flight-grid', compact(
-            'routes',
-            'from',
-            'to'
-        ));
+        return view('flight-grid', compact('routes', 'from', 'to'));
     }
 
-    /**
-     * Render the Flight Route Finder page (no DB queries — fast load).
-     * Results are fetched via AJAX after page load.
-     */
+    public function grid(Request $request)
+    {
+        $from = strtoupper(trim($request->query('from', '')));
+        $to = strtoupper(trim($request->query('to', '')));
+
+        try {
+            $query = Route::with([
+                'airline',
+                'sourceAirport',
+                'destinationAirport',
+            ]);
+
+            $routes = $from && $to
+                ? $query->search($from, $to)->get()
+                : $query->limit(6)->get();
+
+            if ($routes->isEmpty() && $from && $to) {
+                $routes = $query->limit(6)->get();
+            }
+        } catch (\Throwable $e) {
+            $routes = collect();
+        }
+
+        return view('flight-grid', compact('routes', 'from', 'to'));
+    }
+
     public function findRoutes(Request $request)
     {
         $fromCity = trim($request->input('from_city', ''));
-        $toCity   = trim($request->input('to_city', ''));
+        $toCity = trim($request->input('to_city', ''));
 
-        // Cache city list for autocomplete (1 hour)
         $cities = Cache::remember('airport_cities', 3600, function () {
             return Airport::orderBy('city')->pluck('city')->unique()->values();
         });
@@ -48,10 +64,57 @@ class FlightController extends Controller
         return view('flight-routes', compact('fromCity', 'toCity', 'cities'));
     }
 
-    /**
-     * Shared helper: resolve city string → array of IATA codes.
-     * Cached per city name for 1 hour.
-     */
+    public function showDetails(Request $request)
+    {
+        $selectedFlight = $this->decodeSelectedFlight($request);
+
+        return view('flight-details', compact('selectedFlight'));
+    }
+
+    public function showBooking(Request $request)
+    {
+        $selectedFlight = $this->decodeSelectedFlight($request);
+
+        return view('flight-booking', compact('selectedFlight'));
+    }
+
+    private function defaultFlight(): array
+    {
+        return [
+            'route_type' => 'Direct',
+            'stops' => 0,
+            'airline_name' => 'AstraFlight',
+            'airline_code' => 'AF',
+            'from_code' => 'NYC',
+            'from_city' => 'New York',
+            'to_code' => 'SYD',
+            'to_city' => 'Sydney',
+            'stop_city' => null,
+            'stop_label' => 'Non stop',
+            'price' => 500,
+            'duration' => '14h 20m',
+            'departure' => '08:30',
+            'arrival' => '22:50',
+        ];
+    }
+
+    private function decodeSelectedFlight(Request $request): array
+    {
+        $payload = $request->query('flight');
+
+        if (empty($payload)) {
+            return $this->defaultFlight();
+        }
+
+        $decoded = json_decode(urldecode($payload), true);
+
+        if (!is_array($decoded)) {
+            return $this->defaultFlight();
+        }
+
+        return array_merge($this->defaultFlight(), $decoded);
+    }
+
     private function resolveIatas(string $city): array
     {
         return Cache::remember("iatas_{$city}", 3600, function () use ($city) {
@@ -64,20 +127,17 @@ class FlightController extends Controller
         });
     }
 
-    /**
-     * AJAX — Direct flights JSON.
-     */
     public function ajaxDirect(Request $request)
     {
         $fromCity = trim($request->input('from_city', ''));
-        $toCity   = trim($request->input('to_city', ''));
+        $toCity = trim($request->input('to_city', ''));
 
         if (!$fromCity || !$toCity) {
             return response()->json([]);
         }
 
         $fromIatas = $this->resolveIatas($fromCity);
-        $toIatas   = $this->resolveIatas($toCity);
+        $toIatas = $this->resolveIatas($toCity);
 
         if (empty($fromIatas) || empty($toIatas)) {
             return response()->json([]);
@@ -103,20 +163,17 @@ class FlightController extends Controller
         return response()->json($rows);
     }
 
-    /**
-     * AJAX — 1-stop flights JSON.
-     */
     public function ajaxOneStop(Request $request)
     {
         $fromCity = trim($request->input('from_city', ''));
-        $toCity   = trim($request->input('to_city', ''));
+        $toCity = trim($request->input('to_city', ''));
 
         if (!$fromCity || !$toCity) {
             return response()->json([]);
         }
 
         $fromIatas = $this->resolveIatas($fromCity);
-        $toIatas   = $this->resolveIatas($toCity);
+        $toIatas = $this->resolveIatas($toCity);
 
         if (empty($fromIatas) || empty($toIatas)) {
             return response()->json([]);
@@ -150,35 +207,25 @@ class FlightController extends Controller
         return response()->json($rows);
     }
 
-    /**
-     * AJAX — 2-stop flights JSON.
-     * Strategy: avoid triple self-join (too slow on 67k rows).
-     * Step 1 — find all airports reachable from source (1 hop) → midpoints1
-     * Step 2 — find all airports that can reach destination (1 hop) → midpoints2
-     * Step 3 — find overlap airports reachable from midpoints1 that are in midpoints2
-     * Step 4 — build full route details only for matched pairs (small result set)
-     */
     public function ajaxTwoStop(Request $request)
     {
         $fromCity = trim($request->input('from_city', ''));
-        $toCity   = trim($request->input('to_city', ''));
+        $toCity = trim($request->input('to_city', ''));
 
         if (!$fromCity || !$toCity) {
             return response()->json([]);
         }
 
         $fromIatas = $this->resolveIatas($fromCity);
-        $toIatas   = $this->resolveIatas($toCity);
+        $toIatas = $this->resolveIatas($toCity);
 
-        // Remove null/\N values
-        $fromIatas = array_values(array_filter($fromIatas, fn($x) => $x && $x !== '\\N'));
-        $toIatas   = array_values(array_filter($toIatas,   fn($x) => $x && $x !== '\\N'));
+        $fromIatas = array_values(array_filter($fromIatas, fn ($x) => $x && $x !== '\\N'));
+        $toIatas = array_values(array_filter($toIatas, fn ($x) => $x && $x !== '\\N'));
 
         if (empty($fromIatas) || empty($toIatas)) {
             return response()->json([]);
         }
 
-        // Step 1: airports reachable in 1 hop FROM source (mid1 candidates)
         $mid1List = DB::table('routes')
             ->whereIn(DB::raw('`COL 3`'), $fromIatas)
             ->whereNotIn(DB::raw('`COL 5`'), $toIatas)
@@ -186,7 +233,7 @@ class FlightController extends Controller
             ->distinct()
             ->get()
             ->pluck('iata')
-            ->filter(fn($x) => $x && $x !== '\\N')
+            ->filter(fn ($x) => $x && $x !== '\\N')
             ->unique()
             ->values()
             ->toArray();
@@ -195,7 +242,6 @@ class FlightController extends Controller
             return response()->json([]);
         }
 
-        // Step 2: airports that can reach destination in 1 hop (mid2 candidates)
         $mid2List = DB::table('routes')
             ->whereIn(DB::raw('`COL 5`'), $toIatas)
             ->whereNotIn(DB::raw('`COL 3`'), $fromIatas)
@@ -203,7 +249,7 @@ class FlightController extends Controller
             ->distinct()
             ->get()
             ->pluck('iata')
-            ->filter(fn($x) => $x && $x !== '\\N')
+            ->filter(fn ($x) => $x && $x !== '\\N')
             ->unique()
             ->values()
             ->toArray();
@@ -212,7 +258,6 @@ class FlightController extends Controller
             return response()->json([]);
         }
 
-        // Step 3: find mid1→mid2 connections (small join — only between candidate sets)
         $connections = DB::table('routes')
             ->whereIn(DB::raw('`COL 3`'), $mid1List)
             ->whereIn(DB::raw('`COL 5`'), $mid2List)
@@ -225,7 +270,6 @@ class FlightController extends Controller
             return response()->json([]);
         }
 
-        // Step 4: build full route details for each connection pair
         $results = collect();
 
         foreach ($connections->take(3) as $conn) {
@@ -251,8 +295,8 @@ class FlightController extends Controller
                 )
                 ->join('routes as r2', DB::raw('r1.`COL 5`'), '=', DB::raw('r2.`COL 3`'))
                 ->join('routes as r3', DB::raw('r2.`COL 5`'), '=', DB::raw('r3.`COL 3`'))
-                ->join('airports as a1',    DB::raw('r1.`COL 3`'), '=', 'a1.iata')
-                ->join('airports as a2',    DB::raw('r3.`COL 5`'), '=', 'a2.iata')
+                ->join('airports as a1', DB::raw('r1.`COL 3`'), '=', 'a1.iata')
+                ->join('airports as a2', DB::raw('r3.`COL 5`'), '=', 'a2.iata')
                 ->join('airports as a_mid1', DB::raw('r1.`COL 5`'), '=', 'a_mid1.iata')
                 ->join('airports as a_mid2', DB::raw('r2.`COL 5`'), '=', 'a_mid2.iata')
                 ->leftJoin('airlines as al1', DB::raw('r1.`COL 1`'), '=', 'al1.iata')
@@ -289,7 +333,7 @@ class FlightController extends Controller
 
         $airports = $query->orderBy('city')
             ->get(['city', 'name', 'iata'])
-            ->filter(fn($a) => $a->iata && $a->iata !== '\N' && $a->city)
+            ->filter(fn ($a) => $a->iata && $a->iata !== '\\N' && $a->city)
             ->unique('city')
             ->values()
             ->take(10);

@@ -38,7 +38,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class=" d-flex align-items-center justify-content-center">
                                         <img src="{{URL::asset('build/img/users/user-01.jpg')}}" alt="image"
-                                            class="img-fluid avatar avatar-lg rounded-circle me-1">
+                                            class="img-fluid avatar avatar-lg rounded-circle shrink-0 me-1">
                                         <div>
                                             <h6 class="fs-16">Jeffrey Wilson</h6>
                                             <span class="fs-14 text-gray-6">Since 10 May 2025</span>

@@ -190,7 +190,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{url('index')}}" class="d-flex align-items-center pb-0">
+                                    <a href="{{url('/')}}" class="d-flex align-items-center pb-0">
                                         <i class="isax isax-logout-15"></i> Logout
                                     </a>
                                 </li>
