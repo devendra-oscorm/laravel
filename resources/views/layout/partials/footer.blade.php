@@ -23,7 +23,7 @@
                             <ul class="footer-menu">
                                 <li><a href="{{url('about-us')}}">About Us</a></li>
                                 <li><a href="#">Careers</a></li>
-                                <li><a href="{{url('blog-grid')}}">Blog</a></li>
+                                <li><a href="{{url('blog')}}">Blog</a></li>
                                 <li><a href="#">Affiliate Program</a></li>
                                 <li><a href="{{url('add-flight')}}">Add Your Listing</a></li>
                                 <li><a href="#">Our Partners</a></li>
@@ -255,7 +255,7 @@
                                     <ul class="footer-menu">
                                         <li><a href="{{url('about-us')}}">About Us</a></li>
                                         <li><a href="#">Careers</a></li>
-                                        <li><a href="{{url('blog-grid')}}">Blog</a></li>
+                                        <li><a href="{{url('blog')}}">Blog</a></li>
                                         <li><a href="#">Affiliate Program</a></li>
                                     </ul>
                                 </div>

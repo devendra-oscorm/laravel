@@ -216,8 +216,8 @@
                             --}}
 
                                                         {{-- Keep Blog menu - Add new Blog menu item --}}
-                            <li class="{{ Request::is('blog-grid', 'blog-list', 'blog-details') ? 'active' : '' }}">
-                                <a href="{{url('blog-grid')}}">Blog</a>
+                            <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
+                                <a href="{{url('blog')}}">Blog</a>
                             </li>
 
                             {{-- Keep About menu - Add new About menu item --}}
@@ -535,8 +535,8 @@
                             </li>
 
                             {{-- Keep Blog menu --}}
-                            <li class="{{ Request::is('blog-grid', 'blog-list', 'blog-details') ? 'active' : '' }}">
-                                <a href="{{url('blog-grid')}}">Blog</a>
+                            <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
+                                <a href="{{url('blog')}}">Blog</a>
                             </li>
 
                             {{-- Commented out Pages mega menu --}}

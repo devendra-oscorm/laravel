@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 Route::get('/', function () { return view('index-2'); })->name('index-2');
 Route::get('/index-2', function () {
     return view('index-2');
@@ -117,12 +120,12 @@ Route::get('/become-an-expert', function () {
 })->name('become-an-expert');
 
 Route::get('/blog-details', function () {
-    return view('blog-details');
+    return redirect()->route('blog');
 })->name('blog-details');
 
-Route::get('/blog-grid', function () {
-    return view('blog-grid');
-})->name('blog-grid');
+Route::get('/blog', [BlogController::class, 'publicIndex'])->name('blog');
+Route::get('/blog/{id}', [BlogController::class, 'publicShow'])->name('blog.details');
+Route::post('/blog/{blogId}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/blog-list', function () {
     return view('blog-list');
@@ -354,18 +357,44 @@ Route::get('/invoices', function () {
     return view('invoices');
 })->name('invoices');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// ── Front-end login (shows the travel-site login.blade.php) ──────────────────
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
+// ── Admin login (shows auth/login.blade.php — glassmorphism design) ───────────
+Route::get('/admin-login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
+Route::post('/admin-login', [AuthController::class, 'login'])->name('admin.login.submit');
 
-Route::post('/login', function (Request $request) {
+// ── Register ──────────────────────────────────────────────────────────────────
+Route::get('/admin-register', [AuthController::class, 'showRegister'])->name('admin.register');
+Route::post('/admin-register', [AuthController::class, 'register'])->name('admin.register.store');
 
-    // login validation logic here
+// ── Logout ────────────────────────────────────────────────────────────────────
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    return redirect('/dashboard');
+// ── Admin panel (protected by auth middleware) ────────────────────────────────
+Route::middleware(['auth'])->prefix('admin')->group(function () {
 
-})->name('login.submit');
+    // Blog CRUD
+    Route::get('/blogs',              [BlogController::class, 'index'])  ->name('blogs.index');
+    Route::get('/blogs/create',       [BlogController::class, 'create']) ->name('blogs.create');
+    Route::post('/blogs',             [BlogController::class, 'store'])  ->name('blogs.store');
+    Route::get('/blogs/{blog}/edit',  [BlogController::class, 'edit'])   ->name('blogs.edit');
+    Route::put('/blogs/{blog}',       [BlogController::class, 'update']) ->name('blogs.update');
+    Route::delete('/blogs/{blog}',    [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+    // AJAX live search
+    Route::get('/blogs/search',       [BlogController::class, 'search']) ->name('blogs.search');
+
+    // Placeholder pages (return simple views or redirect to blogs for now)
+    Route::get('/analytics', function () { return view('admin.analytics.index'); })->name('admin.analytics');
+    Route::get('/users',     function () { return view('admin.users.index'); })    ->name('admin.users');
+    Route::get('/comments',  [CommentController::class, 'index'])                  ->name('admin.comments');
+    Route::patch('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+    Route::patch('/comments/{comment}/reject',  [CommentController::class, 'reject']) ->name('comments.reject');
+    Route::delete('/comments/{comment}',        [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::get('/settings',  function () { return view('admin.settings.index'); }) ->name('admin.settings');
+});
 
 Route::get('/my-profile', function () {
     return view('my-profile');
