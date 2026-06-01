@@ -357,7 +357,7 @@ const ROUTES = {
     oneStop: '{{ route("flight.ajax.onestop") }}',
     twoStop: '{{ route("flight.ajax.twostop") }}'
 };
-const FLIGHT_DETAILS_ROUTE = '{{ route("flight.details") }}';
+const FLIGHT_BOOKING_ROUTE = '{{ route("flight.booking") }}';
 
 function show(id)   { document.getElementById(id).classList.remove('d-none'); }
 function hide(id)   { document.getElementById(id).classList.add('d-none'); }
@@ -407,8 +407,8 @@ function createFlightPayload(opts) {
     };
 }
 
-function redirectToFlightDetails(payload) {
-    const url = `${FLIGHT_DETAILS_ROUTE}?flight=${encodeURIComponent(JSON.stringify(payload))}`;
+function redirectToFlightBooking(payload) {
+    const url = `${FLIGHT_BOOKING_ROUTE}?flight=${encodeURIComponent(JSON.stringify(payload))}`;
     window.location.href = url;
 }
 
@@ -421,7 +421,7 @@ function attachSelectionHandlers() {
 
         event.preventDefault();
         const payload = JSON.parse(decodeURIComponent(button.dataset.flight));
-        redirectToFlightDetails(payload);
+        redirectToFlightBooking(payload);
     });
 }
 
@@ -478,7 +478,7 @@ function flightCard(opts) {
             </div>
             <div class="mmt-action">
                 <div class="mmt-price">View Prices</div>
-                <button class="mmt-btn" data-flight="${encodedPayload}">SELECT</button>
+                <button class="mmt-btn" data-flight="${encodedPayload}">Book Now</button>
             </div>
         </div>
     </div>`;

@@ -1,3 +1,4 @@
+
 @if (!Route::is(['index-2']))
 <div class="main-header">
     <!-- Header Topbar-->
@@ -427,13 +428,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- Commented out Login/Register buttons --}}
-                                {{-- 
                                 <div class="btn btn-dark w-100 mb-3"><a href="#" class="text-white"
                                         data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a> / <a
                                         href="{{url('register')}}" class="text-white" data-bs-toggle="modal"
                                         data-bs-target="#register-modal">Sign Up</a></div>
-                                --}}
                             </div>
                         </div>
                     </div>
@@ -569,13 +567,10 @@
                                     class="count-icon bg-secondary text-gray-9">0</span>
                             </a>
                         </div>
-                        {{-- Commented out Login and Register buttons --}}
-                         {{--  
                         <a href="{{url('login')}}" class="btn btn-primary d-inline-flex align-items-center me-2"><i
                                 class="isax isax-lock5 me-2"></i>Login</a>
                         <a href="{{url('register')}}" class="btn btn-dark d-inline-flex align-items-center me-0"><i
                                 class="isax isax-profile-remove5 me-2"></i>Register</a>
-                        --}}
                         <div class="header__hamburger d-xl-none my-auto">
                             <div class="sidebar-menu">
                                 <i class="isax isax-menu5"></i>

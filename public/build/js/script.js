@@ -713,6 +713,7 @@ Template Name: DreamsTour - Bootstrap Template
   if ($(".datetimepicker").length > 0) {
     $(".datetimepicker").datetimepicker({
       format: "DD-MM-YYYY",
+      minDate: moment().startOf("day"),
       icons: {
         up: "fas fa-angle-up",
         down: "fas fa-angle-down",
@@ -1501,6 +1502,7 @@ Template Name: DreamsTour - Bootstrap Template
 	if ($('.datetimepicker').length > 0) {
 		$('.datetimepicker').datetimepicker({
 			format: 'DD-MM-YYYY',
+			minDate: moment().startOf('day'),
 			icons: {
 				up: "fas fa-angle-up",
 				down: "fas fa-angle-down",
@@ -1841,6 +1843,7 @@ Template Name: DreamsTour - Bootstrap Template
   if ($(".datetimepicker").length > 0) {
     $(".datetimepicker").datetimepicker({
       format: "DD-MM-YYYY",
+      minDate: moment().startOf("day"),
       icons: {
         up: "fas fa-angle-up",
         down: "fas fa-angle-down",
@@ -2789,4 +2792,3 @@ $('.testimonial-slider-nine').each(function () {
 });
 
 })(jQuery);
-

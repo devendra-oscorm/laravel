@@ -33,25 +33,25 @@
             <div class="card">
                 <div class="card-body">
                     <div class="banner-form">
-                        <form class="">
+                        <form action="{{ route('flight.routes') }}" method="GET" class="">
                             <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                                 <div class="d-flex align-items-center">
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="oneway"
+                                        <input class="form-check-input mt-0" type="radio" name="trip_type" id="oneway"
                                             value="oneway" checked>
                                         <label class="form-check-label fs-14 ms-2" for="oneway">
                                             Oneway
                                         </label>
                                     </div>
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="roundtrip"
+                                        <input class="form-check-input mt-0" type="radio" name="trip_type" id="roundtrip"
                                             value="roundtrip">
                                         <label class="form-check-label fs-14 ms-2" for="roundtrip">
                                             Round Trip
                                         </label>
                                     </div>
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="multiway"
+                                        <input class="form-check-input mt-0" type="radio" name="trip_type" id="multiway"
                                             value="multiway">
                                         <label class="form-check-label fs-14 ms-2" for="multiway">
                                             Multi Trip
@@ -64,11 +64,10 @@
                                 <div class="d-lg-flex">
                                     <div class="d-flex  form-info">
                                         <div class="form-item dropdown">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                aria-expanded="false" role="menu">
+                                            <div>
                                                 <label class="form-label fs-14 text-default mb-1">From</label>
-                                                <input type="text" class="form-control" value="Newyork">
-                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                                <input type="text" name="from_city" class="form-control flight-city-autocomplete" value="New York" data-subtitle="#flight-list-from-subtitle">
+                                                <p class="fs-12 mb-0" id="flight-list-from-subtitle">Ken International Airport</p>
                                             </div>
                                             <div class="dropdown-menu dropdown-md p-0">
                                                 <div class="input-search p-3 border-bottom">
@@ -114,11 +113,10 @@
                                             </div>
                                         </div>
                                         <div class="form-item dropdown ps-2 ps-sm-3">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                aria-expanded="false" role="menu">
+                                            <div>
                                                 <label class="form-label fs-14 text-default mb-1">To</label>
-                                                <h5>Las Vegas</h5>
-                                                <p class="fs-12 mb-0">Martini International Airport</p>
+                                                <input type="text" name="to_city" class="form-control flight-city-autocomplete" value="Las Vegas" data-subtitle="#flight-list-to-subtitle">
+                                                <p class="fs-12 mb-0" id="flight-list-to-subtitle">Martini International Airport</p>
                                                 <span
                                                     class="way-icon badge badge-primary rounded-pill translate-middle">
                                                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
@@ -169,13 +167,13 @@
                                         </div>
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                            <input type="text" class="form-control datetimepicker" value="21-10-2024">
-                                            <p class="fs-12 mb-0">Monday</p>
+                                            <input type="text" class="form-control datetimepicker" name="departure_date" value="{{ date('d-m-Y') }}">
+                                            <p class="fs-12 mb-0">{{ date('l') }}</p>
                                         </div>
                                         <div class="form-item round-drip">
                                             <label class="form-label fs-14 text-default mb-1">Return</label>
-                                            <input type="text" class="form-control datetimepicker" value="23-10-2024">
-                                            <p class="fs-12 mb-0">Wednesday</p>
+                                            <input type="text" class="form-control datetimepicker" name="return_date" value="{{ date('d-m-Y', strtotime('+7 days')) }}">
+                                            <p class="fs-12 mb-0">{{ date('l', strtotime('+7 days')) }}</p>
                                         </div>
                                         <div class="form-item dropdown">
                                             <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
@@ -431,8 +429,8 @@
                                         </div>
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                            <input type="text" class="form-control datetimepicker" value="21-10-2024">
-                                            <p class="fs-12 mb-0">Monday</p>
+                                            <input type="text" class="form-control datetimepicker" name="multi_departure_date" value="{{ date('d-m-Y') }}">
+                                            <p class="fs-12 mb-0">{{ date('l') }}</p>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary search-btn rounded">Search</button>
@@ -1683,5 +1681,109 @@
 
 @endsection
 
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function initFlightCityAutocomplete(input) {
+        const wrapper = input.closest('.form-item');
+        if (!wrapper) return;
 
+        wrapper.style.position = 'relative';
+        const dropdown = document.createElement('div');
+        dropdown.className = 'flight-city-typeahead d-none';
+        wrapper.appendChild(dropdown);
 
+        let timer;
+        const hideDropdown = () => dropdown.classList.add('d-none');
+
+        input.addEventListener('input', function() {
+            clearTimeout(timer);
+            const search = input.value.trim();
+            dropdown.innerHTML = '';
+
+            if (!search) {
+                hideDropdown();
+                return;
+            }
+
+            dropdown.innerHTML = '<div class="flight-city-option text-muted">Searching...</div>';
+            dropdown.classList.remove('d-none');
+
+            timer = setTimeout(() => {
+                fetch(`/get-airports?search=${encodeURIComponent(search)}`)
+                    .then(response => response.json())
+                    .then(airports => {
+                        dropdown.innerHTML = '';
+
+                        if (!airports.length) {
+                            dropdown.innerHTML = '<div class="flight-city-option text-muted">No cities found</div>';
+                            return;
+                        }
+
+                        airports.forEach(airport => {
+                            const option = document.createElement('div');
+                            option.className = 'flight-city-option';
+                            option.innerHTML = `<strong>${airport.city}</strong><span>${airport.name} (${airport.iata})</span>`;
+                            option.addEventListener('mousedown', function(event) {
+                                event.preventDefault();
+                                input.value = airport.city;
+
+                                const subtitle = input.dataset.subtitle ? document.querySelector(input.dataset.subtitle) : null;
+                                if (subtitle) subtitle.textContent = `${airport.name} (${airport.iata})`;
+
+                                hideDropdown();
+                            });
+                            dropdown.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        dropdown.innerHTML = '<div class="flight-city-option text-danger">Error loading cities</div>';
+                    });
+            }, 200);
+        });
+
+        input.addEventListener('focus', function() {
+            if (dropdown.children.length && input.value.trim()) {
+                dropdown.classList.remove('d-none');
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            setTimeout(hideDropdown, 150);
+        });
+    }
+
+    document.querySelectorAll('.flight-city-autocomplete').forEach(initFlightCityAutocomplete);
+});
+</script>
+<style>
+.flight-city-typeahead {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    z-index: 1055;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    max-height: 240px;
+    overflow-y: auto;
+}
+.flight-city-option {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+}
+.flight-city-option:hover {
+    background: #f0f4ff;
+}
+.flight-city-option span {
+    display: block;
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 2px;
+}
+</style>
+@endpush

@@ -33,26 +33,25 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="banner-form">
-                            <form action="{{ route('flight.search') }}" method="GET" class="">
-                                @csrf
+                            <form action="{{ route('flight.routes') }}" method="GET" class="">
                                 <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                                     <div class="d-flex align-items-center">
                                         <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="Radio" id="oneway"
+                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="oneway"
                                                 value="oneway" checked>
                                             <label class="form-check-label fs-14 ms-2" for="oneway">
                                                 Oneway
                                             </label>
                                         </div>
                                         <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="Radio" id="roundtrip"
+                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="roundtrip"
                                                 value="roundtrip">
                                             <label class="form-check-label fs-14 ms-2" for="roundtrip">
                                                 Round Trip
                                             </label>
                                         </div>
                                         <div class="form-check d-flex align-items-center me-3 mb-2">
-                                            <input class="form-check-input mt-0" type="radio" name="Radio" id="multiway"
+                                            <input class="form-check-input mt-0" type="radio" name="trip_type" id="multiway"
                                                 value="multiway">
                                             <label class="form-check-label fs-14 ms-2" for="multiway">
                                                 Multi Trip
@@ -65,10 +64,9 @@
                                     <div class="d-lg-flex">
                                         <div class="d-flex  form-info">
                                             <div class="form-item dropdown">
-                                                <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                    aria-expanded="false" role="menu">
+                                                <div>
                                                     <label class="form-label fs-14 text-default mb-1">From</label>
-                                                    <input type="text" id="from-city-display" class="form-control" placeholder="Select departure city">
+                                                    <input type="text" id="from-city-display" name="from_city" class="form-control flight-city-autocomplete" placeholder="Select departure city" value="{{ $from ?? '' }}" data-hidden-input="#from-iata" data-subtitle="#from-airport-display">
                                                     <input type="hidden" name="from" id="from-iata">
                                                     <p id="from-airport-display" class="fs-12 mb-0">Select Airport</p>
                                                 </div>
@@ -86,10 +84,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-item dropdown ps-2 ps-sm-3">
-                                                <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                    aria-expanded="false" role="menu">
+                                                <div>
                                                     <label class="form-label fs-14 text-default mb-1">To</label>
-                                                    <input type="text" id="to-city-display" class="form-control" placeholder="Select destination city">
+                                                    <input type="text" id="to-city-display" name="to_city" class="form-control flight-city-autocomplete" placeholder="Select destination city" value="{{ $to ?? '' }}" data-hidden-input="#to-iata" data-subtitle="#to-airport-display">
                                                     <input type="hidden" name="to" id="to-iata">
                                                     <p id="to-airport-display" class="fs-12 mb-0">Select Airport</p>
                                                     <span
@@ -112,17 +109,16 @@
                                             </div>
                                             <div class="form-item">
                                                 <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                                <input type="text" class="form-control datetimepicker" value="21-10-2024">
-                                                <p class="fs-12 mb-0">Monday</p>
+                                                <input type="text" class="form-control datetimepicker" name="departure_date" value="{{ date('d-m-Y') }}">
+                                                <p class="fs-12 mb-0">{{ date('l') }}</p>
                                             </div>
                                             <div class="form-item round-drip">
                                                 <label class="form-label fs-14 text-default mb-1">Return</label>
-                                                <input type="text" class="form-control datetimepicker" value="23-10-2024">
-                                                <p class="fs-12 mb-0">Wednesday</p>
+                                                <input type="text" class="form-control datetimepicker" name="return_date" value="{{ date('d-m-Y', strtotime('+7 days')) }}">
+                                                <p class="fs-12 mb-0">{{ date('l', strtotime('+7 days')) }}</p>
                                             </div>
                                             <div class="form-item dropdown">
-                                                <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                    aria-expanded="false" role="menu">
+                                                <div>
                                                     <label class="form-label fs-14 text-default mb-1">Travellers and cabin
                                                         class</label>
                                                     <h5>4 <span class="fw-normal fs-14">Persons</span></h5>
@@ -269,10 +265,9 @@
                                     <div class="d-lg-flex">
                                         <div class="d-flex form-info">
                                             <div class="form-item dropdown">
-                                                <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                    aria-expanded="false" role="menu">
+                                                <div>
                                                     <label class="form-label fs-14 text-default mb-1">From</label>
-                                                    <input type="text" id="multi-from-city-display" class="form-control" placeholder="Select departure city">
+                                                    <input type="text" id="multi-from-city-display" class="form-control flight-city-autocomplete" placeholder="Select departure city" data-hidden-input="#multi-from-iata" data-subtitle="#multi-from-airport-display">
                                                     <input type="hidden" id="multi-from-iata">
                                                     <p id="multi-from-airport-display" class="fs-12 mb-0">Select Airport</p>
                                                 </div>
@@ -292,7 +287,7 @@
                                                 <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                                     aria-expanded="false" role="menu">
                                                     <label class="form-label fs-14 text-default mb-1">To</label>
-                                                    <input type="text" id="multi-to-city-display" class="form-control" placeholder="Select destination city">
+                                                    <input type="text" id="multi-to-city-display" class="form-control flight-city-autocomplete" placeholder="Select destination city" data-hidden-input="#multi-to-iata" data-subtitle="#multi-to-airport-display">
                                                     <input type="hidden" id="multi-to-iata">
                                                     <p id="multi-to-airport-display" class="fs-12 mb-0">Select Airport</p>
                                                     <span
@@ -314,8 +309,8 @@
                                             </div>
                                             <div class="form-item">
                                                 <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                                <input type="text" class="form-control datetimepicker" value="21-10-2024">
-                                                <p class="fs-12 mb-0">Monday</p>
+                                                <input type="text" class="form-control datetimepicker" name="multi_departure_date" value="{{ date('d-m-Y') }}">
+                                                <p class="fs-12 mb-0">{{ date('l') }}</p>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary search-btn rounded">Search</button>
@@ -1093,11 +1088,117 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    function initFlightCityAutocomplete(input) {
+        const wrapper = input.closest('.form-item');
+        if (!wrapper) return;
+
+        wrapper.style.position = 'relative';
+        const dropdown = document.createElement('div');
+        dropdown.className = 'flight-city-typeahead d-none';
+        wrapper.appendChild(dropdown);
+
+        let timer;
+        const hideDropdown = () => dropdown.classList.add('d-none');
+
+        input.addEventListener('input', function() {
+            clearTimeout(timer);
+            const search = input.value.trim();
+            dropdown.innerHTML = '';
+
+            const hidden = input.dataset.hiddenInput ? document.querySelector(input.dataset.hiddenInput) : null;
+            if (hidden) hidden.value = '';
+
+            if (!search) {
+                hideDropdown();
+                return;
+            }
+
+            dropdown.innerHTML = '<div class="flight-city-option text-muted">Searching...</div>';
+            dropdown.classList.remove('d-none');
+
+            timer = setTimeout(() => {
+                fetch(`/get-airports?search=${encodeURIComponent(search)}`)
+                    .then(response => response.json())
+                    .then(airports => {
+                        dropdown.innerHTML = '';
+
+                        if (!airports.length) {
+                            dropdown.innerHTML = '<div class="flight-city-option text-muted">No cities found</div>';
+                            return;
+                        }
+
+                        airports.forEach(airport => {
+                            const option = document.createElement('div');
+                            option.className = 'flight-city-option';
+                            option.innerHTML = `<strong>${airport.city}</strong><span>${airport.name} (${airport.iata})</span>`;
+                            option.addEventListener('mousedown', function(event) {
+                                event.preventDefault();
+                                input.value = airport.city;
+
+                                const subtitle = input.dataset.subtitle ? document.querySelector(input.dataset.subtitle) : null;
+                                if (subtitle) subtitle.textContent = `${airport.name} (${airport.iata})`;
+
+                                const selectedHidden = input.dataset.hiddenInput ? document.querySelector(input.dataset.hiddenInput) : null;
+                                if (selectedHidden) selectedHidden.value = airport.iata;
+
+                                hideDropdown();
+                            });
+                            dropdown.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        dropdown.innerHTML = '<div class="flight-city-option text-danger">Error loading cities</div>';
+                    });
+            }, 200);
+        });
+
+        input.addEventListener('focus', function() {
+            if (dropdown.children.length && input.value.trim()) {
+                dropdown.classList.remove('d-none');
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            setTimeout(hideDropdown, 150);
+        });
+    }
+
+    document.querySelectorAll('.flight-city-autocomplete').forEach(initFlightCityAutocomplete);
+
     loadAirports('from');
     loadAirports('to');
     loadAirports('multi-from');
     loadAirports('multi-to');
 });
 </script>
+<style>
+.flight-city-typeahead {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    z-index: 1055;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    max-height: 240px;
+    overflow-y: auto;
+}
+.flight-city-option {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+}
+.flight-city-option:hover {
+    background: #f0f4ff;
+}
+.flight-city-option span {
+    display: block;
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 2px;
+}
+</style>
 @endpush
-

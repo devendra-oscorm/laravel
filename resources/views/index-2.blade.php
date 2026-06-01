@@ -386,7 +386,7 @@
             <div class="tab-content wow fadeInUp">
                 <div class="tab-pane fade active show" id="tab-1">
                     <div class="row justify-content-center">
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <a href="{{url('flight-details')}}">
@@ -432,7 +432,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <a href="{{url('flight-details')}}">
@@ -478,7 +478,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <a href="{{url('flight-details')}}">
@@ -523,7 +523,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <a href="{{url('flight-details')}}">
@@ -614,7 +614,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$500 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -662,7 +662,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$600 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -711,7 +711,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$500 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -764,7 +764,7 @@
                                         <h5 class="text-primary text-nowrap me-2">$550 <span
                                                 class="fs-14 fw-normal text-default">/ Night</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-12.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -782,7 +782,7 @@
                     <div class="row  row-gap-4 justify-content-center">
 
                         <!-- Car Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -852,7 +852,7 @@
                         <!-- /Car Grid -->
 
                         <!-- Car Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -922,7 +922,7 @@
                         <!-- /Car Grid -->
 
                         <!-- Car Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -992,7 +992,7 @@
                         <!-- /Car Grid -->
 
                         <!-- Car Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -1088,7 +1088,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1153,7 +1153,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1218,7 +1218,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1283,7 +1283,7 @@
                                 <div class="place-content">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <a href="#" class="d-flex align-items-center overflow-hidden me-2">
-                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+                                            <span class="avatar avatar-md shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-11.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1336,7 +1336,7 @@
                     <div class="row row-gap-4 justify-content-center">
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -1406,7 +1406,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -1475,7 +1475,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -1544,7 +1544,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="img-slide">
@@ -1657,7 +1657,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $400 <span
                                                 class="text-gray-3 text-line">$480</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1707,7 +1707,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $150 <span
                                                 class="text-gray-3 text-line">$200</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0me-1">
+                                            <span class="avatar avatar-md shrink-0me-1">
                                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1757,7 +1757,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $350 <span
                                                 class="text-gray-3 text-line">$400</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-10.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1806,7 +1806,7 @@
                                                 class="fs-14 fw-normal text-gray-6">Starts From</span> $300 <span
                                                 class="text-gray-3 text-line">$350</span></h5>
                                         <a href="#" class="d-flex align-items-center overflow-hidden">
-                                            <span class="avatar avatar-md flex-shrink-0">
+                                            <span class="avatar avatar-md shrink-0">
                                                 <img src="{{URL::asset('build/img/users/user-11.jpg')}}" class="rounded-circle"
                                                     alt="img">
                                             </span>
@@ -1823,7 +1823,7 @@
                     <div class="row row-gap-4 justify-content-center">
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="slide-images">
@@ -1870,7 +1870,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="slide-images">
@@ -1917,7 +1917,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="slide-images">
@@ -1964,7 +1964,7 @@
                         <!-- /Tours Grid -->
 
                         <!-- Tours Grid -->
-                        <div class="col-xxl-3 col-xl-4 col-md-6 d-flex">
+                        <div class="col-xl-3 col-md-6 d-flex">
                             <div class="trending-list-item">
                                 <div class="place-img">
                                     <div class="slide-images">
@@ -2203,7 +2203,7 @@
                     <p>"The most incredible travel experience of my life! Every detail was perfectly planned and the destinations were breathtaking."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-lg-33.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2230,7 +2230,7 @@
                     <p>"A truly seamless experience from booking to return. The cultural tour was enriching and beautifully organized."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-35.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2257,7 +2257,7 @@
                     <p>Very gentle and reassuring during my wisdom tooth extraction. The procedure was quick, recovery was easy, and her staff was amazing.</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-09.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
@@ -2284,7 +2284,7 @@
                     <p>"The most incredible travel experience of my life! Every detail was perfectly planned and the destinations were breathtaking."</p>
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
-                            <a href="#" class="avatar avatar-lg  flex-shrink-0">
+                            <a href="#" class="avatar avatar-lg  shrink-0">
                                 <img src="{{URL::asset('build/img/users/user-38.jpg')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">

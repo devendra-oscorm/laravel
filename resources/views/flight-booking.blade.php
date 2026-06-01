@@ -194,7 +194,7 @@
                             <div>
                                 <div class="d-flex align-items-center mb-3">
                                     <input type="text" class="form-control me-2" placeholder="Coupon Code">
-                                    <a href="#" class="btn btn-primary flex-shrink-0">Apply Coupon</a>
+                                    <a href="#" class="btn btn-primary shrink-0">Apply Coupon</a>
                                 </div>
                                 <div>
                                     <div class="coupoun-list mb-3">
