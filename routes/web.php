@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Models\User;
 Route::get('/', function () { return view('index-2'); })->name('index-2');
 Route::get('/index-2', function () {
     return view('index-2');
@@ -279,10 +279,6 @@ Route::get('/edit-tour', function () {
     return view('edit-tour');
 })->name('edit-tour');
 
-Route::get('/error-404', function () {
-    return view('error-404');
-})->name('error-404');
-
 Route::get('/error-500', function () {
     return view('error-500');
 })->name('error-500');
@@ -373,7 +369,9 @@ Route::post('/admin-register', [AuthController::class, 'register'])->name('admin
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // ── Admin panel (protected by auth middleware) ────────────────────────────────
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
+
+    Route::get('/', function () { return redirect()->route('admin.analytics'); })->name('admin.home');
 
     // Blog CRUD
     Route::get('/blogs',              [BlogController::class, 'index'])  ->name('blogs.index');
@@ -385,15 +383,26 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // AJAX live search
     Route::get('/blogs/search',       [BlogController::class, 'search']) ->name('blogs.search');
+    Route::post('/blogs/upload-image', [BlogController::class, 'uploadImage'])->name('blogs.upload-image');
 
     // Placeholder pages (return simple views or redirect to blogs for now)
-    Route::get('/analytics', function () { return view('admin.analytics.index'); })->name('admin.analytics');
-    Route::get('/users',     function () { return view('admin.users.index'); })    ->name('admin.users');
+    Route::get('/analytics', [BlogController::class, 'analytics'])->name('admin.analytics');
+    Route::get('/users', function () {
+        $query = User::orderBy('id', 'desc');
+        if (request('status') === 'verified') {
+            $query->whereNotNull('email_verified_at');
+        } elseif (request('status') === 'pending') {
+            $query->whereNull('email_verified_at');
+        }
+        $users = $query->paginate(10)->withQueryString();
+        return view('admin.users.index', compact('users'));
+    })->name('admin.users');
     Route::get('/comments',  [CommentController::class, 'index'])                  ->name('admin.comments');
     Route::patch('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
     Route::patch('/comments/{comment}/reject',  [CommentController::class, 'reject']) ->name('comments.reject');
     Route::delete('/comments/{comment}',        [CommentController::class, 'destroy'])->name('comments.destroy');
-    Route::get('/settings',  function () { return view('admin.settings.index'); }) ->name('admin.settings');
+    Route::get('/settings',  [BlogController::class, 'settings']) ->name('admin.settings');
+    Route::post('/settings', [BlogController::class, 'updateSettings'])->name('admin.settings.update');
 });
 
 Route::get('/my-profile', function () {
@@ -698,4 +707,8 @@ Route::get('/api/flight-routes/two-stop', [FlightController::class, 'ajaxTwoStop
     Route::get('/test-airports', function() {
     $airports = App\Models\Airport::where('city', 'like', '%New%')->limit(5)->get();
     return response()->json($airports);
+});
+
+Route::fallback(function () {
+    return response()->view('error-404', [], 404);
 });

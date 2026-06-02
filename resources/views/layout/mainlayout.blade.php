@@ -26,7 +26,13 @@
 @include('layout.partials.head-css')
 </head>
 
-@if(!Route::is(['login','register','forgot-password','change-password','error-404','error-500','under-maintenance','coming-soon', 'index-10', 'index-12']))
+@php
+    $isErrorPage   = in_array($page ?? '', ['error-404','error-500','under-maintenance','coming-soon']);
+    $isAuthPage    = in_array($page ?? '', ['login','register','forgot-password','change-password']);
+    $isNoShellPage = $isErrorPage || $isAuthPage || Route::is(['index-10','index-12','admin.login','admin.register']);
+@endphp
+
+@if(!$isNoShellPage)
 <body>
 @endif
 
@@ -40,22 +46,22 @@
 <!-- /Loader -->
 @endif
 
-@if(Route::is(['login','register','forgot-password','change-password']))
+@if($isAuthPage)
 <body class="bg-light-200">
 @endif
 
-@if(Route::is(['error-404','error-500','under-maintenance','coming-soon']))
+@if($isErrorPage)
 <body class="bg-primary-transparent">
-@endif 
-@if(Route::is(['coming-soon']))
+@endif
+@if(($page ?? '') === 'coming-soon')
 <body class="coming-soon-bg">
 @endif
 
-@if(!Route::is(['login','register','forgot-password','change-password','error-404','error-500','under-maintenance','coming-soon']))
+@if(!$isNoShellPage)
 @include('layout.partials.topbar')
 @endif
 @yield('content')
-@if(!Route::is(['login','register','forgot-password','change-password','error-404','error-500','under-maintenance','coming-soon']))
+@if(!$isNoShellPage)
 @include('layout.partials.footer')
 @endif
 

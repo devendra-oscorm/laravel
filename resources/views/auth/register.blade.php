@@ -1,227 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+﻿<?php $page="register";?>
+@extends('layout.mainlayout')
+@section('meta_title','Admin Register')
+@section('content')
 
-    {{-- Google Font --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ========================
+        Start Page Content
+    ========================= -->
 
-    {{-- Font Awesome --}}
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper authentication-wrapper">
+        <div class="container-fuild">
+            <div class="w-100 overflow-hidden position-relative flex-wrap d-block vh-100">
+                <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap ">
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-11 mx-auto">
+                        <div class="p-4 text-center">
+                            <img src="{{ URL::asset('build/img/logo-dark.svg') }}" alt="logo" class="img-fluid">
+                        </div>
+                        <div class="card authentication-card">
+                            <div class="card-header">
+                                <div class="text-center">
+                                    <h5 class="mb-1">Admin Sign Up</h5>
+                                    <p>Create your DreamsTour admin account</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins', sans-serif;
-        }
-
-        body{
-            height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background: #DDE9FC;
-            overflow:hidden;
-        }
-
-        .register-container{
-            width:100%;
-            max-width:550px;
-            padding:3px;
-            border-radius: 22px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            animation: animateBorder 2s linear infinite;
-            
-
-        }
-
-        .register-card{
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(15px);
-            border:1px solid rgba(255,255,255,0.2);
-            border-radius:22px;
-            padding:20px 35px;
-            box-shadow:0 10px 35px rgba(0,0,0,0.2);
-            color:#fff;
-        }
-
-        .logo{
-            text-align:center;
-            margin-bottom:10px;
-        }
-
-        .logo h1{
-            font-size:34px;
-            font-weight:700;
-        }
-
-        .subtitle{
-            text-align:center;
-            margin-bottom:30px;
-            color:#e5e7eb;
-            font-size:14px;
-        }
-
-        .form-group{
-            margin-bottom:18px;
-        }
-
-        .form-group label{
-            display:block;
-            margin-bottom:8px;
-            font-size:14px;
-            font-weight:500;
-        }
-
-        .input-box{
-            position:relative;
-        }
-
-        .input-box i{
-            position:absolute;
-            left:15px;
-            top:50%;
-            transform:translateY(-50%);
-            color:#9ca3af;
-        }
-
-        .input-box input{
-            width:100%;
-            padding:14px 14px 14px 45px;
-            border:none;
-            outline:none;
-            border-radius:12px;
-            background:rgba(255,255,255,0.15);
-            color:#fff;
-            font-size:14px;
-            transition:0.3s;
-        }
-
-        .input-box input::placeholder{
-            color:#d1d5db;
-        }
-
-        .input-box input:focus{
-            background:rgba(255,255,255,0.22);
-            border:1px solid #fff;
-        }
-
-        .register-btn{
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:12px;
-            background:#fff;
-            color:#4f46e5;
-            font-size:16px;
-            font-weight:600;
-            cursor:pointer;
-            transition:0.3s;
-            margin-top:10px;
-        }
-
-        .register-btn:hover{
-            transform:translateY(-2px);
-            background:#f3f4f6;
-        }
-
-        .login-link{
-            text-align:center;
-            margin-top:20px;
-            font-size:14px;
-            color:#e5e7eb;
-        }
-
-        .login-link a{
-            color:#fff;
-            font-weight:600;
-            text-decoration:none;
-        }
-
-        .login-link a:hover{
-            text-decoration:underline;
-        }
-
-        @media(max-width:480px){
-            .register-card{
-                padding:30px 25px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="register-container">
-    <div class="register-card">
-
-        <div class="logo">
-            <h1>Laravel</h1>
+                                <form action="{{ route('admin.register.store') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+                                                <i class="isax isax-user"></i>
+                                            </span>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control form-control-lg" placeholder="Enter Full Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+                                                <i class="isax isax-message"></i>
+                                            </span>
+                                            <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg" placeholder="Enter Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+                                                <i class="isax isax-lock"></i>
+                                            </span>
+                                            <input type="password" name="password" class="form-control form-control-lg pass-input" placeholder="Enter Password" required>
+                                            <span class="input-icon-addon toggle-password">
+                                                <i class="isax isax-eye-slash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm Password</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+                                                <i class="isax isax-lock"></i>
+                                            </span>
+                                            <input type="password" name="password_confirmation" class="form-control form-control-lg pass-input" placeholder="Confirm Password" required>
+                                            <span class="input-icon-addon toggle-password">
+                                                <i class="isax isax-eye-slash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 mb-3">
+                                        <div class="d-flex">
+                                            <div class="form-check d-flex align-items-center mb-2">
+                                                <input class="form-check-input mt-0" type="checkbox" value="" id="agree" required>
+                                                <label class="form-check-label ms-2 text-gray-9 fs-14" for="agree">
+                                                    I agree with the <a href="{{ url('terms-conditions') }}" class="link-primary fw-medium">Terms Of Service.</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Register<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                                    </div>
+                                    <!-- <div class="login-or mb-3">
+                                        <span class="span-or">Or</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <a href="#" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2">
+                                            <img src="{{ URL::asset('build/img/icons/google-icon.svg') }}" class="me-2" alt="Img">Google
+                                        </a>
+                                        <a href="#" class="btn btn-light flex-fill d-flex align-items-center justify-content-center">
+                                            <img src="{{ URL::asset('build/img/icons/fb-icon.svg') }}" class="me-2" alt="Img">Facebook
+                                        </a>
+                                    </div> -->
+                                    <div class="d-flex justify-content-center">
+                                        <p class="fs-14">Already have an account? <a href="{{ route('admin.login') }}" class="link-primary fw-medium">Sign In</a></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="coprright-footer">
+                <p class="fs-14">Copyright &copy; 2026. All Rights Reserved, <a href="#" class="text-primary fw-medium">DreamsTour</a></p>
+            </div>
         </div>
-
-        <p class="subtitle">Create your account</p>
-
-        @if ($errors->any())
-            <div style="background:#fee2e2;color:#7f1d1d;padding:10px;border-radius:8px;margin-bottom:16px;">
-                <ul style="margin:0;padding-left:18px;">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('admin.register.store') }}">
-            @csrf
-
-            <div class="form-group">
-                <label>Full Name</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter your full name">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Email Address</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="password" placeholder="Enter password">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="password_confirmation" placeholder="Confirm password">
-                </div>
-            </div>
-
-            <button type="submit" class="register-btn">
-                Create Account
-            </button>
-
-            <div class="login-link">
-                Already have an account?
-                <a href="{{ route('login') }}">Login</a>
-            </div>
-
-        </form>
     </div>
-</div>
+    <!-- /Main Wrapper -->
 
-</body>
-</html>
+@endsection

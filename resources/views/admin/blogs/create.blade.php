@@ -1,6 +1,9 @@
 @extends('admin.layout')
+@section('admin_title', 'Add Blog')
 
 @section('content')
+
+
 
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar breadcrumb-bg-04 text-center">
@@ -10,7 +13,7 @@
                 <h2 class="breadcrumb-title mb-2">Add Blog</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="isax isax-home5"></i></a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/  ') }}"><i class="isax isax-home5"></i></a></li>
                         <li class="breadcrumb-item"><a href="{{ route('blogs.index') }}">Blog Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Add Blog</li>
                     </ol>
@@ -122,21 +125,7 @@
             <!-- /Left -->
 
             <!-- ── Right: Settings ────────────────────────────── -->
-            <div class="col-lg-4">
-
-                <!-- Quick nav -->
-                <div class="card border-0 mb-4">
-                    <div class="card-body">
-                        <h5 class="mb-3">Add Blog</h5>
-                        <ul class="add-tab-list">
-                            <li><a href="#blog_content" class="active">Blog Content</a></li>
-                            <li><a href="#publish_settings">Publish Settings</a></li>
-                            <li><a href="#featured_image">Featured Image</a></li>
-                            <li><a href="#author_info">Author Info</a></li>
-                            <li><a href="#seo">SEO Settings</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-lg-4    ">
 
                 <!-- Publish Settings -->
                 <div class="card shadow-none mb-4" id="publish_settings">
@@ -148,7 +137,7 @@
                             <label class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status" class="form-select" required>
                                 <option value="draft"   {{ old('status','draft') === 'draft'   ? 'selected' : '' }}>📝 Draft</option>
-                                <option value="publish" {{ old('status') === 'publish' ? 'selected' : '' }}>✅ Published</option>
+                                <option value="publish" {{ old('status') === 'publish' ? 'selected' : '' }}> Published</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -255,9 +244,48 @@
 <script>
 let blogEditor;
 
+class BlogImageUploadAdapter {
+    constructor(loader) {
+        this.loader = loader;
+    }
+
+    upload() {
+        return this.loader.file.then(file => new Promise((resolve, reject) => {
+            const data = new FormData();
+            data.append('upload', file);
+
+            fetch("{{ route('blogs.upload-image') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                body: data,
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (!result.url) {
+                        reject(result.message || 'Image upload failed.');
+                        return;
+                    }
+
+                    resolve({ default: result.url });
+                })
+                .catch(() => reject('Image upload failed.'));
+        }));
+    }
+}
+
+function BlogImageUploadPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = loader => new BlogImageUploadAdapter(loader);
+}
+
 ClassicEditor.create(document.querySelector('#editor'), {
+    extraPlugins: [BlogImageUploadPlugin],
     toolbar: ['heading','|','bold','italic','underline','|',
-              'bulletedList','numberedList','|','blockQuote','link','|','undo','redo'],
+              'bulletedList','numberedList','|','blockQuote','link','imageUpload','|','undo','redo'],
+    image: {
+        toolbar: ['imageTextAlternative', 'toggleImageCaption', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side']
+    },
 }).then(editor => {
     blogEditor = editor;
 }).catch(console.error);
@@ -281,3 +309,4 @@ document.getElementById('imageInput').addEventListener('change', function () {
 });
 </script>
 @endpush
+

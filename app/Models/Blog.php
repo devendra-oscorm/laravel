@@ -9,17 +9,9 @@ use App\Models\BlogComment;
 class Blog extends Model
 {
     protected $fillable = [
-        'title',
-        'slug',
-        'description',
-        'excerpt',
-        'image',
-        'status',
-        'category',
-        'tags',
-        'author',
-        'meta_title',
-        'meta_description',
+        'title', 'slug', 'description', 'excerpt', 'image',
+        'status', 'category', 'tags', 'author', 'author_photo',
+        'meta_title', 'meta_description',
     ];
 
     protected static function booted(): void

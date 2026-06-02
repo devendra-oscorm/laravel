@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('admin_title', 'Edit Blog')
 
 @section('content')
 
@@ -257,10 +258,59 @@
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
+let blogEditor;
+
+class BlogImageUploadAdapter {
+    constructor(loader) {
+        this.loader = loader;
+    }
+
+    upload() {
+        return this.loader.file.then(file => new Promise((resolve, reject) => {
+            const data = new FormData();
+            data.append('upload', file);
+
+            fetch("{{ route('blogs.upload-image') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                body: data,
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (!result.url) {
+                        reject(result.message || 'Image upload failed.');
+                        return;
+                    }
+
+                    resolve({ default: result.url });
+                })
+                .catch(() => reject('Image upload failed.'));
+        }));
+    }
+}
+
+function BlogImageUploadPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = loader => new BlogImageUploadAdapter(loader);
+}
+
 ClassicEditor.create(document.querySelector('#editor'), {
+    extraPlugins: [BlogImageUploadPlugin],
     toolbar: ['heading','|','bold','italic','underline','|',
-              'bulletedList','numberedList','|','blockQuote','link','|','undo','redo'],
+              'bulletedList','numberedList','|','blockQuote','link','imageUpload','|','undo','redo'],
+    image: {
+        toolbar: ['imageTextAlternative', 'toggleImageCaption', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side']
+    },
+}).then(editor => {
+    blogEditor = editor;
 }).catch(console.error);
+
+document.querySelector('form').addEventListener('submit', function () {
+    if (blogEditor) {
+        document.querySelector('#editor').value = blogEditor.getData();
+    }
+});
 
 document.getElementById('imageInput').addEventListener('change', function () {
     const file = this.files[0];
@@ -274,3 +324,4 @@ document.getElementById('imageInput').addEventListener('change', function () {
 });
 </script>
 @endpush
+

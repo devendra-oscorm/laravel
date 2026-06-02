@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\BlogComment;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -21,6 +24,76 @@ class BlogController extends Controller
         return view('admin.blogs.create');
     }
 
+    public function analytics()
+    {
+        $months = collect(range(5, 0))->map(function ($month) {
+            $date = now()->subMonths($month);
+
+            return [
+                'label' => $date->format('M'),
+                'blogs' => Blog::whereYear('created_at', $date->year)->whereMonth('created_at', $date->month)->count(),
+                'comments' => BlogComment::whereYear('created_at', $date->year)->whereMonth('created_at', $date->month)->count(),
+            ];
+        });
+
+        $stats = [
+            'total_blogs' => Blog::count(),
+            'published_blogs' => Blog::where('status', 'publish')->count(),
+            'draft_blogs' => Blog::where('status', 'draft')->count(),
+            'total_users' => User::count(),
+            'total_comments' => BlogComment::count(),
+            'pending_comments' => BlogComment::where('status', 'pending')->count(),
+            'approved_comments' => BlogComment::where('status', 'approved')->count(),
+        ];
+
+        $recentBlogs = Blog::latest()->limit(5)->get();
+        $recentComments = BlogComment::with('blog')->latest()->limit(5)->get();
+        $topCategories = Blog::whereNotNull('category')
+            ->selectRaw('category, count(*) as total')
+            ->groupBy('category')
+            ->orderByDesc('total')
+            ->limit(6)
+            ->get();
+
+        return view('admin.analytics.index', compact('months', 'stats', 'recentBlogs', 'recentComments', 'topCategories'));
+    }
+
+    public function settings()
+    {
+        $settings = [
+            'admin_name' => auth()->user()->name ?? 'Admin',
+            'admin_email' => auth()->user()->email ?? '',
+            'published_blogs' => Blog::where('status', 'publish')->count(),
+            'draft_blogs' => Blog::where('status', 'draft')->count(),
+            'pending_comments' => BlogComment::where('status', 'pending')->count(),
+            'registered_users' => User::count(),
+        ];
+
+        return view('admin.settings.index', compact('settings'));
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $user = auth()->user();
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+
+        if (!empty($data['password'])) {
+            $user->password = Hash::make($data['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.settings')->with('success', 'Settings updated successfully.');
+    }
+
     // ── Admin: store new blog ─────────────────────────────────────────────────
     public function store(Request $request)
     {
@@ -29,6 +102,7 @@ class BlogController extends Controller
             'description'      => 'required|string',
             'excerpt'          => 'nullable|string|max:500',
             'image'            => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+            'author_photo'     => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
             'status'           => 'required|in:publish,draft',
             'category'         => 'nullable|string|max:100',
             'tags'             => 'nullable|string|max:255',
@@ -37,27 +111,30 @@ class BlogController extends Controller
             'meta_description' => 'nullable|string|max:500',
         ]);
 
-        // Generate unique slug
+        $data['description'] = html_entity_decode($data['description'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
         $slug = Str::slug($data['title']);
-        $original = $slug;
-        $count = 1;
-        while (Blog::where('slug', $slug)->exists()) {
-            $slug = $original . '-' . $count++;
-        }
+        $original = $slug; $count = 1;
+        while (Blog::where('slug', $slug)->exists()) { $slug = $original . '-' . $count++; }
         $data['slug'] = $slug;
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            $file     = $request->file('image');
+            $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/blogs'), $filename);
             $data['image'] = $filename;
         }
 
+        if ($request->hasFile('author_photo')) {
+            $file = $request->file('author_photo');
+            $filename = 'author_' . time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/blogs'), $filename);
+            $data['author_photo'] = $filename;
+        }
+
         Blog::create($data);
 
-        return redirect()->route('blogs.index')
-                         ->with('success', 'Blog created successfully.');
+        return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
     }
 
     // ── Admin: show edit form ─────────────────────────────────────────────────
@@ -81,6 +158,8 @@ class BlogController extends Controller
             'meta_title'       => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
         ]);
+
+        $data['description'] = html_entity_decode($data['description'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -130,11 +209,32 @@ class BlogController extends Controller
     }
 
     // ── Public: blog listing page ─────────────────────────────────────────────
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'upload' => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+        ]);
+
+        $file = $request->file('upload');
+        $directory = public_path('uploads/blogs/content');
+
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        $filename = time() . '_' . Str::random(12) . '.' . $file->getClientOriginalExtension();
+        $file->move($directory, $filename);
+
+        return response()->json([
+            'url' => asset('uploads/blogs/content/' . $filename),
+        ]);
+    }
+
     public function publicIndex()
     {
         $blogs = Blog::where('status', 'publish')
                      ->latest()
-                     ->paginate(9);
+                     ->paginate(6);
 
         return view('blog', compact('blogs'));
     }

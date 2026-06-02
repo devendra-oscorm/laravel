@@ -15185,6 +15185,10 @@ footer.footer-eleven .footer-bottom a:hover {
 }
 .breadcrumb .breadcrumb-item a {
   color: #FFF;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .breadcrumb .breadcrumb-item a:hover {
   color: #CF3425;
@@ -15228,6 +15232,8 @@ footer.footer-eleven .footer-bottom a:hover {
   height: 100%;
   background: url("../img/bg/breadcrumb-07.png") no-repeat;
   background-position: center bottom;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .breadcrumb-bg-05 {

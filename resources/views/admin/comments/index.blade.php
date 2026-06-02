@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('admin_title', 'Comments')
 
 @section('content')
 
@@ -256,3 +257,4 @@
 </div>
 
 @endsection
+
