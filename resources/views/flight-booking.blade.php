@@ -130,8 +130,9 @@
                                                 <label class="form-label">Age</label>
                                                 <select class="select">
                                                     <option>Select</option>
-                                                    <option>27</option>
-                                                    <option>25</option>
+                                                    @foreach($ages as $age)
+                                                        <option value="{{ $age }}">{{ $age }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -140,11 +141,13 @@
                                                 <label class="form-label">Country</label>
                                                 <select class="select">
                                                     <option>Select</option>
-                                                    <option>Barcelona</option>
-                                                    <option>London</option>
+                                                    @foreach($countries as $country)
+                                                        <option value="{{ $country }}">{{ $country }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> 
+                                        
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Address line 1</label>

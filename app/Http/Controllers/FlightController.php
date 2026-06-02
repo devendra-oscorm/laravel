@@ -75,7 +75,14 @@ class FlightController extends Controller
     {
         $selectedFlight = $this->decodeSelectedFlight($request);
 
-        return view('flight-booking', compact('selectedFlight'));
+        $countries = Airport::orderBy('country')
+            ->pluck('country')
+            ->unique()
+            ->values();
+
+        $ages = range(18, 80);
+
+        return view('flight-booking', compact('selectedFlight', 'countries', 'ages'));
     }
 
     private function defaultFlight(): array

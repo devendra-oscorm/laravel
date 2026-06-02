@@ -5117,7 +5117,7 @@
 
             </div>
             <div class="text-center view-all wow fadeInUp">
-                <a href="{{url('blog-grid')}}" class="btn btn-dark d-inline-flex align-items-center">View All Articles<i
+                <a href="{{url('blog')}}" class="btn btn-dark d-inline-flex align-items-center">View All Articles<i
                         class="isax isax-arrow-right-3 ms-2"></i></a>
             </div>
         </div>

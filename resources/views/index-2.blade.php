@@ -384,12 +384,12 @@
             </div>
 
             <div class="tab-content wow fadeInUp">
-                <div class="tab-pane fade active show" id="tab-1">
+                <div class="tab-pane fade active show" id="tab-1">    
                     <div class="row justify-content-center">
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="trending-list-item">
                                 <div class="place-img">
-                                    <a href="{{url('flight-details')}}">
+                                       <a href="{{url('flight-details')}}">
                                         <img src="{{URL::asset('build/img/flight/flight-01.jpg')}}" class="img-fluid" alt="img">
                                     </a>
                                     <div class="fav-item">
@@ -2364,7 +2364,7 @@
         </div>
     </div>
     <div class="text-center mt-4 wow fadeInUp px-3">
-        <a href="{{url('blog-grid')}}" class="btn btn-primary">View All Articles <i class="isax isax-arrow-right-3 ms-2"></i></a>
+        <a href="{{url('blog')}}" class="btn btn-primary">View All Articles <i class="isax isax-arrow-right-3 ms-2"></i></a>
     </div>
     </section>
 

@@ -1,8 +1,15 @@
 <?php
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+
+Authenticate::redirectUsing(function ($request) {
+    return $request->is('admin/*') || $request->is('admin')
+        ? '/admin-login'
+        : '/login';
+});
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,7 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'auth.admin' => \App\Http\Middleware\AdminAuthenticate::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

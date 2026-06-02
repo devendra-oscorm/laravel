@@ -58,19 +58,10 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Login<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                                        <a href="{{url('dashboard')}}"></a>
+                                        <button type="submit"  class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Login<i class="isax isax-arrow-right-3 ms-2"></i></button>
                                     </div>
-                                    <div class="login-or mb-3">
-                                        <span class="span-or">Or</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-3">
-                                        <a href="#" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2">
-                                            <img src="{{URL::asset('build/img/icons/google-icon.svg')}}" class="me-2" alt="Img">Google
-                                        </a>
-                                        <a href="#" class="btn btn-light flex-fill d-flex align-items-center justify-content-center">
-                                            <img src="{{URL::asset('build/img/icons/fb-icon.svg')}}" class="me-2" alt="Img">Facebook
-                                        </a>
-                                    </div>
+                          
                                     <div class="d-flex justify-content-center">
                                         <p class="fs-14">Don't you have an account? <a href="{{url('register')}}" class="link-primary fw-medium">Sign up</a></p>
                                     </div>

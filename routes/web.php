@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
+use App\Models\User;
 Route::get('/', function () { return view('index-2'); })->name('index-2');
 Route::get('/index-2', function () {
     return view('index-2');
@@ -117,12 +120,12 @@ Route::get('/become-an-expert', function () {
 })->name('become-an-expert');
 
 Route::get('/blog-details', function () {
-    return view('blog-details');
+    return redirect()->route('blog');
 })->name('blog-details');
 
-Route::get('/blog-grid', function () {
-    return view('blog-grid');
-})->name('blog-grid');
+Route::get('/blog', [BlogController::class, 'publicIndex'])->name('blog');
+Route::get('/blog/{id}', [BlogController::class, 'publicShow'])->name('blog.details');
+Route::post('/blog/{blogId}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/blog-list', function () {
     return view('blog-list');
@@ -276,10 +279,6 @@ Route::get('/edit-tour', function () {
     return view('edit-tour');
 })->name('edit-tour');
 
-Route::get('/error-404', function () {
-    return view('error-404');
-})->name('error-404');
-
 Route::get('/error-500', function () {
     return view('error-500');
 })->name('error-500');
@@ -354,18 +353,57 @@ Route::get('/invoices', function () {
     return view('invoices');
 })->name('invoices');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// ── Front-end login (shows the travel-site login.blade.php) ──────────────────
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
+// ── Admin login (shows auth/login.blade.php — glassmorphism design) ───────────
+Route::get('/admin-login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
+Route::post('/admin-login', [AuthController::class, 'login'])->name('admin.login.submit');
 
-Route::post('/login', function (Request $request) {
+// ── Register ──────────────────────────────────────────────────────────────────
+Route::get('/admin-register', [AuthController::class, 'showRegister'])->name('admin.register');
+Route::post('/admin-register', [AuthController::class, 'register'])->name('admin.register.store');
 
-    // login validation logic here
+// ── Logout ────────────────────────────────────────────────────────────────────
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    return redirect('/dashboard');
+// ── Admin panel (protected by auth middleware) ────────────────────────────────
+Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
 
-})->name('login.submit');
+    Route::get('/', function () { return redirect()->route('admin.analytics'); })->name('admin.home');
+
+    // Blog CRUD
+    Route::get('/blogs',              [BlogController::class, 'index'])  ->name('blogs.index');
+    Route::get('/blogs/create',       [BlogController::class, 'create']) ->name('blogs.create');
+    Route::post('/blogs',             [BlogController::class, 'store'])  ->name('blogs.store');
+    Route::get('/blogs/{blog}/edit',  [BlogController::class, 'edit'])   ->name('blogs.edit');
+    Route::put('/blogs/{blog}',       [BlogController::class, 'update']) ->name('blogs.update');
+    Route::delete('/blogs/{blog}',    [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+    // AJAX live search
+    Route::get('/blogs/search',       [BlogController::class, 'search']) ->name('blogs.search');
+    Route::post('/blogs/upload-image', [BlogController::class, 'uploadImage'])->name('blogs.upload-image');
+
+    // Placeholder pages (return simple views or redirect to blogs for now)
+    Route::get('/analytics', [BlogController::class, 'analytics'])->name('admin.analytics');
+    Route::get('/users', function () {
+        $query = User::orderBy('id', 'desc');
+        if (request('status') === 'verified') {
+            $query->whereNotNull('email_verified_at');
+        } elseif (request('status') === 'pending') {
+            $query->whereNull('email_verified_at');
+        }
+        $users = $query->paginate(10)->withQueryString();
+        return view('admin.users.index', compact('users'));
+    })->name('admin.users');
+    Route::get('/comments',  [CommentController::class, 'index'])                  ->name('admin.comments');
+    Route::patch('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+    Route::patch('/comments/{comment}/reject',  [CommentController::class, 'reject']) ->name('comments.reject');
+    Route::delete('/comments/{comment}',        [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::get('/settings',  [BlogController::class, 'settings']) ->name('admin.settings');
+    Route::post('/settings', [BlogController::class, 'updateSettings'])->name('admin.settings.update');
+});
 
 Route::get('/my-profile', function () {
     return view('my-profile');
@@ -669,4 +707,8 @@ Route::get('/api/flight-routes/two-stop', [FlightController::class, 'ajaxTwoStop
     Route::get('/test-airports', function() {
     $airports = App\Models\Airport::where('city', 'like', '%New%')->limit(5)->get();
     return response()->json($airports);
+});
+
+Route::fallback(function () {
+    return response()->view('error-404', [], 404);
 });

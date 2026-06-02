@@ -1,10 +1,12 @@
 <?php $page="error-500";?>
 @extends('layout.mainlayout')
 @section('content')
+@section('hideHeader', true)
 
     <!-- ========================
         Start Page Content
     ========================= -->
+
 
     <div class="d-flex align-items-center justify-content-center vh-100 overflow-auto flex-wrap">
         <!-- Page Wrapper -->
@@ -18,7 +20,7 @@
                 </div>
                 <div class="maintenance-update">
                     <div class="text-center mb-3">
-                        <h5 class="mb-1">500- Oops! Internal Server Error</h5>
+                        <h5 class="mb-1">500 Error - Oops! Internal Server Error</h5>
                         <p class="text-gray-6">The server has been deserted for a while, please be patient or try again later</p>
 
                     </div>
