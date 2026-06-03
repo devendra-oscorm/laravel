@@ -51,8 +51,8 @@
                             <div class="card-body chat-users-list chat-scroll pt-0">
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online  flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online  shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-08.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Beth Williams</h6>
@@ -60,7 +60,7 @@
                                                     class="isax isax-image5 me-1"></i>Image</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">20/03/24</p>
                                             <div class="d-flex align-items-center justify-content-end">
@@ -71,7 +71,7 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg  flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg  shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-29.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
@@ -79,7 +79,7 @@
                                             <p class="fs-14 text-gray-6 text-truncate">Have you called them?</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">Just Now</p>
                                             <div class="d-flex justify-content-end">
@@ -91,7 +91,7 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-19.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
@@ -100,7 +100,7 @@
                                                     class="isax isax-video5 me-1"></i>Video</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">5 Mins Ago</p>
                                         </div>
@@ -108,7 +108,7 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-30.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
@@ -117,7 +117,7 @@
                                                     class="isax isax-document-text-15 me-1"></i>Project Tools.doc</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">10:20 PM</p>
                                         </div>
@@ -125,7 +125,7 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-31.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
@@ -134,7 +134,7 @@
                                                     class="isax isax-microphone-25 me-1"></i>Audio</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">12:30 PM</p>
                                             <div>
@@ -145,7 +145,7 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-32.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
@@ -153,7 +153,7 @@
                                             <p class="fs-14 text-gray-6">Have you called them?</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">Just Now</p>
                                             <div class="d-flex justify-content-end">
@@ -165,8 +165,8 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-08.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Timothy Brewer</h6>
@@ -174,7 +174,7 @@
                                                     class="ti ti-file me-1"></i>Document</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">5 Mins Ago</p>
                                             <div>
@@ -185,8 +185,8 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member  mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-09.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-09.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Tom Andrews</h6>
@@ -194,7 +194,7 @@
                                                     class="isax isax-call5 me-1 text-gray-9"></i>Missed Call</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">Yesterday</p>
                                         </div>
@@ -202,15 +202,15 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member  mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-33.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-32.jpg')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Peter Anderson</h6>
                                             <p class="fs-14  d-flex align-items-center ">Have you called them?</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">23/03/24</p>
                                             <div>
@@ -221,8 +221,8 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member  mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-20.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-20.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Samuel James</h6>
@@ -230,7 +230,7 @@
                                                     class="isax isax-document-text-15 me-1"></i>Prescription.doc</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">20/03/24</p>
                                             <div>
@@ -241,16 +241,16 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-15.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-15.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">John James</h6>
                                             <p class="fs-14 text-danger d-flex align-items-center "><i
-                                                    class="isax isax-call5 me-1 text-gray-9"></i>Missed Call</p>
+                                            class="isax isax-call5 me-1 text-gray-9"></i>Missed Call</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">Yesterday</p>
                                         </div>
@@ -258,8 +258,8 @@
                                 </a>
                                 <a href="#" class="d-flex justify-content-between chat-member">
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
-                                            <img src="{{URL::asset('build/img/users/user-12.jpg')}}" alt="User Image">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
+                                            <img src="{{URL::asset('build/img/users/user-12.webp')}}" alt="User Image">
                                         </div>
                                         <div>
                                             <h6 class="fs-16 fw-medium mb-1">Timothy Brewer</h6>
@@ -267,7 +267,7 @@
                                                     class="isax isax-call5 me-1 text-gray-9"></i>Missed Call</p>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
+                                    <div class="grow">
                                         <div class="text-end">
                                             <p class="mb-1 fs-14 text-gray-6">Yesterday</p>
                                         </div>
@@ -289,7 +289,7 @@
                                         <a id="back_user_list" href="javascript:void(0)" class="back-user-list">
                                             <i class="fas fa-chevron-left"></i>
                                         </a>
-                                        <div class="avatar avatar-lg online flex-shrink-0 me-2">
+                                        <div class="avatar avatar-lg online shrink-0 me-2">
                                             <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User">
                                         </div>
                                         <div>
@@ -343,7 +343,7 @@
                                     <li class="sent-message-group">
                                         <ul>
                                             <li class="media sent d-flex align-items-end">
-                                                <div class="media-body flex-grow-1">
+                                                <div class="media-body grow">
                                                     <div class="msg-box">
                                                         <div class="d-flex align-items-center justify-content-end mb-1">
                                                             <div>
@@ -413,7 +413,7 @@
                                             March 25</span></li>
                                     <li class="media received">
                                         <div class="d-flex align-items-center mb-1">
-                                            <div class="avatar avatar-lg flex-shrink-0 me-2">
+                                            <div class="avatar avatar-lg shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User Image ">
                                             </div>
                                             <div>
@@ -423,7 +423,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="media-body flex-grow-1">
+                                        <div class="media-body grow">
                                             <div class="msg-box">
                                                 <div class="position-relative">
                                                     <div class="d-flex align-items-center ">
@@ -475,7 +475,7 @@
                                     <li class="sent-message-group">
                                         <ul>
                                             <li class="media sent d-flex align-items-end">
-                                                <div class="media-body flex-grow-1">
+                                                <div class="media-body grow">
                                                     <div class="msg-box">
                                                         <div class="d-flex align-items-center justify-content-end mb-1">
                                                             <div>
@@ -542,7 +542,7 @@
                                     </li>
                                     <li class="media received">
                                         <div class="d-flex align-items-center mb-1">
-                                            <div class="avatar avatar-lg flex-shrink-0 me-2">
+                                            <div class="avatar avatar-lg shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User Image ">
                                             </div>
                                             <div>
@@ -552,7 +552,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="media-body flex-grow-1">
+                                        <div class="media-body grow">
                                             <div class="msg-box">
                                                 <div class="position-relative">
                                                     <div class="d-flex align-items-center ">
@@ -604,7 +604,7 @@
                                     <li class="sent-message-group">
                                         <ul>
                                             <li class="media sent d-flex align-items-end">
-                                                <div class="media-body flex-grow-1">
+                                                <div class="media-body grow">
                                                     <div class="msg-box">
                                                         <div class="d-flex align-items-center justify-content-end mb-1">
                                                             <div>
@@ -671,7 +671,7 @@
                                     </li>
                                     <li class="media received">
                                         <div class="d-flex align-items-center mb-1">
-                                            <div class="avatar avatar-lg flex-shrink-0 me-2">
+                                            <div class="avatar avatar-lg shrink-0 me-2">
                                                 <img src="{{URL::asset('build/img/users/user-08.jpg')}}" alt="User Image ">
                                             </div>
                                             <div>
@@ -681,7 +681,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="media-body flex-grow-1">
+                                        <div class="media-body grow">
                                             <div class="msg-box">
                                                 <div class="position-relative">
                                                     <div class="d-flex align-items-center">

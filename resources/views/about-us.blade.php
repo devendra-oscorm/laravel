@@ -238,7 +238,7 @@
                         <div class="team-item wow fadeInUp" data-wow-delay="0.2s">
                             <div class="card">
                                 <div class="card-body">
-                                    <img src="{{URL::asset('build/img/users/user-20.jpg')}}" alt="Img" class="img-fluid">
+                                    <img src="{{URL::asset('build/img/users/user-20.webp')}}" alt="Img" class="img-fluid">
                                 </div>
                                 <div class="team-overlay">
                                     <div class="bg-white py-2 px-3 rounded-pill  text-center">
@@ -343,7 +343,7 @@
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <a href="#" class="avatar avatar-md  shrink-0">
-                                    <img src="{{URL::asset('build/img/users/user-02.jpg')}}" class="rounded-circle" alt="img">
+                                    <img src="{{URL::asset('build/img/users/user-02.webp')}}" class="rounded-circle" alt="img">
                                 </a>
                                 <div class="ms-2">
                                     <h6 class="fs-16 fw-medium"><a href="#">Bryan Bradfield</a></h6>
@@ -365,7 +365,7 @@
                         <div class="border-top pt-4 d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <a href="#" class="avatar avatar-md  shrink-0">
-                                    <img src="{{URL::asset('build/img/users/user-03.jpg')}}" class="rounded-circle" alt="img">
+                                    <img src="{{URL::asset('build/img/users/user-03.webp')}}" class="rounded-circle" alt="img">
                                 </a>
                                 <div class="ms-2">
                                     <h6 class="fs-16 fw-medium"><a href="#">Prajakta Sasane</a></h6>

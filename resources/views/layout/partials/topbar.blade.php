@@ -109,7 +109,7 @@
                     <nav id="mobile-menu">
                         <ul class="main-nav">
                             <li class="{{ Request::is('/') ? 'active' : '' }}">
-                                <a href="{{url('index-2')}}">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
                             
                            
@@ -198,29 +198,23 @@
                                 ...
                             </li>
                             --}}
-
-                            {{-- Commented out Tour menu --}}
-                            {{-- 
+                 
                             <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
                                 <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
                                 ...
                             </li>
-                            --}}
+         
 
-                            {{-- Commented out Bus menu --}}
-                            {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
                                 <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>
                                 ...
                             </li>
-                            --}}
+        
 
-                                                        {{-- Keep Blog menu - Add new Blog menu item --}}
                             <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
                                 <a href="{{url('blog')}}">Blog</a>
                             </li>
 
-                            {{-- Keep About menu - Add new About menu item --}}
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
                             </li>
@@ -255,7 +249,7 @@
                             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                 <span class="avatar avatar-md">
                                     <img src="{{URL::asset('build/img/users/user-05.jpg')}}" alt="Img"
-                                        class="img-fluid rounded-circle border border-white border-4">
+                                        class="img-fluid rounded-circle border border-white ">
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-3">

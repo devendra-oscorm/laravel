@@ -6,8 +6,6 @@
 @php use Illuminate\Support\Str; @endphp
 
 
-
-
 <!-- Page Wrapper -->
 <div class="content">
     <div class="container">

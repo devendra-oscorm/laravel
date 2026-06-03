@@ -224,7 +224,7 @@
                                                         <button type="submit"
                                                                 class="btn btn-sm bg-danger-transparent text-danger d-inline-flex align-items-center gap-1"
                                                                 title="Delete">
-                                                            <i class="isax isax-trash5 fs-14"></i>
+                                                            <i class="isax isax-trash4 fs-14"></i>
                                                         </button>
                                                     </form>
                                                 </div>
