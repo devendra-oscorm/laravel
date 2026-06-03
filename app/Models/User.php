@@ -18,11 +18,24 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+   protected $fillable = [
+    'name',
+    'email',
+    'password',
+    'role',
+    'profile_photo',
+];
+
+    /**
+     * Get the profile photo URL (fallback to default avatar).
+     */
+    public function getProfilePhotoUrlAttribute(): string
+    {
+        if ($this->profile_photo && file_exists(public_path('uploads/profiles/' . $this->profile_photo))) {
+            return asset('uploads/profiles/' . $this->profile_photo);
+        }
+        return asset('build/img/users/user-05.jpg');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -65,7 +65,7 @@
                                 </a>
                             </li>
                             <li class="logout-link">
-                                <form method="POST" action="{{ route('auth.logout') }}">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit"
                                         class="d-flex align-items-center pb-0 w-100 border-0 bg-transparent text-start"
@@ -127,7 +127,7 @@
                         <div class="card shadow-none flex-fill">
                             <div class="card-body text-center">
                                 <span class="avatar avatar rounded-circle bg-info mb-2">
-                                    <i class="isax isax-eye5 fs-24"></i>
+                                    <i class="isax isax-eye4 fs-24"></i>
                                 </span>
                                 <p class="mb-1">Total Views</p>
                                 <h5 class="mb-2">12.5K</h5>

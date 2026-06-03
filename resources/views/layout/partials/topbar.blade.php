@@ -250,6 +250,7 @@
                                 <i class="isax isax-sun-1"></i>
                             </a>
                         </div>
+                        @auth
                         <div class="dropdown profile-dropdown">
                             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                 <span class="avatar avatar-md">
@@ -258,6 +259,10 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-3">
+                                <li class="px-2 pb-2 border-bottom mb-2">
+                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
+                                    <span class="text-muted fs-13">{{ auth()->user()->email }}</span>
+                                </li>
                                 <li>
                                     <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
                                         href="{{url('dashboard')}}">Dashboard</a>
@@ -270,20 +275,31 @@
                                     <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
                                         href="{{url('my-profile')}}">My Profile</a>
                                 </li>
-                                <li>
-                                    <hr class="dropdown-divider my-2">
-                                </li>
+                                <li><hr class="dropdown-divider my-2"></li>
                                 <li>
                                     <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
                                         href="{{url('profile-settings')}}">Settings</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
-                                        href="{{url('login')}}">Logout</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2 text-danger w-100 border-0 bg-transparent">
+                                            <i class="isax isax-logout-15 me-2"></i>Logout
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
                         <a href="{{url('add-hotel')}}" class="btn btn-primary me-0">Add Listing</a>
+                        @else
+                        <a href="{{url('login')}}" class="btn btn-primary d-inline-flex align-items-center me-2">
+                            <i class="isax isax-lock5 me-2"></i>Login
+                        </a>
+                        <a href="{{url('register')}}" class="btn btn-dark d-inline-flex align-items-center me-0">
+                            <i class="isax isax-profile-remove5 me-2"></i>Register
+                        </a>
+                        @endauth
                         <div class="header__hamburger d-xl-none my-auto">
                             <div class="sidebar-menu">
                                 <i class="isax isax-menu5"></i>
@@ -567,10 +583,45 @@
                                     class="count-icon bg-secondary text-gray-9">0</span>
                             </a>
                         </div>
+                        @auth
+                        <div class="dropdown profile-dropdown">
+                            <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                                <span class="avatar avatar-md">
+                                    <img src="{{URL::asset('build/img/users/user-05.jpg')}}" alt="Img"
+                                        class="img-fluid rounded-circle border border-white border-4">
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-3">
+                                <li class="px-2 pb-2 border-bottom mb-2">
+                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
+                                    <span class="text-muted fs-13">{{ auth()->user()->email }}</span>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
+                                        href="{{url('dashboard')}}">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2"
+                                        href="{{url('my-profile')}}">My Profile</a>
+                                </li>
+                                <li><hr class="dropdown-divider my-2"></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2 text-danger w-100 border-0 bg-transparent">
+                                            <i class="isax isax-logout-15 me-2"></i>Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        @else
                         <a href="{{url('login')}}" class="btn btn-primary d-inline-flex align-items-center me-2"><i
                                 class="isax isax-lock5 me-2"></i>Login</a>
                         <a href="{{url('register')}}" class="btn btn-dark d-inline-flex align-items-center me-0"><i
                                 class="isax isax-profile-remove5 me-2"></i>Register</a>
+                        @endauth
                         <div class="header__hamburger d-xl-none my-auto">
                             <div class="sidebar-menu">
                                 <i class="isax isax-menu5"></i>

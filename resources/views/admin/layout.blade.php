@@ -347,7 +347,7 @@
             </nav>
 
             <div class="p-3 border-top" style="border-color: rgba(255,255,255,.08) !important;">
-                <form method="POST" action="{{ route('auth.logout') }}">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="admin-shell-logout">
                         <i class="isax isax-logout-15 fs-18"></i><span>Logout</span>

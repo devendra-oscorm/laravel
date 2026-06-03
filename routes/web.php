@@ -352,58 +352,129 @@ Route::get('/integration-settings', function () {
 Route::get('/invoices', function () {
     return view('invoices');
 })->name('invoices');
+/*
+|--------------------------------------------------------------------------
+| Frontend Auth
+|--------------------------------------------------------------------------
+*/
 
-// ── Front-end login (shows the travel-site login.blade.php) ──────────────────
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
 
-// ── Admin login (shows auth/login.blade.php — glassmorphism design) ───────────
-Route::get('/admin-login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
-Route::post('/admin-login', [AuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/login', [AuthController::class, 'userLogin'])
+    ->name('login.submit');
 
-// ── Register ──────────────────────────────────────────────────────────────────
-Route::get('/admin-register', [AuthController::class, 'showRegister'])->name('admin.register');
-Route::post('/admin-register', [AuthController::class, 'register'])->name('admin.register.store');
+Route::get('/register', [AuthController::class, 'showRegister'])
+    ->name('register');
 
-// ── Logout ────────────────────────────────────────────────────────────────────
-Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('/register', [AuthController::class, 'userRegister'])
+    ->name('register.store');
 
-// ── Admin panel (protected by auth middleware) ────────────────────────────────
-Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
 
-    Route::get('/', function () { return redirect()->route('admin.analytics'); })->name('admin.home');
+/*
+|--------------------------------------------------------------------------
+| Admin Auth
+|--------------------------------------------------------------------------
+*/
 
-    // Blog CRUD
-    Route::get('/blogs',              [BlogController::class, 'index'])  ->name('blogs.index');
-    Route::get('/blogs/create',       [BlogController::class, 'create']) ->name('blogs.create');
-    Route::post('/blogs',             [BlogController::class, 'store'])  ->name('blogs.store');
-    Route::get('/blogs/{blog}/edit',  [BlogController::class, 'edit'])   ->name('blogs.edit');
-    Route::put('/blogs/{blog}',       [BlogController::class, 'update']) ->name('blogs.update');
-    Route::delete('/blogs/{blog}',    [BlogController::class, 'destroy'])->name('blogs.destroy');
+Route::get('/admin-login', [AuthController::class, 'showAdminLogin'])
+    ->name('admin.login');
 
-    // AJAX live search
-    Route::get('/blogs/search',       [BlogController::class, 'search']) ->name('blogs.search');
-    Route::post('/blogs/upload-image', [BlogController::class, 'uploadImage'])->name('blogs.upload-image');
+Route::post('/admin-login', [AuthController::class, 'adminLogin'])
+    ->name('admin.login.submit');
 
-    // Placeholder pages (return simple views or redirect to blogs for now)
-    Route::get('/analytics', [BlogController::class, 'analytics'])->name('admin.analytics');
-    Route::get('/users', function () {
-        $query = User::orderBy('id', 'desc');
-        if (request('status') === 'verified') {
-            $query->whereNotNull('email_verified_at');
-        } elseif (request('status') === 'pending') {
-            $query->whereNull('email_verified_at');
-        }
-        $users = $query->paginate(10)->withQueryString();
-        return view('admin.users.index', compact('users'));
-    })->name('admin.users');
-    Route::get('/comments',  [CommentController::class, 'index'])                  ->name('admin.comments');
-    Route::patch('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
-    Route::patch('/comments/{comment}/reject',  [CommentController::class, 'reject']) ->name('comments.reject');
-    Route::delete('/comments/{comment}',        [CommentController::class, 'destroy'])->name('comments.destroy');
-    Route::get('/settings',  [BlogController::class, 'settings']) ->name('admin.settings');
-    Route::post('/settings', [BlogController::class, 'updateSettings'])->name('admin.settings.update');
-});
+Route::get('/admin-register', [AuthController::class, 'showAdminRegister'])
+    ->name('admin.register');
+
+Route::post('/admin-register', [AuthController::class, 'adminRegister'])
+    ->name('admin.register.store');
+
+
+/*
+|--------------------------------------------------------------------------
+| Logout
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Panel
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['admin'])
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::get('/', function () {
+            return redirect()->route('admin.analytics');
+        });
+
+        Route::get('/blogs', [BlogController::class, 'index'])
+            ->name('blogs.index');
+
+        Route::get('/blogs/create', [BlogController::class, 'create'])
+            ->name('blogs.create');
+
+        Route::post('/blogs', [BlogController::class, 'store'])
+            ->name('blogs.store');
+
+        Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])
+            ->name('blogs.edit');
+
+        Route::put('/blogs/{blog}', [BlogController::class, 'update'])
+            ->name('blogs.update');
+
+        Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])
+            ->name('blogs.destroy');
+
+        Route::get('/blogs/search', [BlogController::class, 'search'])
+            ->name('blogs.search');
+
+        Route::post('/blogs/upload-image', [BlogController::class, 'uploadImage'])
+            ->name('blogs.upload-image');
+
+        Route::get('/analytics', [BlogController::class, 'analytics'])
+            ->name('admin.analytics');
+
+        Route::get('/users', function () {
+
+            $query = User::orderBy('id', 'desc');
+
+            if (request('status') === 'verified') {
+                $query->whereNotNull('email_verified_at');
+            } elseif (request('status') === 'pending') {
+                $query->whereNull('email_verified_at');
+            }
+
+            $users = $query->paginate(10)->withQueryString();
+
+            return view('admin.users.index', compact('users'));
+
+        })->name('admin.users');
+
+        Route::get('/comments', [CommentController::class, 'index'])
+            ->name('admin.comments');
+
+        Route::patch('/comments/{comment}/approve', [CommentController::class, 'approve'])
+            ->name('comments.approve');
+
+        Route::patch('/comments/{comment}/reject', [CommentController::class, 'reject'])
+            ->name('comments.reject');
+
+        Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
+            ->name('comments.destroy');
+
+                Route::get('/settings', [BlogController::class, 'settings'])
+            ->name('admin.settings');
+
+        Route::post('/settings', [BlogController::class, 'updateSettings'])
+            ->name('admin.settings.update');    
+    });
 
 Route::get('/my-profile', function () {
     return view('my-profile');
@@ -437,9 +508,7 @@ Route::get('/profile-settings', function () {
     return view('profile-settings');
 })->name('profile-settings');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+
 
 Route::get('/review', function () {
     return view('review');

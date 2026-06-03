@@ -48,7 +48,7 @@
                             <li><a href="{{ route('admin.comments') }}" class="d-flex align-items-center"><i class="isax isax-message-text-15 me-2"></i>Comments</a></li>
                             <li><a href="{{ route('admin.settings') }}" class="d-flex align-items-center active"><i class="isax isax-setting-25 me-2"></i>Settings</a></li>
                             <li class="logout-link">
-                                <form method="POST" action="{{ route('auth.logout') }}">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="d-flex align-items-center pb-0 w-100 border-0 bg-transparent text-start" style="cursor:pointer;color:inherit;font-size:inherit;padding:10px 0;">
                                         <i class="isax isax-logout-15 me-2"></i>Logout

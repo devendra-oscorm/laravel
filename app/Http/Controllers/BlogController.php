@@ -77,21 +77,34 @@ class BlogController extends Controller
         $user = auth()->user();
 
         $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
+            'name'          => 'required|string|max:255',
+            'email'         => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password'      => 'nullable|string|min:8|confirmed',
+            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $user->name = $data['name'];
+        $user->name  = $data['name'];
         $user->email = $data['email'];
 
         if (!empty($data['password'])) {
             $user->password = Hash::make($data['password']);
         }
 
+        if ($request->hasFile('profile_photo')) {
+            // Delete old photo
+            if ($user->profile_photo) {
+                $old = public_path('uploads/profiles/' . $user->profile_photo);
+                if (file_exists($old)) unlink($old);
+            }
+            $file     = $request->file('profile_photo');
+            $filename = 'profile_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/profiles'), $filename);
+            $user->profile_photo = $filename;
+        }
+
         $user->save();
 
-        return redirect()->route('admin.settings')->with('success', 'Settings updated successfully.');
+        return redirect()->route('admin.settings')->with('success', 'Profile updated successfully.');
     }
 
     // ── Admin: store new blog ─────────────────────────────────────────────────

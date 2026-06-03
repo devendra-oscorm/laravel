@@ -45,7 +45,7 @@
                             <li><a href="{{ route('admin.comments') }}" class="d-flex align-items-center"><i class="isax isax-message-text-15 me-2"></i>Comments</a></li>
                             <li><a href="{{ route('admin.settings') }}" class="d-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a></li>
                             <li class="logout-link">
-                                <form method="POST" action="{{ route('auth.logout') }}">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="d-flex align-items-center pb-0 w-100 border-0 bg-transparent text-start" style="cursor:pointer;color:inherit;font-size:inherit;padding:10px 0;">
                                         <i class="isax isax-logout-15 me-2"></i>Logout
@@ -119,8 +119,9 @@
                                         <th>Email</th>
                                         <th>Status</th>
                                         <th>Joined</th>
+                                        <th>Role</th>
                                         <th>Date</th>
-                                        <th>Actions</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -154,20 +155,22 @@
                                                 <i class="isax isax-calendar-2 me-1"></i>
                                                 {{ $user->created_at->format('d M Y') }}
                                             </td>
+                                            <td class="fs-14 text-gray-6">
+                                               @if($user->role == 'admin')
+                                               <span class = "badge badge-soft-danger rounded-pill">Admin</span>
+
+                                               @elseif($user->role == 'user')
+                                               <span class = "badge badge-soft-primary badge-sm rounded-pill">User</span>
+                                              @else
+                                                <span class = "badge badge-soft-secondary badge-sm rounded-pill">{{ ucfirst($user->role) }}</span>
+                                                 @endif
+         
+                                            </td>
                                             <td class="fs-13 text-gray-6">
                                                 <i class="isax isax-calendar-2 me-1"></i>
                                                 {{ $user->updated_at->format('d M Y') }}
                                             </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-1 flex-wrap">
-                                                    <a href="#" class="btn btn-sm bg-light-200 text-gray-9 d-inline-flex align-items-center gap-1" title="View">
-                                                        <i class="isax isax-eye fs-14"></i>
-                                                    </a>
-                                                    <button type="button" class="btn btn-sm bg-danger-transparent text-danger d-inline-flex align-items-center gap-1" title="Delete">
-                                                        <i class="isax isax-trash5 fs-14"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                           
                                         </tr>
                                     @empty
                                         <tr>
