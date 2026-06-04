@@ -383,11 +383,14 @@
                 </a>
 
                 <span class="admin-shell-nav-label mt-4">Finance</span>
-                <a href="{{ route('admin.payments') }}" class="{{ request()->routeIs('admin.payments') ? 'active' : '' }}">
+                <a href="{{ route('admin.payments') }}" class="{{ request()->routeIs('admin.payments') || request()->routeIs('admin.payments.show') ? 'active' : '' }}">
                     <i class="isax isax-card5 fs-18"></i><span class="nav-text">Payments</span>
                 </a>
                 <a href="{{ route('admin.refunds') }}" class="{{ request()->routeIs('admin.refunds') ? 'active' : '' }}">
                     <i class="isax isax-refresh-circle5 fs-18"></i><span class="nav-text">Refunds</span>
+                </a>
+                <a href="{{ route('admin.reconciliation') }}" class="{{ request()->routeIs('admin.reconciliation') ? 'active' : '' }}">
+                    <i class="isax isax-chart-25 fs-18"></i><span class="nav-text">Reconciliation</span>
                 </a>
 
                 <span class="admin-shell-nav-label mt-4">Marketing</span>

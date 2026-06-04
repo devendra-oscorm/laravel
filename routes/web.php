@@ -495,13 +495,24 @@ Route::middleware(['admin'])
         })->name('admin.bookings.hotels');
 
         // Payment Management
-        Route::get('/payments', function () {
-            return view('admin.payments.index');
-        })->name('admin.payments');
+        Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])
+            ->name('admin.payments');
+        Route::get('/payments/{transaction}', [App\Http\Controllers\PaymentController::class, 'show'])
+            ->name('admin.payments.show');
+        Route::post('/payments/{transaction}/refund', [App\Http\Controllers\PaymentController::class, 'initiateRefund'])
+            ->name('admin.payments.refund');
+        Route::post('/payments/{transaction}/flag', [App\Http\Controllers\PaymentController::class, 'toggleFlag'])
+            ->name('admin.payments.flag');
+        Route::post('/payments/{transaction}/reconcile', [App\Http\Controllers\PaymentController::class, 'markReconciled'])
+            ->name('admin.payments.reconcile');
 
-        Route::get('/refunds', function () {
-            return view('admin.refunds.index');
-        })->name('admin.refunds');
+        Route::get('/refunds', [App\Http\Controllers\PaymentController::class, 'refunds'])
+            ->name('admin.refunds');
+        Route::patch('/refunds/{refund}/status', [App\Http\Controllers\PaymentController::class, 'updateRefundStatus'])
+            ->name('admin.refunds.status');
+
+        Route::get('/reconciliation', [App\Http\Controllers\PaymentController::class, 'reconciliation'])
+            ->name('admin.reconciliation');
 
         // Marketing
         Route::get('/promo-codes', function () {
