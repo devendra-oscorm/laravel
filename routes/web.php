@@ -7,9 +7,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Models\User;
-Route::get('/', function () { return view('index-2'); })->name('index-2');
+Route::get('/', function () { 
+    $settings = \App\Models\SiteSetting::allAsArray();
+    return view('index-2', compact('settings'));
+})->name('index-2');
 Route::get('/index-2', function () {
-    return view('index-2');
+    $settings = \App\Models\SiteSetting::allAsArray();
+    return view('index-2', compact('settings'));
 });
 Route::get('/about-us', function () {
     return view('about-us');
@@ -509,9 +513,11 @@ Route::middleware(['admin'])
         })->name('admin.banners');
 
         // Configuration
-        Route::get('/configuration', function () {
-            return view('admin.configuration.index');
-        })->name('admin.configuration');
+        Route::get('/configuration', [App\Http\Controllers\ConfigurationController::class, 'index'])
+            ->name('admin.configuration');
+
+        Route::post('/configuration', [App\Http\Controllers\ConfigurationController::class, 'update'])
+            ->name('admin.configuration.update');
     });
 
 Route::get('/my-profile', function () {
