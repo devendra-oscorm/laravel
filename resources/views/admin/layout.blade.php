@@ -160,6 +160,9 @@
         }
 
         .admin-shell-topbar {
+             position: sticky;
+    top: 0;
+    z-index: 1030;
             min-height: 76px;
             background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(12px);
@@ -184,7 +187,7 @@
         }
 
         .admin-dashboard-body .content {
-            padding: 28px;
+            padding: 20px;
             min-height: calc(100vh - 76px);
         }
 
@@ -196,7 +199,43 @@
 
         .admin-dashboard-body .card {
             border: 1px solid #edf0f5;
-            box-shadow: 0 10px 28px rgba(16, 24, 40, 0.04) !important;
+            box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04) !important;
+            margin-bottom: 0;
+        }
+
+        .admin-dashboard-body .card-body {
+            padding: 1rem;
+        }
+
+        .admin-dashboard-body .card-header {
+            padding: 0.875rem 1rem;
+            background: #fff;
+        }
+
+        .admin-dashboard-body .row {
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+        .admin-dashboard-body .row > * {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .admin-dashboard-body .mb-3 {
+            margin-bottom: 16px !important;
+        }
+
+        .admin-dashboard-body .mb-4 {
+            margin-bottom: 20px !important;
+        }
+
+        .admin-dashboard-body .gap-2 {
+            gap: 0.5rem !important;
+        }
+
+        .admin-dashboard-body .gap-3 {
+            gap: 0.75rem !important;
         }
 
         .admin-dashboard-body .content .row>.col-xl-3.col-lg-4.theiaStickySidebar {
@@ -325,24 +364,46 @@
             </div>
 
             <nav class="admin-shell-nav">
-                <span class="admin-shell-nav-label">Workspace</span>
-                <a href="{{ route('admin.analytics') }}" class="{{ request()->routeIs('admin.analytics') || request()->routeIs('admin.home') ? 'active' : '' }}">
-                    <i class="isax isax-chart-25 fs-18"></i><span class="nav-text">Analytics</span>
-                </a>
-                <a href="{{ route('blogs.index') }}" class="{{ request()->routeIs('blogs.index') ? 'active' : '' }}">
-                    <i class="isax isax-grid-55 fs-18"></i><span class="nav-text">Blog Dashboard</span>
+                <span class="admin-shell-nav-label">Main</span>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.analytics') ? 'active' : '' }}">
+                    <i class="isax isax-element-35 fs-18"></i><span class="nav-text">Dashboard</span>
                 </a>
 
-                <a href="{{ route('admin.comments') }}" class="{{ request()->routeIs('admin.comments') ? 'active' : '' }}">
-                    <i class="isax isax-message-text-15 fs-18"></i><span class="nav-text">Comments</span>
+                <span class="admin-shell-nav-label mt-4">Blog Management</span>
+                <a href="{{ route('blogs.index') }}" class="{{ request()->routeIs('blogs.index') || request()->routeIs('blogs.create') || request()->routeIs('blogs.edit') || request()->routeIs('admin.comments') ? 'active' : '' }}">
+                    <i class="isax isax-document-text5 fs-18"></i><span class="nav-text">All Blogs</span>
                 </a>
 
-                <span class="admin-shell-nav-label mt-4">Manage</span>
+                <span class="admin-shell-nav-label mt-4">Bookings</span>
+                <a href="{{ route('admin.bookings.flights') }}" class="{{ request()->routeIs('admin.bookings.flights') ? 'active' : '' }}">
+                    <i class="isax isax-airplane5 fs-18"></i><span class="nav-text">Flight Bookings</span>
+                </a>
+                <a href="{{ route('admin.bookings.hotels') }}" class="{{ request()->routeIs('admin.bookings.hotels') ? 'active' : '' }}">
+                    <i class="isax isax-building-35 fs-18"></i><span class="nav-text">Hotel Bookings</span>
+                </a>
+
+                <span class="admin-shell-nav-label mt-4">Finance</span>
+                <a href="{{ route('admin.payments') }}" class="{{ request()->routeIs('admin.payments') ? 'active' : '' }}">
+                    <i class="isax isax-card5 fs-18"></i><span class="nav-text">Payments</span>
+                </a>
+                <a href="{{ route('admin.refunds') }}" class="{{ request()->routeIs('admin.refunds') ? 'active' : '' }}">
+                    <i class="isax isax-refresh-circle5 fs-18"></i><span class="nav-text">Refunds</span>
+                </a>
+
+                <span class="admin-shell-nav-label mt-4">Marketing</span>
+                <a href="{{ route('admin.promo-codes') }}" class="{{ request()->routeIs('admin.promo-codes') ? 'active' : '' }}">
+                    <i class="isax isax-ticket-25 fs-18"></i><span class="nav-text">Promo Codes</span>
+                </a>
+
+                <span class="admin-shell-nav-label mt-4">Settings</span>
                 <a href="{{ route('admin.users') }}" class="{{ request()->routeIs('admin.users') ? 'active' : '' }}">
                     <i class="isax isax-profile-2user5 fs-18"></i><span class="nav-text">Users</span>
                 </a>
+                <a href="{{ route('admin.configuration') }}" class="{{ request()->routeIs('admin.configuration') ? 'active' : '' }}">
+                    <i class="isax isax-setting-45 fs-18"></i><span class="nav-text">Configuration</span>
+                </a>
                 <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                    <i class="isax isax-setting-25 fs-18"></i><span class="nav-text">Settings</span>
+                    <i class="isax isax-user-edit4 fs-18"></i><span class="nav-text">Profile</span>
                 </a>
             </nav>
 
@@ -357,7 +418,7 @@
         </aside>
         <div class="admin-shell-overlay" id="adminSidebarOverlay"></div>
 
-        <header class="admin-shell-topbar">
+        <div class="admin-shell-topbar">
             <div class="d-flex align-items-center gap-2">
                 <button type="button" class="btn btn-sm d-inline-flex align-items-center" id="adminSidebarToggle">
                     <i class="isax isax-menu-15 fs-2 text-primary"></i>
@@ -381,7 +442,7 @@
                     <i class="isax isax-add-circle5 me-1"></i>Add Blog
                 </a>
             </div>
-        </header>
+        </div>
 
         <main>
             @yield('content')

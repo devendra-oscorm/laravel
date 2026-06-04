@@ -1,137 +1,98 @@
 @extends('admin.layout')
-@section('admin_title', 'Blog Dashboard')
+@section('admin_title', 'Blog Management')
 
 @section('content')
 
-@php use Illuminate\Support\Str; @endphp
+@php 
+    use Illuminate\Support\Str;
+    $comments = \App\Models\BlogComment::with('blog')->orderBy('created_at', 'desc')->paginate(15);
+    $pendingCount = \App\Models\BlogComment::where('status', 'pending')->count();
+    $approvedCount = \App\Models\BlogComment::where('status', 'approved')->count();
+    $rejectedCount = \App\Models\BlogComment::where('status', 'rejected')->count();
+@endphp
 
-
-<!-- Page Wrapper -->
 <div class="content">
     <div class="container">
-        <div class="row">
+        
+        <!-- Tabs Navigation -->
+        <ul class="nav nav-tabs mb-3" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="blogs-tab" data-bs-toggle="tab" data-bs-target="#blogs-content" type="button" role="tab">
+                    <i class="ti ti-file-text me-1"></i>All Blogs
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments-content" type="button" role="tab">
+                    <i class="ti ti-message me-1"></i>Comments
+                </button>
+            </li>
+        </ul>
 
-            <!-- ══════════════ SIDEBAR ══════════════ -->
-            <div class="col-xl-3 col-lg-4 theiaStickySidebar">
-                <div class="card user-sidebar agent-sidebar mb-4 mb-lg-0">
-                    <div class="card-header user-sidebar-header text-center bg-gray-transparent">
-                        <div class="agent-profile d-inline-flex">
-                            <span class="avatar avatar-xl rounded-circle bg-primary d-flex align-items-center justify-content-center fs-24 text-white fw-bold">
-                                {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
-                            </span>
-                        </div>
-                        <h6 class="fs-16 mt-2">{{ auth()->user()->name ?? 'Admin' }}</h6>
-                        <p class="fs-14 mb-2">{{ auth()->user()->email ?? '' }}</p>
-                        <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
-                            <span class="badge badge-soft-success badge-md rounded-pill">
-                                <i class="isax isax-verify5 me-1"></i>Admin
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-body user-sidebar-body">
-                        <ul>
-                            <li>
-                                <a href="{{ route('blogs.index') }}"
-                                    class="d-flex align-items-center {{ request()->is('admin/blogs') && !request()->is('admin/blogs/create') ? 'active' : '' }}">
-                                    <i class="isax isax-grid-55 me-2"></i>Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('blogs.create') }}"
-                                    class="d-flex align-items-center {{ request()->is('admin/blogs/create') ? 'active' : '' }}">
-                                    <i class="isax isax-add-circle5 me-2"></i>Add Blog
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.analytics') }}" class="d-flex align-items-center">
-                                    <i class="isax isax-chart-25 me-2"></i>Analytics
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.users') }}" class="d-flex align-items-center">
-                                    <i class="isax isax-profile-2user5 me-2"></i>Users
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.comments') }}" class="d-flex align-items-center">
-                                    <i class="isax isax-message-text-15 me-2"></i>Comments
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.settings') }}" class="d-flex align-items-center">
-                                    <i class="isax isax-setting-25 me-2"></i>Settings
-                                </a>
-                            </li>
-                            <li class="logout-link">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="d-flex align-items-center pb-0 w-100 border-0 bg-transparent text-start"
-                                        style="cursor:pointer; color:inherit; font-size:inherit; padding: 10px 0;">
-                                        <i class="isax isax-logout-15 me-2"></i>Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- /Sidebar -->
-
-            <!-- ══════════════ MAIN CONTENT ══════════════ -->
-            <div class="col-xl-9 col-lg-8">
+        <!-- Tab Content -->
+        <div class="tab-content">
+            
+            <!-- Blogs Tab -->
+            <div class="tab-pane fade show active" id="blogs-content" role="tabpanel">
 
                 <!-- Stat Cards -->
-                <div class="row">
-                    <div class="col-xl-3 col-sm-6 d-flex">
-                        <div class="card shadow-none flex-fill">
-                            <div class="card-body text-center">
-                                <span class="avatar avatar rounded-circle bg-primary mb-2">
-                                    <i class="isax isax-document-text5 fs-24"></i>
-                                </span>
-                                <p class="mb-1">Total Blogs</p>
-                                <h5 class="mb-2">{{ \App\Models\Blog::count() }}</h5>
-                                <a href="{{ route('blogs.index') }}" class="fs-14 link-primary text-decoration-underline">View All</a>
+                <div class="row mb-3">
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body text-center py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-start">
+                                        <p class="text-muted mb-1 fs-13">Total Blogs</p>
+                                        <h4 class="mb-0">{{ \App\Models\Blog::count() }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-primary-transparent">
+                                        <i class="ti ti-file-text fs-20 text-primary"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 d-flex">
-                        <div class="card shadow-none flex-fill">
-                            <div class="card-body text-center">
-                                <span class="avatar avatar rounded-circle bg-success mb-2">
-                                    <i class="isax isax-tick-circle5 fs-24"></i>
-                                </span>
-                                <p class="mb-1">Published</p>
-                                <h5 class="mb-2">{{ \App\Models\Blog::where('status','publish')->count() }}</h5>
-                                <p class="d-flex align-items-center justify-content-center fs-14">
-                                    <i class="isax isax-arrow-up-15 me-1 text-success"></i>Live on site
-                                </p>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body text-center py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-start">
+                                        <p class="text-muted mb-1 fs-13">Published</p>
+                                        <h4 class="mb-0">{{ \App\Models\Blog::where('status','publish')->count() }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-success-transparent">
+                                        <i class="ti ti-circle-check fs-20 text-success"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 d-flex">
-                        <div class="card shadow-none flex-fill">
-                            <div class="card-body text-center">
-                                <span class="avatar avatar rounded-circle bg-orange mb-2">
-                                    <i class="isax isax-edit-25 fs-24"></i>
-                                </span>
-                                <p class="mb-1">Drafts</p>
-                                <h5 class="mb-2">{{ \App\Models\Blog::where('status','draft')->count() }}</h5>
-                                <p class="fs-14 text-muted">Unpublished</p>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body text-center py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-start">
+                                        <p class="text-muted mb-1 fs-13">Drafts</p>
+                                        <h4 class="mb-0">{{ \App\Models\Blog::where('status','draft')->count() }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-warning-transparent">
+                                        <i class="ti ti-edit fs-20 text-warning"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 d-flex">
-                        <div class="card shadow-none flex-fill">
-                            <div class="card-body text-center">
-                                <span class="avatar avatar rounded-circle bg-info mb-2">
-                                    <i class="isax isax-eye4 fs-24"></i>
-                                </span>
-                                <p class="mb-1">Total Views</p>
-                                <h5 class="mb-2">12.5K</h5>
-                                <p class="d-flex align-items-center justify-content-center fs-14">
-                                    <i class="isax isax-arrow-up-15 me-1 text-success"></i>8% this month
-                                </p>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body text-center py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-start">
+                                        <p class="text-muted mb-1 fs-13">Total Views</p>
+                                        <h4 class="mb-0">12.5K</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-info-transparent">
+                                        <i class="ti ti-eye fs-20 text-info"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,123 +100,100 @@
 
                 <!-- Blog Table Card -->
                 <div class="card shadow-none">
-                    <div class="card-body">
-
-                        <!-- Table header -->
-                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-                            <h6 class="mb-0">All Blogs</h6>
-                            <div class="d-flex align-items-center gap-2 flex-wrap">
-                                <!-- Live search -->
-                                <div class="input-icon">
-                                    <span class="input-icon-addon">
-                                        <i class="isax isax-search-normal-15"></i>
-                                    </span>
-                                    <input type="text"
-                                        id="liveSearch"
-                                        class="form-control"
-                                        placeholder="Search blogs…"
-                                        style="width:220px;">
-                                </div>
-                                <!-- Filter by status -->
-                                <div class="dropdown">
-                                    <a href="#"
-                                        class="dropdown-toggle btn bg-light-200 btn-sm text-gray-6 rounded-pill fw-normal fs-14 d-inline-flex align-items-center"
-                                        data-bs-toggle="dropdown">
-                                        <i class="isax isax-calendar-2 me-2 fs-14 text-gray-6"></i>Filter
+                    <div class="card-header bg-white border-bottom py-2">
+                        <div class="row align-items-center g-2">
+                            <div class="col-md-4">
+                                <h6 class="mb-0">All Blogs</h6>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="d-flex align-items-center gap-2 justify-content-md-end flex-wrap">
+                                    <div class="input-icon" style="width: 200px;">
+                                        <span class="input-icon-addon">
+                                            <i class="ti ti-search fs-16"></i>
+                                        </span>
+                                        <input type="text" id="liveSearch" class="form-control form-control-sm" placeholder="Search...">
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                            <i class="ti ti-filter me-1"></i>Filter
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a href="{{ route('blogs.index') }}" class="dropdown-item"><i class="ti ti-list me-2"></i>All</a></li>
+                                            <li><a href="{{ route('blogs.index') }}?status=publish" class="dropdown-item"><i class="ti ti-circle-check me-2 text-success"></i>Published</a></li>
+                                            <li><a href="{{ route('blogs.index') }}?status=draft" class="dropdown-item"><i class="ti ti-edit me-2 text-warning"></i>Draft</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="{{ route('blogs.create') }}" class="btn btn-primary btn-sm">
+                                        <i class="ti ti-plus me-1"></i>Add
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end p-3">
-                                        <li><a href="{{ route('blogs.index') }}" class="dropdown-item rounded-1"><i class="ti ti-point-filled me-1"></i>All</a></li>
-                                        <li><a href="{{ route('blogs.index') }}?status=publish" class="dropdown-item rounded-1"><i class="ti ti-point-filled me-1 text-success"></i>Published</a></li>
-                                        <li><a href="{{ route('blogs.index') }}?status=draft" class="dropdown-item rounded-1"><i class="ti ti-point-filled me-1 text-warning"></i>Draft</a></li>
-                                    </ul>
                                 </div>
-                                <a href="{{ route('blogs.create') }}" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-1">
-                                    <i class="isax isax-add-circle5 fs-16"></i> Add Blog
-                                </a>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="card-body p-0">
                         @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-3 mb-4" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show rounded-0 border-0 mb-0">
                             <i class="isax isax-tick-circle5 me-2"></i>{{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                         @endif
 
-                        <!-- Table -->
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead class="thead-light">
+                            <table class="table table-hover table-sm mb-0">
+                                <thead class="table-light">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Image</th>
+                                        <th style="width: 50px;">#</th>
+                                        <th style="width: 80px;">Image</th>
                                         <th>Title</th>
-                                        <th>Category</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th style="width: 100px;">Category</th>
+                                        <th style="width: 100px;">Status</th>
+                                        <th style="width: 100px;">Date</th>
+                                        <th style="width: 90px;" class="text-end">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="blogTable">
                                     @forelse($blogs as $blog)
                                     <tr>
-                                        <td class="fs-14 text-gray-6">{{ $blog->id }}</td>
+                                        <td class="text-muted">{{ $blog->id }}</td>
                                         <td>
                                             @if($blog->image)
-                                            <a href="#" class="avatar avatar-lg flex-shrink-0">
-                                                <img src="{{ asset('uploads/blogs/'.$blog->image) }}"
-                                                    class="img-fluid rounded"
-                                                    style="width:70px;height:50px;object-fit:cover;"
-                                                    alt="{{ $blog->title }}">
-                                            </a>
+                                            <img src="{{ asset('uploads/blogs/'.$blog->image) }}" class="rounded" style="width:60px;height:40px;object-fit:cover;" alt="{{ $blog->title }}">
                                             @else
-                                            <span class="avatar avatar-lg rounded bg-light-200 d-flex align-items-center justify-content-center">
-                                                <i class="isax isax-image5 fs-20 text-gray-6"></i>
-                                            </span>
+                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width:60px;height:40px;">
+                                                <i class="ti ti-photo text-muted"></i>
+                                            </div>
                                             @endif
                                         </td>
                                         <td>
-                                            <h6 class="fs-15 fw-medium mb-1">{{ Str::limit($blog->title, 45) }}</h6>
-                                            <p class="fs-13 text-gray-6 mb-0">{{ Str::limit(strip_tags($blog->description), 55) }}</p>
+                                            <div class="fw-medium mb-1">{{ Str::limit($blog->title, 60) }}</div>
+                                            <small class="text-muted">{{ Str::limit(strip_tags($blog->description), 70) }}</small>
                                         </td>
                                         <td>
                                             @if($blog->category)
-                                            <span class="badge badge-soft-primary badge-sm rounded-pill">
-                                                <i class="isax isax-tag5 me-1"></i>{{ $blog->category }}
-                                            </span>
+                                            <span class="badge badge-soft-primary badge-sm">{{ $blog->category }}</span>
                                             @else
-                                            <span class="text-gray-6 fs-14">—</span>
+                                            <span class="text-muted">—</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if($blog->status === 'publish')
-                                            <span class="badge badge-soft-success badge-sm rounded-pill">
-                                                <i class="isax isax-tick-circle5 me-1"></i>Published
-                                            </span>
+                                            <span class="badge badge-soft-success badge-sm"><i class="ti ti-circle-check me-1"></i>Live</span>
                                             @else
-                                            <span class="badge badge-soft-warning badge-sm rounded-pill">
-                                                <i class="isax isax-edit-25 me-1"></i>Draft
-                                            </span>
+                                            <span class="badge badge-soft-warning badge-sm"><i class="ti ti-edit me-1"></i>Draft</span>
                                             @endif
                                         </td>
-                                        <td class="fs-14 text-gray-6">
-                                            <i class="isax isax-calendar-2 me-1"></i>
-                                            {{ $blog->created_at->format('d M Y') }}
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <a href="{{ route('blogs.edit', $blog->id) }}"
-                                                    class="btn btn-sm bg-light-200 text-gray-9 d-inline-flex align-items-center gap-1">
-                                                    <i class="isax isax-edit-25 fs-14"></i>Edit
+                                        <td class="text-muted fs-13">{{ $blog->created_at->format('d M Y') }}</td>
+                                        <td class="text-end">
+                                            <div class="d-flex gap-1 justify-content-end">
+                                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-light" title="Edit">
+                                                    <i class="ti ti-edit"></i>
                                                 </a>
-                                                <form action="{{ route('blogs.destroy', $blog->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Delete this blog?')">
+                                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this blog?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-sm bg-danger-transparent text-danger d-inline-flex align-items-center gap-1">
-                                                        <i class="isax isax-trash5 fs-14"></i>Delete
+                                                    <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                                                        <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -263,32 +201,194 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="text-center py-5">
-                                            <span class="avatar avatar-xl rounded-circle bg-light-200 d-inline-flex align-items-center justify-content-center mb-3">
-                                                <i class="isax isax-document-text5 fs-28 text-gray-6"></i>
-                                            </span>
-                                            <p class="text-gray-6 mb-2">No blogs yet.</p>
-                                            <a href="{{ route('blogs.create') }}" class="btn btn-primary btn-sm">
-                                                <i class="isax isax-add-circle5 me-1"></i>Add your first blog
-                                            </a>
+                                        <td colspan="7" class="text-center py-4">
+                                            <div class="text-muted">
+                                                <i class="ti ti-file-text fs-1 mb-2 d-block"></i>
+                                                <p class="mb-2">No blogs yet</p>
+                                                <a href="{{ route('blogs.create') }}" class="btn btn-primary btn-sm">
+                                                    <i class="ti ti-plus me-1"></i>Add your first blog
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
-                        <!-- Pagination -->
-                        <div class="mt-3">
-                            {{ $blogs->links() }}
+                    @if($blogs->hasPages())
+                    <div class="card-footer bg-white border-top">
+                        {{ $blogs->links() }}
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+            <!-- Comments Tab -->
+            <div class="tab-pane fade" id="comments-content" role="tabpanel">
+                
+                <!-- Stats Row -->
+                <div class="row mb-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="text-muted mb-1 fs-13">Pending</p>
+                                        <h4 class="mb-0">{{ $pendingCount }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-warning-transparent">
+                                        <i class="ti ti-clock fs-20 text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="text-muted mb-1 fs-13">Approved</p>
+                                        <h4 class="mb-0">{{ $approvedCount }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-success-transparent">
+                                        <i class="ti ti-circle-check fs-20 text-success"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-none h-100">
+                            <div class="card-body py-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="text-muted mb-1 fs-13">Rejected</p>
+                                        <h4 class="mb-0">{{ $rejectedCount }}</h4>
+                                    </div>
+                                    <div class="avatar avatar-md rounded bg-danger-transparent">
+                                        <i class="ti ti-circle-x fs-20 text-danger"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- /Blog Table Card -->
 
+                <!-- Comments Table -->
+                <div class="card shadow-none">
+                    <div class="card-header bg-white border-bottom py-2">
+                        <div class="row align-items-center g-2">
+                            <div class="col-md-6">
+                                <h6 class="mb-0">All Comments</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex gap-2 justify-content-md-end">
+                                    <a href="?tab=comments&status=pending" class="btn btn-sm btn-outline-warning">
+                                        <i class="ti ti-clock me-1"></i>Pending
+                                    </a>
+                                    <a href="?tab=comments&status=approved" class="btn btn-sm btn-outline-success">
+                                        <i class="ti ti-check me-1"></i>Approved
+                                    </a>
+                                    <a href="?tab=comments&status=rejected" class="btn btn-sm btn-outline-danger">
+                                        <i class="ti ti-x me-1"></i>Rejected
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Blog Post</th>
+                                        <th>Comment</th>
+                                        <th style="width: 100px;">Status</th>
+                                        <th style="width: 100px;">Date</th>
+                                        <th style="width: 120px;" class="text-end">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($comments as $comment)
+                                    <tr>
+                                        <td class="fw-medium">{{ $comment->name }}</td>
+                                        <td class="text-muted fs-13">{{ $comment->email }}</td>
+                                        <td>
+                                            @if($comment->blog)
+                                            <a href="{{ route('blog.details', $comment->blog_id) }}" target="_blank" class="text-primary text-decoration-none">
+                                                {{ Str::limit($comment->blog->title, 35) }}
+                                            </a>
+                                            @else
+                                            <span class="text-muted">—</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ Str::limit($comment->message, 50) }}</td>
+                                        <td>
+                                            @if($comment->status === 'approved')
+                                            <span class="badge badge-soft-success badge-sm"><i class="ti ti-check me-1"></i>Approved</span>
+                                            @elseif($comment->status === 'pending')
+                                            <span class="badge badge-soft-warning badge-sm"><i class="ti ti-clock me-1"></i>Pending</span>
+                                            @else
+                                            <span class="badge badge-soft-danger badge-sm"><i class="ti ti-x me-1"></i>Rejected</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-muted fs-13">{{ $comment->created_at->format('d M Y') }}</td>
+                                        <td class="text-end">
+                                            <div class="d-flex gap-1 justify-content-end">
+                                                @if($comment->status !== 'approved')
+                                                <form action="{{ route('comments.approve', $comment->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="btn btn-sm btn-success" title="Approve">
+                                                        <i class="ti ti-check"></i>
+                                                    </button>
+                                                </form>
+                                                @endif
+                                                @if($comment->status !== 'rejected')
+                                                <form action="{{ route('comments.reject', $comment->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="btn btn-sm btn-warning" title="Reject">
+                                                        <i class="ti ti-x"></i>
+                                                    </button>
+                                                </form>
+                                                @endif
+                                                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                                                        <i class="ti ti-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4">
+                                            <div class="text-muted">
+                                                <i class="ti ti-message fs-1 mb-2 d-block"></i>
+                                                <p>No comments yet</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @if($comments->hasPages())
+                    <div class="card-footer bg-white border-top py-2">
+                        {{ $comments->links() }}
+                    </div>
+                    @endif
+                </div>
             </div>
-            <!-- /Main Content -->
 
         </div>
     </div>
@@ -298,66 +398,45 @@
 
 @push('scripts')
 <script>
+$(document).ready(function() {
     $('#liveSearch').on('keyup', function() {
         const search = $(this).val();
         $.ajax({
-            url: "{{ url('/admin/blogs/search') }}",
-            dataType: 'json',
-            data: {
-                search
-            },
+            url: "{{ route('blogs.search') }}",
+            data: { search: search },
             success: function(data) {
-                if (!Array.isArray(data)) {
-                    window.location.href = "{{ url('/admin-login') }}";
-                    return;
-                }
-
-                let rows = '';
-                if (data.length) {
-                    data.forEach(b => {
-                        const img = b.image ?
-                            `<a href="#" class="avatar avatar-lg flex-shrink-0">
-                               <img src="/uploads/blogs/${b.image}" class="img-fluid rounded"
-                                    style="width:70px;height:50px;object-fit:cover;" alt="${b.title}">
-                           </a>` :
-                            `<span class="avatar avatar-lg rounded bg-light-200 d-flex align-items-center justify-content-center">
-                               <i class="isax isax-image5 fs-20 text-gray-6"></i>
-                           </span>`;
-
-                        const statusBadge = b.status === 'publish' ?
-                            `<span class="badge badge-soft-success badge-sm rounded-pill"><i class="isax isax-tick-circle5 me-1"></i>Published</span>` :
-                            `<span class="badge badge-soft-warning badge-sm rounded-pill"><i class="isax isax-edit-25 me-1"></i>Draft</span>`;
-
-                        const catBadge = b.category ?
-                            `<span class="badge badge-soft-primary badge-sm rounded-pill"><i class="isax isax-tag5 me-1"></i>${b.category}</span>` :
-                            `<span class="text-gray-6 fs-14">—</span>`;
-
-                        rows += `<tr>
-                        <td class="fs-14 text-gray-6">${b.id}</td>
-                        <td>${img}</td>
-                        <td><h6 class="fs-15 fw-medium mb-1">${b.title}</h6></td>
-                        <td>${catBadge}</td>
-                        <td>${statusBadge}</td>
-                        <td class="fs-14 text-gray-6"></td>
-                        <td>
-                            <a href="/admin/blogs/${b.id}/edit"
-                               class="btn btn-sm bg-light-200 text-gray-9 d-inline-flex align-items-center gap-1">
-                                <i class="isax isax-edit-25 fs-14"></i>Edit
-                            </a>
-                        </td>
-                    </tr>`;
+                let html = '';
+                if (data.length > 0) {
+                    data.forEach(blog => {
+                        const img = blog.image ? 
+                            `<img src="/uploads/blogs/${blog.image}" class="rounded" style="width:70px;height:50px;object-fit:cover;">` :
+                            `<div class="bg-light rounded d-flex align-items-center justify-content-center" style="width:70px;height:50px;"><i class="isax isax-image5 text-muted"></i></div>`;
+                        
+                        const status = blog.status === 'publish' ?
+                            '<span class="badge badge-soft-success"><i class="isax isax-tick-circle5 me-1"></i>Published</span>' :
+                            '<span class="badge badge-soft-warning"><i class="isax isax-edit-25 me-1"></i>Draft</span>';
+                        
+                        html += `<tr>
+                            <td>${blog.id}</td>
+                            <td>${img}</td>
+                            <td><h6 class="mb-1">${blog.title.substring(0, 50)}</h6></td>
+                            <td>${blog.category || '—'}</td>
+                            <td>${status}</td>
+                            <td class="text-muted">${blog.created_at}</td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a href="/admin/blogs/${blog.id}/edit" class="btn btn-sm btn-light"><i class="isax isax-edit-25"></i></a>
+                                </div>
+                            </td>
+                        </tr>`;
                     });
                 } else {
-                    rows = `<tr><td colspan="7" class="text-center py-4 text-gray-6">No results found</td></tr>`;
+                    html = '<tr><td colspan="7" class="text-center py-4 text-muted">No results found</td></tr>';
                 }
-                $('#blogTable').html(rows);
-            },
-            error: function(jqXHR, textStatus) {
-                if (jqXHR.status === 401 || jqXHR.status === 419 || textStatus === 'parsererror') {
-                    window.location.href = "{{ url('/admin-login') }}";
-                }
+                $('#blogTable').html(html);
             }
         });
     });
+});
 </script>
 @endpush

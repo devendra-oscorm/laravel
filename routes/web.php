@@ -411,9 +411,15 @@ Route::middleware(['admin'])
     ->group(function () {
 
         Route::get('/', function () {
-            return redirect()->route('admin.analytics');
+            return redirect()->route('admin.dashboard');
         });
 
+        // Main Dashboard
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard.index');
+        })->name('admin.dashboard');
+
+        // Blog Management
         Route::get('/blogs', [BlogController::class, 'index'])
             ->name('blogs.index');
 
@@ -473,7 +479,39 @@ Route::middleware(['admin'])
             ->name('admin.settings');
 
         Route::post('/settings', [BlogController::class, 'updateSettings'])
-            ->name('admin.settings.update');    
+            ->name('admin.settings.update');
+
+        // Bookings Management
+        Route::get('/bookings/flights', function () {
+            return view('admin.bookings.flights');
+        })->name('admin.bookings.flights');
+
+        Route::get('/bookings/hotels', function () {
+            return view('admin.bookings.hotels');
+        })->name('admin.bookings.hotels');
+
+        // Payment Management
+        Route::get('/payments', function () {
+            return view('admin.payments.index');
+        })->name('admin.payments');
+
+        Route::get('/refunds', function () {
+            return view('admin.refunds.index');
+        })->name('admin.refunds');
+
+        // Marketing
+        Route::get('/promo-codes', function () {
+            return view('admin.promo-codes.index');
+        })->name('admin.promo-codes');
+
+        Route::get('/banners', function () {
+            return view('admin.banners.index');
+        })->name('admin.banners');
+
+        // Configuration
+        Route::get('/configuration', function () {
+            return view('admin.configuration.index');
+        })->name('admin.configuration');
     });
 
 Route::get('/my-profile', function () {
