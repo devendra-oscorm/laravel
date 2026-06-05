@@ -40,8 +40,8 @@
                                         <img src="{{URL::asset('build/img/users/user-01.jpg')}}" alt="image"
                                             class="img-fluid avatar avatar-lg rounded-circle flex-shrink-0 me-1">
                                         <div>
-                                            <h6 class="fs-16">Jeffrey Wilson</h6>
-                                            <span class="fs-14 text-gray-6">Since 10 May 2025</span>
+                                            <h6 class="fs-16">{{ auth()->user()->name }}</h6>
+                                            <span class="fs-14 text-gray-6">Since {{ auth()->user()->created_at->format('d M y') }}</span>
                                         </div>
                                     </div>
                                     <div>
@@ -230,25 +230,25 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <h6 class="fs-14">First Name</h6>
-                                        <p>Jeffrey </p>
+                                        <p>{{ auth()->user()->first_name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <h6 class="fs-14">Last Name</h6>
-                                        <p>Wilson</p>
+                                        <p>{{ auth()->user()->last_name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <h6 class="fs-14">Email</h6>
-                                        <p>chrfo2356@example.com</p>
+                                        <p>{{ auth()->user()->email }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <h6 class="fs-14">Phone</h6>
-                                        <p>+1 12656 26654</p>
+                                        <p>{{ auth()->user()->phone }}</p>
                                     </div>
                                 </div>
                             </div>
