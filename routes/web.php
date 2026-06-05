@@ -7,9 +7,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Models\User;
-Route::get('/', function () { return view('index-2'); })->name('index-2');
+Route::get('/', function () { 
+    $settings = \App\Models\SiteSetting::allAsArray();
+    return view('index-2', compact('settings'));
+})->name('index-2');
 Route::get('/index-2', function () {
-    return view('index-2');
+    $settings = \App\Models\SiteSetting::allAsArray();
+    return view('index-2', compact('settings'));
 });
 Route::get('/about-us', function () {
     return view('about-us');
@@ -411,9 +415,15 @@ Route::middleware(['admin'])
     ->group(function () {
 
         Route::get('/', function () {
-            return redirect()->route('admin.analytics');
+            return redirect()->route('admin.dashboard');
         });
 
+        // Main Dashboard
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard.index');
+        })->name('admin.dashboard');
+
+        // Blog Management
         Route::get('/blogs', [BlogController::class, 'index'])
             ->name('blogs.index');
 
@@ -473,7 +483,52 @@ Route::middleware(['admin'])
             ->name('admin.settings');
 
         Route::post('/settings', [BlogController::class, 'updateSettings'])
-            ->name('admin.settings.update');    
+            ->name('admin.settings.update');
+
+        // Bookings Management
+        Route::get('/bookings/flights', function () {
+            return view('admin.bookings.flights');
+        })->name('admin.bookings.flights');
+
+        Route::get('/bookings/hotels', function () {
+            return view('admin.bookings.hotels');
+        })->name('admin.bookings.hotels');
+
+        // Payment Management
+        Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])
+            ->name('admin.payments');
+        Route::get('/payments/{transaction}', [App\Http\Controllers\PaymentController::class, 'show'])
+            ->name('admin.payments.show');
+        Route::post('/payments/{transaction}/refund', [App\Http\Controllers\PaymentController::class, 'initiateRefund'])
+            ->name('admin.payments.refund');
+        Route::post('/payments/{transaction}/flag', [App\Http\Controllers\PaymentController::class, 'toggleFlag'])
+            ->name('admin.payments.flag');
+        Route::post('/payments/{transaction}/reconcile', [App\Http\Controllers\PaymentController::class, 'markReconciled'])
+            ->name('admin.payments.reconcile');
+
+        Route::get('/refunds', [App\Http\Controllers\PaymentController::class, 'refunds'])
+            ->name('admin.refunds');
+        Route::patch('/refunds/{refund}/status', [App\Http\Controllers\PaymentController::class, 'updateRefundStatus'])
+            ->name('admin.refunds.status');
+
+        Route::get('/reconciliation', [App\Http\Controllers\PaymentController::class, 'reconciliation'])
+            ->name('admin.reconciliation');
+
+        // Marketing
+        Route::get('/promo-codes', function () {
+            return view('admin.promo-codes.index');
+        })->name('admin.promo-codes');
+
+        Route::get('/banners', function () {
+            return view('admin.banners.index');
+        })->name('admin.banners');
+
+        // Configuration
+        Route::get('/configuration', [App\Http\Controllers\ConfigurationController::class, 'index'])
+            ->name('admin.configuration');
+
+        Route::post('/configuration', [App\Http\Controllers\ConfigurationController::class, 'update'])
+            ->name('admin.configuration.update');
     });
 
 Route::get('/my-profile', function () {

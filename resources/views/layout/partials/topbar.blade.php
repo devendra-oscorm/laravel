@@ -109,7 +109,7 @@
                     <nav id="mobile-menu">
                         <ul class="main-nav">
                             <li class="{{ Request::is('/') ? 'active' : '' }}">
-                                <a href="{{url('index-2')}}">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
                             
                            
@@ -172,70 +172,48 @@
                                     </li>
                                 </ul>
                             </li>
-
                             {{-- Commented out Hotel menu --}}
                             {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
+                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
                                 <a href="#">Hotel<i class="fa-solid fa-angle-down"></i></a>
                                 <ul class="submenu mega-submenu">
-                                    ...
+                                
                                 </ul>
-                            </li>
+                            </li> -->
                             --}}
-
                             {{-- Commented out Car menu --}}
                             {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
+                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
                                 <a href="#">Car<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
+                            
+                            </li> -->
                             --}}
-
-                            {{-- Commented out Cruise menu --}}
-                            {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
+                            {{-- Commented out Cruise menu --}}                         
+                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
                                 <a href="#">Cruise<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
-                            --}}
-
-                            {{-- Commented out Tour menu --}}
-                            {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
+                            -->                
+                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
                                 <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
-                            --}}
-
-                            {{-- Commented out Bus menu --}}
-                            {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
+                            
+                            </li> -->
+                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
                                 <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
-                            --}}
-
-                                                        {{-- Keep Blog menu - Add new Blog menu item --}}
+                            
+                            </li> -->
+        
                             <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
                                 <a href="{{url('blog')}}">Blog</a>
                             </li>
-
-                            {{-- Keep About menu - Add new About menu item --}}
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
                             </li>
-
-
-
                             {{-- Commented out Pages mega menu --}}
-                            {{-- 
-                            <li class="has-submenu megamenutab ...">
-                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
-                            --}}
-
-                            <li class="{{ Request::is('contact-us') ? 'active' : ''; }}">
+                            <!-- <li class="has-submenu megamenutab ">
+                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>                              
+                            </li> -->                   
+                            <li class="{{ Request::is('contact-us') ? 'active' : '' }}">
                                 <a href="{{url('contact-us')}}">Contact</a>
                             </li>
                         </ul>
@@ -255,7 +233,7 @@
                             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                 <span class="avatar avatar-md">
                                     <img src="{{URL::asset('build/img/users/user-05.jpg')}}" alt="Img"
-                                        class="img-fluid rounded-circle border border-white border-4">
+                                        class="img-fluid rounded-circle border border-white ">
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-3">
@@ -474,7 +452,7 @@
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('flight-grid', 'edit-flight', 'flight-list', 'flight-details', 'flight-booking', 'flight-booking-confirmation', 'add-flight') ? 'active subdrop' : ''; }}">
                                 <a href="#">Flight<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
                             --}}
 
@@ -511,7 +489,7 @@
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
                                 <a href="#">Hotel<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
                             --}}
 
@@ -519,7 +497,7 @@
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
                                 <a href="#">Car<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
                             --}}
 
@@ -527,7 +505,7 @@
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
                                 <a href="#">Cruise<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
                             --}}
 
@@ -535,17 +513,15 @@
                             {{-- 
                             <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
                                 <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
-                                ...
+                            
                             </li>
                             --}}
 
                             {{-- Commented out Bus menu --}}
-                            {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
-                                <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
-                            --}}
+                             <!-- <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
+                                <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>                    
+                            </li> -->
+                  
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
                             </li>
@@ -554,15 +530,11 @@
                             <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
                                 <a href="{{url('blog')}}">Blog</a>
                             </li>
-
-                            {{-- Commented out Pages mega menu --}}
-                            {{-- 
-                            <li class="has-submenu megamenutab ...">
-                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>
-                                ...
-                            </li>
-                            --}}
-
+                            {{-- Commented out Pages mega menu --}}                     
+                            <!-- <li class="has-submenu megamenutab ">
+                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>                        
+                            </li> -->
+                    
                             <li class="{{ Request::is('contact-us') ? 'active' : ''; }}">
                                 <a href="{{url('contact-us')}}">Contact</a>
                             </li>
@@ -588,7 +560,7 @@
                             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                 <span class="avatar avatar-md">
                                     <img src="{{URL::asset('build/img/users/user-05.jpg')}}" alt="Img"
-                                        class="img-fluid rounded-circle border border-white border-4">
+                                        class="img-fluid rounded-circle border border-white">
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-3">

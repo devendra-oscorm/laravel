@@ -11,11 +11,11 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('admin')->check()) {
+        if (!Auth::guard('web')->check()) {
             return redirect()->route('admin.login');
         }
 
-        if (Auth::guard('admin')->user()->role !== 'admin') {
+        if (Auth::guard('web')->user()->role !== 'admin') {
             return redirect()->route('admin.login')->withErrors(['error' => 'You are not authorized as admin.']);
         }
 

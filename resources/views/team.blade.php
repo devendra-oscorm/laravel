@@ -83,7 +83,7 @@
                     <div class="card team">
                         <div class="card-body">
                             <a href="{{url('my-profile')}}">
-                                <img src="{{URL::asset('build/img/users/user-20.jpg')}}" class="img-fluid" alt="Img">
+                                <img src="{{URL::asset('build/img/users/user-20.webp')}}" class="img-fluid" alt="Img">
                             </a>
                         </div>
                         <div class="team-member rounded-pill text-center shadow">

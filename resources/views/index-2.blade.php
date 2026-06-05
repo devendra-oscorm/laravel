@@ -3,11 +3,14 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="hero-sec-nine">
+<section class="hero-sec-nine" @if(!empty($settings['home_banner_image'])) style="background-image: url('{{ asset('uploads/banners/' . $settings['home_banner_image']) }}'); background-size: cover; background-position: center;" @endif>
     <div class="container">
         <div class="hero-content wow fadeInUp">
-            <h1 class="banner-title">Discover <span>World</span> Your Way</h1>
-            <span class="banner-title-text">Flights, Hotels, Cars, Tours, Cruises & Visa Services – All in One Platform</span>
+            <h1 class="banner-title">{{ $settings['home_banner_title'] ?? 'Discover World Your Way' }}</h1>
+            <span class="banner-title-text">{{ $settings['home_banner_subtitle'] ?? 'Flights, Hotels, Cars, Tours, Cruises & Visa Services – All in One Platform' }}</span>
+            @if(!empty($settings['home_banner_description']))
+                <p class="banner-desc text-white opacity-75 mt-2">{{ $settings['home_banner_description'] }}</p>
+            @endif
             <div class="row align-items-center">
                 <div class="col-md-12 mx-auto">
                     <div class="banner-form card mb-0 wow fadeInUp" data-wow-delay="1.5">
@@ -178,6 +181,37 @@
     </div>
 </section>
 <!-- /Hero Section -->
+
+<!-- Promo Banner (Dynamic) -->
+@if(!empty($settings['promo_banner_title']) || !empty($settings['promo_banner_image']))
+<section class="py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            @if(!empty($settings['promo_banner_image']))
+            <div class="col-md-4 text-center mb-3 mb-md-0">
+                <img src="{{ asset('uploads/banners/' . $settings['promo_banner_image']) }}"
+                     class="img-fluid rounded" style="max-height: 160px; object-fit: cover;" alt="Promo">
+            </div>
+            @endif
+            <div class="col-md-{{ !empty($settings['promo_banner_image']) ? '8' : '12' }}">
+                @if(!empty($settings['promo_banner_title']))
+                    <h3 class="text-white fw-bold mb-2">{{ $settings['promo_banner_title'] }}</h3>
+                @endif
+                @if(!empty($settings['promo_banner_description']))
+                    <p class="text-white opacity-75 mb-3">{{ $settings['promo_banner_description'] }}</p>
+                @endif
+                @if(!empty($settings['promo_banner_btn_text']))
+                    <a href="{{ $settings['promo_banner_btn_url'] ?? '#' }}" class="btn btn-light fw-semibold">
+                        {{ $settings['promo_banner_btn_text'] }}
+                        <i class="isax isax-arrow-right-3 ms-1"></i>
+                    </a>
+                @endif
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+<!-- /Promo Banner -->
 
 <!-- Flight Search Results (AJAX) -->
 <div class="content pt-4 pb-2" id="heroResultsArea" style="display:none;">
@@ -2204,7 +2238,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-lg-33.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-lg-33.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Gregg Lewis</a></div>
@@ -2231,7 +2265,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-35.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-35.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Lauren Parker</a></div>
@@ -2285,7 +2319,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-38.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-38.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Gregg Lewis</a></div>
