@@ -3,7 +3,10 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="hero-sec-nine" @if(!empty($settings['home_banner_image'])) style="background-image: url('{{ asset('uploads/banners/' . $settings['home_banner_image']) }}'); background-size: cover; background-position: center;" @endif>
+<section class="hero-sec-nine"
+    style="{{ !empty($settings['home_banner_image'])
+        ? 'background-image:url(' . asset('uploads/banners/' . $settings['home_banner_image']) . ');background-size:cover;background-position:center;'
+        : '' }}">
     <div class="container">
         <div class="hero-content wow fadeInUp">
             <h1 class="banner-title">{{ $settings['home_banner_title'] ?? 'Discover World Your Way' }}</h1>

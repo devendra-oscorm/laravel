@@ -529,6 +529,9 @@ Route::middleware(['admin'])
 
         Route::post('/configuration', [App\Http\Controllers\ConfigurationController::class, 'update'])
             ->name('admin.configuration.update');
+
+        Route::post('/configuration/delete-image', [App\Http\Controllers\ConfigurationController::class, 'deleteImage'])
+            ->name('admin.configuration.delete-image');
     });
 
 Route::get('/my-profile', function () {
