@@ -2238,7 +2238,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-lg-33.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-lg-33.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Gregg Lewis</a></div>
@@ -2265,7 +2265,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-35.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-35.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Lauren Parker</a></div>
@@ -2319,7 +2319,7 @@
                     <div class="d-flex align-items-center justify-content-between gap-2">
                        <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg  shrink-0">
-                                <img src="{{URL::asset('build/img/users/user-38.jpg')}}" class="rounded-circle" alt="img">
+                                <img src="{{URL::asset('build/img/users/user-38.webp')}}" class="rounded-circle" alt="img">
                             </a>
                             <div class="ms-2">
                                 <div class="fs-18 fw-semibold text-gray-9 mb-0"><a href="#">Gregg Lewis</a></div>
