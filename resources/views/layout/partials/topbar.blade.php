@@ -172,36 +172,32 @@
                                     </li>
                                 </ul>
                             </li>
-                            {{-- Commented out Hotel menu --}}
-                            {{-- 
-                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
+                    
+                                
+                            <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
                                 <a href="#">Hotel<i class="fa-solid fa-angle-down"></i></a>
                                 <ul class="submenu mega-submenu">
                                 
                                 </ul>
-                            </li> -->
-                            --}}
-                            {{-- Commented out Car menu --}}
-                            {{-- 
-                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
+                            </li>
+             
+                            
+                            <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
                                 <a href="#">Car<i class="fa-solid fa-angle-down"></i></a>
                             
-                            </li> -->
-                            --}}
-                            {{-- Commented out Cruise menu --}}                         
-                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
+                            </li>
+                
+                                           
+                            <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
                                 <a href="#">Cruise<i class="fa-solid fa-angle-down"></i></a>
                             
                             </li>
-                            -->                
-                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
-                                <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
+                                            
                             
-                            </li> -->
-                            <!-- <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
+                            <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
                                 <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>
                             
-                            </li> -->
+                            </li>
         
                             <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
                                 <a href="{{url('blog')}}">Blog</a>
@@ -209,10 +205,7 @@
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
                             </li>
-                            {{-- Commented out Pages mega menu --}}
-                            <!-- <li class="has-submenu megamenutab ">
-                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>                              
-                            </li> -->                   
+                                    
                             <li class="{{ Request::is('contact-us') ? 'active' : '' }}">
                                 <a href="{{url('contact-us')}}">Contact</a>
                             </li>
@@ -485,42 +478,32 @@
                                 </ul>
                             </li>
 
-                            {{-- Commented out Hotel menu --}}
-                            {{-- 
+                          
                             <li class="has-submenu mega-innermenu {{ Request::is('hotel-grid', 'edit-hotel', 'hotel-list', 'hotel-map', 'hotel-details', 'hotel-booking', 'booking-confirmation', 'add-hotel') ? 'active subdrop' : ''; }}">
                                 <a href="#">Hotel<i class="fa-solid fa-angle-down"></i></a>
                             
                             </li>
-                            --}}
+                       
 
-                            {{-- Commented out Car menu --}}
-                            {{-- 
+                         
                             <li class="has-submenu mega-innermenu {{ Request::is('car-grid', 'edit-car', 'car-list', 'car-map', 'car-details', 'car-booking', 'car-booking-confirmation', 'add-car') ? 'active subdrop' : ''; }}">
                                 <a href="#">Car<i class="fa-solid fa-angle-down"></i></a>
                             
                             </li>
-                            --}}
+                    
 
-                            {{-- Commented out Cruise menu --}}
-                            {{-- 
+                         
                             <li class="has-submenu mega-innermenu {{ Request::is('cruise-grid', 'edit-cruise', 'cruise-list', 'cruise-map', 'cruise-details', 'cruise-booking', 'cruise-booking-confirmation', 'add-cruise') ? 'active subdrop' : ''; }}">
                                 <a href="#">Cruise<i class="fa-solid fa-angle-down"></i></a>
                             
                             </li>
-                            --}}
+                     
+                      
 
-                            {{-- Commented out Tour menu --}}
-                            {{-- 
-                            <li class="has-submenu mega-innermenu {{ Request::is('tour-grid', 'edit-tour', 'tour-list', 'tour-map', 'tour-details', 'tour-booking', 'tour-booking-confirmation', 'add-tour') ? 'active subdrop' : ''; }}">
-                                <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
-                            
-                            </li>
-                            --}}
-
-                            {{-- Commented out Bus menu --}}
-                             <!-- <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
+                 
+                            <li class="has-submenu mega-innermenu {{ Request::is('bus-list', 'bus-left-sidebar', 'bus-right-sidebar', 'bus-details', 'bus-seat-selection', 'bus-booking', 'bus-booking-confirmation', 'add-bus') ? 'active subdrop' : ''; }}">
                                 <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>                    
-                            </li> -->
+                            </li>
                   
                             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
                                 <a href="{{url('about-us')}}">About</a>
@@ -530,10 +513,7 @@
                             <li class="{{ Request::is('blog', 'blog-list', 'blog-details') ? 'active' : '' }}">
                                 <a href="{{url('blog')}}">Blog</a>
                             </li>
-                            {{-- Commented out Pages mega menu --}}                     
-                            <!-- <li class="has-submenu megamenutab ">
-                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>                        
-                            </li> -->
+                          
                     
                             <li class="{{ Request::is('contact-us') ? 'active' : ''; }}">
                                 <a href="{{url('contact-us')}}">Contact</a>

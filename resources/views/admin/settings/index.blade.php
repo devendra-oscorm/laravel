@@ -3,23 +3,7 @@
 
 @section('content')
 
-<!-- Breadcrumb -->
-<div class="breadcrumb-bar breadcrumb-bg-04 text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title mb-2">Settings</h2>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="isax isax-home5"></i></a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('blogs.index') }}">Blog Dashboard</a></li>
-                        <li class="breadcrumb-item active">Settings</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="content">
     <div class="container">
@@ -60,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-9 col-lg-8">
+            <div class="col-xl-9 col-lg-8 ">
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 d-flex">
                         <div class="card shadow-none flex-fill">
@@ -120,7 +104,7 @@
                     </div>
                 @endif
 
-                <div class="card shadow-none">
+                <div class="card shadow-none mt-3">
                     <div class="card-header">
                         <h6 class="fs-18 mb-0"><i class="isax isax-setting-25 me-2 text-primary"></i>Admin Account</h6>
                     </div>

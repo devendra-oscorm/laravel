@@ -80,7 +80,7 @@
                         }
                     }
                     > li{
-                        margin-right: 16px !important;
+                        margin-right: 6px !important;
                         border: none !important;
                         &.active{
                             a{
@@ -90,7 +90,7 @@
                         }
                     > a{
                             color: variables.$gray-900;
-                            padding: 4px 16px;
+                            padding: 4px 10px;
                             border-radius: 50px;
                             @include mixins.respond-below(xxl) {
                                 padding: 4px 8px;
