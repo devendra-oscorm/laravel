@@ -37,16 +37,16 @@
     "src": "resources/img/banner/banner-bg-dark-07.png"
   },
   "resources/img/banner/car-banner.jpg": {
-    "file": "icons/car-banner.jpg",
-    "src": "resources/img/banner/car-banner.jpg"
+    "file": "icons/banner-01.jpg",
+    "src": "resources/img/banner/banner-01.jpg"
   },
   "resources/img/banner/cruise-banner.jpg": {
-    "file": "icons/cruise-banner.jpg",
-    "src": "resources/img/banner/cruise-banner.jpg"
+    "file": "icons/banner-01.jpg",
+    "src": "resources/img/banner/banner-01.jpg"
   },
   "resources/img/banner/flight-banner.jpg": {
-    "file": "icons/flight-banner.jpg",
-    "src": "resources/img/banner/flight-banner.jpg"
+    "file": "icons/banner-01.jpg",
+    "src": "resources/img/banner/banner-01.jpg"
   },
   "resources/img/bg/authentication-footer-bg.png": {
     "file": "icons/authentication-footer-bg.png",
@@ -69,40 +69,40 @@
     "src": "resources/img/bg/benefit-bg.png"
   },
   "resources/img/bg/breadcrumb-02.jpg": {
-    "file": "icons/breadcrumb-02.jpg",
+    "file": "icons/breadcrumb.jpg",
     "src": "resources/img/bg/breadcrumb-02.jpg"
   },
   "resources/img/bg/breadcrumb-03.jpg": {
-    "file": "icons/breadcrumb-03.jpg",
-    "src": "resources/img/bg/breadcrumb-03.jpg"
+    "file": "icons/breadcrumb.jpg",
+    "src": "resources/img/bg/breadcrumb-02.jpg"
   },
   "resources/img/bg/breadcrumb-04.jpg": {
-    "file": "icons/breadcrumb-04.jpg",
-    "src": "resources/img/bg/breadcrumb-04.jpg"
+    "file": "icons/breadcrumb.jpg",
+    "src": "resources/img/bg/breadcrumb-02.jpg"
   },
   "resources/img/bg/breadcrumb-05.jpg": {
-    "file": "icons/breadcrumb-05.jpg",
-    "src": "resources/img/bg/breadcrumb-05.jpg"
+    "file": "icons/breadcrumb.jpg",
+    "src": "resources/img/bg/breadcrumb-02.jpg"
   },
   "resources/img/bg/breadcrumb-06.jpg": {
     "file": "icons/breadcrumb-06.jpg",
     "src": "resources/img/bg/breadcrumb-06.jpg"
   },
   "resources/img/bg/breadcrumb-07.jpg": {
-    "file": "icons/breadcrumb-07.jpg",
-    "src": "resources/img/bg/breadcrumb-07.jpg"
+    "file": "icons/breadcrumb-06.jpg",
+    "src": "resources/img/bg/breadcrumb-06.jpg"
   },
   "resources/img/bg/breadcrumb-07.png": {
     "file": "icons/breadcrumb-07.png",
     "src": "resources/img/bg/breadcrumb-07.png"
   },
   "resources/img/bg/breadcrumb-09.jpg": {
-    "file": "icons/breadcrumb-09.jpg",
-    "src": "resources/img/bg/breadcrumb-09.jpg"
+    "file": "icons/breadcrumb-06.jpg",
+    "src": "resources/img/bg/breadcrumb-06.jpg"
   },
   "resources/img/bg/breadcrumb.jpg": {
     "file": "icons/breadcrumb.jpg",
-    "src": "resources/img/bg/breadcrumb.jpg"
+    "src": "resources/img/bg/breadcrumb-02.jpg"
   },
   "resources/img/bg/coming-soon-bg.svg": {
     "file": "icons/coming-soon-bg.svg",

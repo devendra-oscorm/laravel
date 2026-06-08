@@ -8,6 +8,7 @@ export default defineConfig({
         rtl: true,
         outDir: 'public/build/',
         cssCodeSplit: true,
+        emptyOutDir: false,
         rollupOptions: {
             output: {
                 assetFileNames: (css) => {

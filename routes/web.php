@@ -628,6 +628,10 @@ Route::get('/wishlist', function () {
     return view('user.dashboard.wishlist');
 })->name('wishlist');
 
+Route::get('/refund', function () {
+    return view('user.dashboard.refund');
+})->name('refund');
+
 // New Pages v1.0.9
 Route::get('/activity-booking-confirmation', function () {
     return view('activity-booking-confirmation');

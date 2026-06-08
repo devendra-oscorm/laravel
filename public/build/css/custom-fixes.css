@@ -1,0 +1,49 @@
+/* Custom CSS Fixes */
+
+/* Increase spacing between all navigation items */
+header .main-menu-wrapper .main-nav > li {
+    margin-right: 50px !important;
+}
+
+header .main-menu-wrapper .main-nav > li:last-child {
+    margin-right: 0 !important;
+}
+
+/* Remove dotted line (● ● ●) from ALL active menu items */
+header .header-nav .main-menu-wrapper .main-nav > li.active > a::after,
+header .header-nav .main-menu-wrapper .main-nav > li.active.has-submenu > a::after,
+header .main-menu-wrapper .main-nav > li.active > a::after,
+header .main-menu-wrapper .main-nav > li.active.has-submenu > a::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* For index-2 page - increase spacing */
+header.header-nine .main-menu-wrapper .main-nav > li,
+.header-nine .main-menu-wrapper .main-nav > li {
+    margin-right: 50px !important;
+}
+
+header.header-nine .main-menu-wrapper .main-nav > li:last-child,
+.header-nine .main-menu-wrapper .main-nav > li:last-child {
+    margin-right: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1399.98px) {
+    header .main-menu-wrapper .main-nav > li {
+        margin-right: 35px !important;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    header .main-menu-wrapper .main-nav > li {
+        margin-right: 25px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    header .main-menu-wrapper .main-nav > li {
+        margin-right: 0 !important;
+    }
+}

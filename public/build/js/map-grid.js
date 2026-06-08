@@ -9,7 +9,7 @@ var slider, infowindow = null;
 var bounds = new google.maps.LatLngBounds();
 var map, current = 0;
 var locations =[{
-	"id":0o1,
+	"id":01,
 	"lat":53.470692,
 	"lng":-2.220328,
 	"grid_name":"Rainbow Mountain Valley",
@@ -20,7 +20,7 @@ var locations =[{
 	"grid_star":"5.0"
 	}, 
 	{
-	"id":0o2,
+	"id":02,
 	"lat":53.469189,
 	"lng":-2.199262,
 	"grid_name":"The Luxe Haven",
@@ -31,7 +31,7 @@ var locations =[{
 	"grid_star":"5.0"
 	},
 	{
-	"id":0o3,
+	"id":03,
 	"lat":53.468665,
 	"lng":-2.189269,
 	"grid_name":"The Urban Retreat",
