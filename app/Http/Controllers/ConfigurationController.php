@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ConfigurationRequest;
 use App\Models\SiteSetting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ConfigurationController extends Controller
@@ -86,6 +87,30 @@ class ConfigurationController extends Controller
     // ────────────────────────────────────────────────────────────────────
     // Helpers
     // ────────────────────────────────────────────────────────────────────
+
+    /**
+     * Delete a banner image by its settings key.
+     */
+    public function deleteImage(Request $request)
+    {
+        $request->validate([
+            'image_key' => 'required|in:home_banner_image,promo_banner_image',
+        ]);
+
+        $key      = $request->image_key;
+        $filename = SiteSetting::get($key);
+
+        // Delete the physical file if it exists
+        if ($filename && file_exists(public_path('uploads/banners/' . $filename))) {
+            @unlink(public_path('uploads/banners/' . $filename));
+        }
+
+        // Remove the DB record entirely so allAsArray() returns no key
+        SiteSetting::where('key', $key)->delete();
+
+        return redirect()->route('admin.configuration')
+            ->with('success', 'Banner image deleted successfully.');
+    }
 
     /**
      * Upload an image, delete the old one, and persist the path in settings.

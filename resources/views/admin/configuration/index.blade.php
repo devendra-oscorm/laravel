@@ -66,12 +66,24 @@
                                 <div class="col-12">
                                     @php $homeImg = $settings['home_banner_image'] ?? null; @endphp
                                     @if($homeImg)
-                                        <div class="mb-2">
-                                            <p class="fs-13 text-muted mb-1">Current Image:</p>
+                                        <div class="d-flex align-items-start gap-3 p-3 border rounded bg-light mb-1">
                                             <img src="{{ asset('uploads/banners/' . $homeImg) }}"
-                                                 class="img-thumbnail rounded"
-                                                 style="max-height: 180px; object-fit: cover;"
+                                                 class="rounded"
+                                                 style="height:100px; width:180px; object-fit:cover; flex-shrink:0;"
                                                  alt="Home Banner">
+                                            <div class="flex-fill">
+                                                <p class="fs-13 fw-medium mb-1">Current Home Banner</p>
+                                                <p class="fs-12 text-muted mb-3">{{ $homeImg }}</p>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                        onclick="deleteBannerImage('home_banner_image', 'home banner')">
+                                                    <i class="ti ti-trash me-1"></i>Delete Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="p-3 border rounded bg-light text-center mb-1">
+                                            <i class="ti ti-photo-off fs-2 text-muted mb-1 d-block"></i>
+                                            <span class="text-muted fs-12">No home banner image set</span>
                                         </div>
                                     @endif
                                 </div>
@@ -138,12 +150,24 @@
                                 <div class="col-12">
                                     @php $promoImg = $settings['promo_banner_image'] ?? null; @endphp
                                     @if($promoImg)
-                                        <div class="mb-2">
-                                            <p class="fs-13 text-muted mb-1">Current Image:</p>
+                                        <div class="d-flex align-items-start gap-3 p-3 border rounded bg-light mb-1">
                                             <img src="{{ asset('uploads/banners/' . $promoImg) }}"
-                                                 class="img-thumbnail rounded"
-                                                 style="max-height: 180px; object-fit: cover;"
+                                                 class="rounded"
+                                                 style="height:100px; width:180px; object-fit:cover; flex-shrink:0;"
                                                  alt="Promo Banner">
+                                            <div class="flex-fill">
+                                                <p class="fs-13 fw-medium mb-1">Current Promotional Banner</p>
+                                                <p class="fs-12 text-muted mb-3">{{ $promoImg }}</p>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                        onclick="deleteBannerImage('promo_banner_image', 'promotional banner')">
+                                                    <i class="ti ti-trash me-1"></i>Delete Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="p-3 border rounded bg-light text-center mb-1">
+                                            <i class="ti ti-photo-off fs-2 text-muted mb-1 d-block"></i>
+                                            <span class="text-muted fs-12">No promotional banner image set</span>
                                         </div>
                                     @endif
                                 </div>
@@ -687,13 +711,25 @@
 
     </div>
 </div>
+
+{{-- Standalone delete-image form (outside main form to avoid nesting) --}}
+<form id="deleteBannerForm" action="{{ route('admin.configuration.delete-image') }}" method="POST" style="display:none;">
+    @csrf
+    <input type="hidden" name="image_key" id="deleteBannerKey">
+</form>
+
 @endsection
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+function deleteBannerImage(key, label) {
+    if (!confirm('Are you sure you want to delete the ' + label + ' image? This cannot be undone.')) return;
+    document.getElementById('deleteBannerKey').value = key;
+    document.getElementById('deleteBannerForm').submit();
+}
 
-    // ── Fee Rule Card Selection ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+    // ── Fee Rule Card Selection ──────────────────────────────────────────
     const ruleOptions = document.querySelectorAll('.fee-rule-option');
     const ruleRadios  = document.querySelectorAll('.fee-rule-radio');
     const feeSections = document.querySelectorAll('.fee-section');

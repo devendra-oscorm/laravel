@@ -7,23 +7,7 @@
     $maxActivity = max(1, $months->max(fn($month) => max($month['blogs'], $month['comments'])));
 @endphp
 
-<!-- Breadcrumb -->
-<div class="breadcrumb-bar breadcrumb-bg-04 text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title mb-2">Analytics</h2>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="isax isax-home5"></i></a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('blogs.index') }}">Blog Dashboard</a></li>
-                        <li class="breadcrumb-item active">Analytics</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="content">
     <div class="container">
@@ -64,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-9 col-lg-8">
+            <div class="col-xl-9 col-lg-8 ">
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 d-flex">
                         <div class="card shadow-none flex-fill">
@@ -104,7 +88,7 @@
                     </div>
                 </div>
 
-                <div class="card shadow-none mb-4">
+                <div class="card shadow-none mb-4 mt-3">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h6 class="mb-0">Monthly Activity</h6>
@@ -169,7 +153,7 @@
                     </div>
                 </div>
 
-                <div class="card shadow-none">
+                <div class="card shadow-none mt-3">
                     <div class="card-body">
                         <h6 class="mb-3">Latest Comments</h6>
                         @forelse($recentComments as $comment)

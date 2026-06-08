@@ -188,11 +188,11 @@ Route::get('/car-map', function () {
 })->name('car-map');
 
 Route::get('/change-password', function () {
-    return view('change-password');
+    return view('user.profile.change-password');
 })->name('change-password');
 
 Route::get('/chat', function () {
-    return view('chat');
+    return view('user.messages.chat');
 })->name('chat');
 
 Route::get('/coming-soon', function () {
@@ -228,31 +228,31 @@ Route::get('/cruise-map', function () {
 })->name('cruise-map');
 
 Route::get('/customer-bus-booking', function () {
-    return view('customer-bus-booking');
+    return view('user.bookings.bus');
 })->name('customer-bus-booking');
 
 Route::get('/customer-car-booking', function () {
-    return view('customer-car-booking');
+    return view('user.bookings.car');
 })->name('customer-car-booking');
 
 Route::get('/customer-cruise-booking', function () {
-    return view('customer-cruise-booking');
+    return view('user.bookings.cruise');
 })->name('customer-cruise-booking');
 
 Route::get('/customer-flight-booking', function () {
-    return view('customer-flight-booking');
+    return view('user.bookings.flight');
 })->name('customer-flight-booking');
 
 Route::get('/customer-hotel-booking', function () {
-    return view('customer-hotel-booking');
+    return view('user.bookings.hotel');
 })->name('customer-hotel-booking');
 
 Route::get('/customer-tour-booking', function () {
-    return view('customer-tour-booking');
+    return view('user.bookings.tour');
 })->name('customer-tour-booking');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard.index');
 })->name('dashboard');
 
 Route::get('/destination', function () {
@@ -350,11 +350,11 @@ Route::get('/index-rtl', function () {
 })->name('index-rtl');
 
 Route::get('/integration-settings', function () {
-    return view('integration-settings');
+    return view('user.profile.integration-settings');
 })->name('integration-settings');
 
 Route::get('/invoices', function () {
-    return view('invoices');
+    return view('user.dashboard.invoices');
 })->name('invoices');
 /*
 |--------------------------------------------------------------------------
@@ -529,26 +529,29 @@ Route::middleware(['admin'])
 
         Route::post('/configuration', [App\Http\Controllers\ConfigurationController::class, 'update'])
             ->name('admin.configuration.update');
+
+        Route::post('/configuration/delete-image', [App\Http\Controllers\ConfigurationController::class, 'deleteImage'])
+            ->name('admin.configuration.delete-image');
     });
 
 Route::get('/my-profile', function () {
-    return view('my-profile');
+    return view('user.profile.my-profile');
 })->name('my-profile');
 
 Route::get('/notification', function () {
-    return view('notification');
+    return view('user.dashboard.notification');
 })->name('notification');
 
 Route::get('/notification-settings', function () {
-    return view('notification-settings');
+    return view('user.profile.notification-settings');
 })->name('notification-settings');
 
 Route::get('/payment', function () {
-    return view('payment');
+    return view('user.dashboard.payment');
 })->name('payment');
 
 Route::get('/preferences-settings', function () {
-    return view('preferences-settings');
+    return view('user.profile.preferences-settings');
 })->name('preferences-settings');
 
 Route::get('/privacy-policy', function () {
@@ -560,17 +563,17 @@ Route::get('/pricing-plan', function () {
 })->name('pricing-plan');
 
 Route::get('/profile-settings', function () {
-    return view('profile-settings');
+    return view('user.profile.profile-settings');
 })->name('profile-settings');
 
 
 
 Route::get('/review', function () {
-    return view('review');
+    return view('user.dashboard.review');
 })->name('review');
 
 Route::get('/security-settings', function () {
-    return view('security-settings');
+    return view('user.profile.security-settings');
 })->name('security-settings');
 
 Route::get('/support-fixes', function () {
@@ -618,11 +621,11 @@ Route::get('/under-maintenance', function () {
 })->name('under-maintenance');
 
 Route::get('/wallet', function () {
-    return view('wallet');
+    return view('user.dashboard.wallet');
 })->name('wallet');
 
 Route::get('/wishlist', function () {
-    return view('wishlist');
+    return view('user.dashboard.wishlist');
 })->name('wishlist');
 
 // New Pages v1.0.9
@@ -703,35 +706,35 @@ Route::get('/bus-seat-selection', function () {
 })->name('bus-seat-selection');
 
 Route::get('/customer-activities-booking', function () {
-    return view('customer-activities-booking');
+    return view('user.bookings.activities');
 })->name('customer-activities-booking');
 
 Route::get('/customer-coupons', function () {
-    return view('customer-coupons');
+    return view('user.dashboard.coupons');
 })->name('customer-coupons');
 
 Route::get('/customer-gift-cards', function () {
-    return view('customer-gift-cards');
+    return view('user.dashboard.gift-cards');
 })->name('customer-gift-cards');
 
 Route::get('/customer-loyalty-points', function () {
-    return view('customer-loyalty-points');
+    return view('user.dashboard.loyalty-points');
 })->name('customer-loyalty-points');
 
 Route::get('/customer-referral-program', function () {
-    return view('customer-referral-program');
+    return view('user.dashboard.referral-program');
 })->name('customer-referral-program');
 
 Route::get('/customer-reward-history', function () {
-    return view('customer-reward-history');
+    return view('user.dashboard.reward-history');
 })->name('customer-reward-history');
 
 Route::get('/customer-tour-guides', function () {
-    return view('customer-tour-guides');
+    return view('user.bookings.tour-guides');
 })->name('customer-tour-guides');
 
 Route::get('/customer-visa-booking', function () {
-    return view('customer-visa-booking');
+    return view('user.bookings.visa');
 })->name('customer-visa-booking');
 
 Route::get('/destination-details', function () {
@@ -779,7 +782,7 @@ Route::get('/pricing-plan-2', function () {
 })->name('pricing-plan-2');
 
 Route::get('/recently-viewed', function () {
-    return view('recently-viewed');
+    return view('user.dashboard.recently-viewed');
 })->name('recently-viewed');
 
 Route::get('/visa-booking-details', function () {
